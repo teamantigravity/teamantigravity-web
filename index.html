@@ -3,27 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GravitySend | Safe Local File Transfer</title>
+    <title>Team Antigravity | Sovereign Software Engineering</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; }
+        .text-glow { text-shadow: 0 0 40px rgba(99, 102, 241, 0.2); }
+        .border-glow { border-color: rgba(99, 102, 241, 0.15); box-shadow: 0 0 50px rgba(99, 102, 241, 0.03); }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-400 font-sans min-h-screen flex flex-col justify-between p-6">
-    <main class="max-w-2xl mx-auto pt-16 text-center">
-        <div class="h-12 w-12 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-white text-xl mx-auto mb-6">▲</div>
-        <h1 class="text-4xl font-extrabold text-white tracking-tight mb-2">GravitySend</h1>
-        <p class="text-sm font-semibold text-indigo-400 uppercase tracking-wider mb-6">Team Antigravity</p>
-        <p class="text-base leading-relaxed mb-8">High-performance, cross-platform local network file transfer utility. Drop files seamlessly across Android, iOS, macOS, Windows, and Linux endpoints without cloud servers or tracking footprint.</p>
-        
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 max-w-xl mx-auto text-xs font-mono text-slate-400 mb-8">
-            <div class="bg-slate-900 p-2 rounded border border-slate-800">Android</div>
-            <div class="bg-slate-900 p-2 rounded border border-slate-800">iOS</div>
-            <div class="bg-slate-900 p-2 rounded border border-slate-800">macOS</div>
-            <div class="bg-slate-900 p-2 rounded border border-slate-800">Windows</div>
-            <div class="bg-slate-900 p-2 rounded border border-slate-800">Linux</div>
+<body class="text-slate-400 antialiased selection:bg-indigo-500 selection:text-white relative min-h-screen flex flex-col justify-between">
+
+    <!-- Deep Ambient Glow -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-indigo-500/10 to-transparent blur-[140px] pointer-events-none rounded-full"></div>
+
+    <!-- Navigation -->
+    <nav class="max-w-5xl w-full mx-auto px-6 py-8 flex justify-between items-center relative z-20">
+        <div class="text-sm font-black tracking-widest text-white flex items-center gap-2.5 font-mono">
+            <div class="h-5 w-5 rounded bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-[10px] text-white">▲</div>
+            TEAM ANTIGRAVITY
+        </div>
+        <div class="text-[10px] font-mono tracking-widest text-slate-500 bg-slate-900/40 border border-slate-800/60 px-3 py-1 rounded-full backdrop-blur-sm uppercase">Sovereign Build Track</div>
+    </nav>
+
+    <!-- Hero Matrix -->
+    <header class="max-w-4xl mx-auto px-6 pt-24 pb-16 text-center relative z-10">
+        <h1 class="text-5xl md:text-8xl font-black tracking-tight text-white mb-6 leading-none text-glow">
+            Defying Constraints.<br><span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">Engineering Speed.</span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed font-medium">
+            We build zero-infrastructure, high-performance computing tools. No centralized telemetry, no data silos, no background overhead. Pure execution.
+        </p>
+    </header>
+
+    <!-- App Showroom -->
+    <main class="max-w-4xl w-full mx-auto px-6 pb-32 relative z-10">
+        <div class="border-glow bg-slate-900/20 rounded-3xl p-8 md:p-12 backdrop-blur-xl border relative overflow-hidden group">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
+                <div>
+                    <span class="text-[9px] font-bold text-indigo-400 uppercase tracking-widest bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full font-mono">Genesis Release</span>
+                    <h3 class="text-3xl font-extrabold text-white mt-4 mb-2 tracking-tight">GravitySend</h3>
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl">
+                        The world-class open core engine for cross-platform local network file transfer. Move multi-gigabit assets, directories, and streams seamlessly across devices at native hardware bandwidth.
+                    </p>
+                </div>
+                <div class="shrink-0 w-full md:w-auto">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-[10px] font-bold uppercase tracking-wider font-mono">
+                        <span class="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-ping"></span> Production Track
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ecosystem Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 font-mono text-[10px] text-center text-slate-500 uppercase tracking-wider mb-8">
+                <div class="bg-slate-950/40 p-2.5 rounded-lg border border-slate-900">Android</div>
+                <div class="bg-slate-950/40 p-2.5 rounded-lg border border-slate-900">iOS</div>
+                <div class="bg-slate-950/40 p-2.5 rounded-lg border border-slate-900">macOS</div>
+                <div class="bg-slate-950/40 p-2.5 rounded-lg border border-slate-900">Windows</div>
+                <div class="bg-slate-950/40 p-2.5 rounded-lg border border-slate-900">Linux</div>
+            </div>
+
+            <!-- Distribution CTAs -->
+            <div class="flex flex-wrap items-center gap-6">
+                <a href="#" class="px-6 py-3 rounded-xl bg-white text-black font-bold text-xs hover:bg-slate-200 transition tracking-wide shadow-xl">
+                    Get it on Google Play
+                </a>
+                <span class="text-[10px] font-mono text-slate-600">ID: com.gravitysend.app</span>
+            </div>
         </div>
     </main>
-    <footer class="text-center text-xs text-slate-700 font-mono flex justify-center gap-6">
-        <a href="/privacy.html" class="hover:text-slate-500">Privacy Policy</a>
-        <a href="/app-ads.txt" class="hover:text-slate-500">app-ads.txt</a>
+
+    <!-- Footer Core -->
+    <footer class="border-t border-slate-900/60 max-w-5xl w-full mx-auto px-6 py-12 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] font-medium text-slate-600 relative z-20">
+        <div>&copy; 2026 Team Antigravity. Sovereign software utilities running raw.</div>
+        <div class="flex gap-6 font-mono">
+            <a href="/privacy.html" class="hover:text-slate-400 transition">Privacy</a>
+            <a href="/app-ads.txt" class="hover:text-slate-400 transition">app-ads.txt</a>
+        </div>
     </footer>
+
 </body>
 </html>
