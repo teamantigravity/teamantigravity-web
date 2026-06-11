@@ -1,34 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Theme Switcher Logic
+  // --- Neural Theme Architecture ---
   const themeToggle = document.getElementById('theme-toggle');
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   
-  // Check for saved theme preference or use system preference
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  const setTheme = (theme) => {
+  // Apply theme to DOM and save to localStorage
+  const setTheme = (theme, saveToStorage = true) => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    if(themeToggle) {
-        themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Activate light mode' : 'Activate dark mode');
+    if (saveToStorage) {
+      localStorage.setItem('neural-theme', theme);
+    }
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Activate Light Space' : 'Activate Dark Space');
     }
   };
 
-  if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-    setTheme('dark');
+  // Initialization: User Preference > OS Preference
+  const savedTheme = localStorage.getItem('neural-theme');
+  if (savedTheme) {
+    setTheme(savedTheme, false);
   } else {
-    setTheme('light');
+    setTheme(mediaQuery.matches ? 'dark' : 'light', false);
   }
 
+  // Real-time OS Theme Tracker (Neural Adaptation)
+  mediaQuery.addEventListener('change', (e) => {
+    // Only adapt automatically if the user hasn't forced a specific theme
+    if (!localStorage.getItem('neural-theme')) {
+      setTheme(e.matches ? 'dark' : 'light', false);
+    }
+  });
+
+  // Manual Override via Toggle Button
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
+      setTheme(newTheme, true);
     });
   }
 
-  // Scroll Animation Logic
+  // --- Intersection Observer for Organic Scroll Reveals ---
   const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -39,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); // Optional: only animate once
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
