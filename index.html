@@ -3,34 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Antigravity | Beautiful, Simple Apps</title>
-    <meta name="description" content="Team Antigravity builds beautifully simple, lightning-fast apps that respect your privacy.">
+    <title>Team Antigravity — Fast, Private Apps for Every Device</title>
+    <meta name="description" content="Team Antigravity builds cross-platform apps that respect your privacy. GravitySend transfers files between your devices at full Wi-Fi speed — no internet, no limits, no accounts.">
+    <meta name="author" content="Team Antigravity">
+    <meta name="theme-color" content="#0B0D10" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Team Antigravity — Fast, Private Apps">
+    <meta property="og:description" content="GravitySend: transfer files between all your devices at full Wi-Fi speed. No cloud. No limits. No tracking.">
+    <meta property="og:image" content="https://teamantigravity.vercel.app/og-image.png">
+    <meta property="og:url" content="https://teamantigravity.vercel.app">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Antigravity">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Team Antigravity — GravitySend">
+    <meta name="twitter:description" content="Transfer files between all your devices at full Wi-Fi speed. No cloud. No limits.">
+    <meta name="twitter:image" content="https://teamantigravity.vercel.app/og-image.png">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://teamantigravity.vercel.app/">
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Favicon (inline SVG favicon) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="/" class="brand group">
+    <!-- Skip Link for Keyboard Accessibility -->
+    <a href="#gravitysend" class="skip-link">Skip to content</a>
+
+    <!-- Sticky Navigation Header -->
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="container nav-wrapper">
+            <a href="./" class="brand">
                 <div class="brand-icon">
-                    <svg viewBox="0 0 100 100" width="20" height="20" fill="none" stroke="url(#brand-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 100 100" width="28" height="28" fill="none" stroke="url(#brand-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Team Antigravity Logo">
                         <defs>
                             <linearGradient id="brand-grad" x1="0%" y1="100%" x2="100%" y2="0%">
                                 <stop offset="0%" stop-color="var(--c-blue)" />
                                 <stop offset="100%" stop-color="var(--c-green)" />
                             </linearGradient>
                         </defs>
-                        <!-- Geometric A -->
+                        <!-- Geometric A Logo -->
                         <path d="M50 15 L20 85 M50 15 L80 85 M35 60 L65 60" />
-                        <circle cx="50" cy="15" r="4" fill="var(--text-primary)" />
+                        <circle cx="50" cy="15" r="4" fill="var(--c-text-1)" />
                     </svg>
                 </div>
-                Team Antigravity
+                <span class="brand-wordmark">Team Antigravity</span>
             </a>
             
-            <div class="nav-controls">
-                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+            <div class="nav-actions">
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Switch to light mode">
                     <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
                         <mask class="moon" id="moon-mask">
                             <rect x="0" y="0" width="100%" height="100%" fill="white" />
@@ -49,6 +85,7 @@
                         </g>
                     </svg>
                 </button>
+                <a href="#gravitysend" class="nav-cta">Get GravitySend &rarr;</a>
             </div>
         </div>
     </nav>
@@ -56,78 +93,300 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-bg">
-            <div class="mesh-gradient"></div>
+            <div class="hero-ambient-1"></div>
+            <div class="hero-ambient-2"></div>
+            <canvas id="hero-canvas"></canvas>
         </div>
-        <div class="container">
-            <h1 class="tight-tracking">Lightning Fast.<br><span class="text-gradient">Incredibly Simple.</span></h1>
-            <p>We build beautiful tools that respect your privacy and never slow you down. No tracking, no complicated setups—just apps that work perfectly.</p>
+        <div class="container hero-wrapper">
+            <span class="hero-eyebrow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                </svg>
+                Building tools that defy expectations
+            </span>
+            <h1 class="reveal">
+                Lightning Fast.<br>
+                Incredibly <span class="hero-text-grad">Simple.</span>
+            </h1>
+            <p class="hero-subheading reveal">
+                We build cross-platform apps that respect your privacy and stay out of your way. No cloud uploads, no accounts, no tracking — your data goes where you tell it.
+            </p>
             
-            <div class="hero-ctas">
-                <a href="#products" class="btn btn-primary interactive-glow">
-                    View Our Apps
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <div class="hero-ctas reveal">
+                <a href="#gravitysend" class="btn btn-primary">
+                    Get GravitySend
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
                 </a>
-                <a href="#products" class="btn btn-outline interactive-border">
-                    Our Portfolio
-                </a>
+                <a href="#products" class="btn btn-outline">See how it works &darr;</a>
+            </div>
+
+            <div class="hero-social-proof reveal">
+                <span>Available on 5 platforms</span>
+                <span class="social-dot" aria-hidden="true">&middot;</span>
+                <span>Zero cloud dependency</span>
+                <span class="social-dot" aria-hidden="true">&middot;</span>
+                <span>Privacy first</span>
             </div>
         </div>
     </header>
 
-    <!-- Products Showroom -->
-    <main id="products" class="showroom">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">Our Apps</h2>
-
-            <!-- GravitySend Product Card -->
-            <article class="product-card animate-on-scroll border-trace">
-                <div class="product-header">
-                    <div class="product-info">
-                        <span class="product-badge">Available Now</span>
-                        <h3>GravitySend</h3>
-                        <div class="g-dots">
-                            <span class="g-dot blue"></span>
-                            <span class="g-dot red"></span>
-                            <span class="g-dot yellow"></span>
-                            <span class="g-dot green"></span>
-                        </div>
-                        <p style="margin-top: clamp(0.5rem, 1.5vw, 1rem);">
-                            Send files instantly between your phone, tablet, and computer. Move huge videos, entire photo albums, and big folders over your local Wi-Fi without any limits.
-                        </p>
-                    </div>
-                    
-                    <a href="https://teamantigravity.vercel.app/" class="btn btn-primary interactive-glow">
-                        Get the App
-                    </a>
-                </div>
-
-                <div class="platforms">
-                    <span class="platform-pill">Android</span>
-                    <span class="platform-pill">iOS</span>
-                    <span class="platform-pill">macOS</span>
-                    <span class="platform-pill">Windows</span>
-                    <span class="platform-pill">Linux</span>
-                </div>
+    <main id="main-content">
+        <!-- GravitySend Section -->
+        <section id="gravitysend" class="product">
+            <div class="container product-wrapper">
                 
-                <span class="app-id">ID: com.gravitysend.app</span>
-            </article>
-        </div>
+                <!-- Content Column -->
+                <div class="product-content reveal">
+                    <span class="product-eyebrow">Available Now on 5 Platforms</span>
+                    <h2>Move files at the speed of your Wi-Fi.</h2>
+                    <p class="product-description">
+                        GravitySend transfers files directly between your devices over local Wi-Fi — no internet, no size limits, no sign-ups. Send a 20GB video to your Mac in the time it takes to grab a coffee. Your files never leave your network.
+                    </p>
+
+                    <!-- Feature List -->
+                    <div class="feature-list reveal-stagger">
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper" role="img" aria-label="Lightning bolt icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                            </div>
+                            <div class="feature-info">
+                                <h4>No size limits</h4>
+                                <p>Send entire folders, 4K videos, anything.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper" role="img" aria-label="Shield lock icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <div class="feature-info">
+                                <h4>Completely private</h4>
+                                <p>Files travel over local Wi-Fi only.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper" role="img" aria-label="Exchange arrows icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="17 1 21 5 17 9"></polyline>
+                                    <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                                    <polyline points="7 23 3 19 7 15"></polyline>
+                                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                                </svg>
+                            </div>
+                            <div class="feature-info">
+                                <h4>All your devices</h4>
+                                <p>Android &middot; iOS &middot; macOS &middot; Windows &middot; Linux</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper" role="img" aria-label="Adjustments icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                                    <line x1="20" y1="21" x2="20" y2="16"></line>
+                                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                                    <line x1="1" y1="14" x2="7" y2="14"></line>
+                                    <line x1="9" y1="8" x2="15" y2="8"></line>
+                                    <line x1="17" y1="16" x2="23" y2="16"></line>
+                                </svg>
+                            </div>
+                            <div class="feature-info">
+                                <h4>Zero setup</h4>
+                                <p>Open the app, scan a code, done.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Platform Pills (Horizontal Scroll) -->
+                    <div class="platforms-row">
+                        <span class="platform-pill">Android</span>
+                        <span class="platform-pill">iOS</span>
+                        <span class="platform-pill">macOS</span>
+                        <span class="platform-pill">Windows</span>
+                        <span class="platform-pill">Linux</span>
+                    </div>
+
+                    <a href="#" class="btn btn-primary">
+                        Download Free
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+
+                    <div class="product-meta">Bundle ID: com.gravitysend.app</div>
+                </div>
+
+                <!-- Device Mockup Stack -->
+                <div class="product-mockup reveal">
+                    <div class="mockup-floating-wrapper">
+                        <svg viewBox="0 0 500 400" width="500" height="400" fill="none" class="mockup-svg" role="img" aria-label="GravitySend cross-platform file transfer demonstration">
+                            <defs>
+                                <linearGradient id="screen-grad-laptop" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--c-surface-2)" />
+                                    <stop offset="100%" stop-color="var(--c-surface)" />
+                                </linearGradient>
+                                <linearGradient id="screen-grad-phone" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--c-surface)" />
+                                    <stop offset="100%" stop-color="var(--c-surface-2)" />
+                                </linearGradient>
+                                <linearGradient id="beam-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="var(--c-blue)" />
+                                    <stop offset="100%" stop-color="var(--c-green)" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Laptop Mockup -->
+                            <!-- Screen frame -->
+                            <rect x="60" y="80" width="280" height="170" rx="10" class="mockup-laptop" stroke="var(--c-border)" stroke-width="3" fill="url(#screen-grad-laptop)" />
+                            <!-- Inner screen edge -->
+                            <rect x="70" y="90" width="260" height="150" rx="4" fill="var(--c-bg)" opacity="0.8" />
+                            <!-- Keyboard base plate -->
+                            <path d="M40 250 L360 250 L380 265 L20 265 Z" fill="var(--c-surface-2)" stroke="var(--c-border)" stroke-width="3" />
+                            <!-- Trackpad -->
+                            <rect x="175" y="255" width="50" height="8" rx="2" fill="var(--c-border)" />
+
+                            <!-- File list simulation on laptop screen -->
+                            <rect x="85" y="105" width="230" height="16" rx="3" fill="var(--c-surface)" opacity="0.9" />
+                            <rect x="85" y="128" width="230" height="16" rx="3" fill="var(--c-surface)" opacity="0.9" />
+                            <rect x="85" y="151" width="160" height="16" rx="3" fill="var(--c-surface)" opacity="0.9" />
+                            <circle cx="100" cy="113" r="4" fill="var(--c-blue)" />
+                            <circle cx="100" cy="136" r="4" fill="var(--c-green)" />
+                            <circle cx="100" cy="159" r="4" fill="var(--c-text-3)" />
+                            <rect x="112" y="110" width="80" height="6" rx="2" fill="var(--c-text-2)" />
+                            <rect x="112" y="133" width="95" height="6" rx="2" fill="var(--c-text-2)" />
+                            <rect x="112" y="156" width="60" height="6" rx="2" fill="var(--c-text-2)" />
+
+                            <!-- Connection Beam (flows behind phone) -->
+                            <path d="M200 170 C220 170, 280 200, 370 200" stroke="url(#beam-grad)" stroke-width="4" stroke-linecap="round" class="mockup-beam" />
+                            
+                            <!-- Pulsating Midpoint Dot -->
+                            <g class="mockup-pulse-dot">
+                                <circle cx="280" cy="185" r="10" fill="var(--c-blue)" opacity="0.25" />
+                                <circle cx="280" cy="185" r="5" fill="var(--c-blue)" />
+                            </g>
+
+                            <!-- Phone Mockup -->
+                            <g transform="rotate(-5, 400, 240)">
+                                <!-- Phone body -->
+                                <rect x="330" y="130" width="110" height="210" rx="16" class="mockup-phone" stroke="var(--c-border)" stroke-width="3" fill="url(#screen-grad-phone)" />
+                                <!-- Phone screen -->
+                                <rect x="337" y="142" width="96" height="186" rx="11" fill="var(--c-bg)" opacity="0.8" />
+                                <!-- Phone notch/speaker -->
+                                <rect x="367" y="134" width="36" height="6" rx="3" fill="var(--c-border)" />
+                                <!-- Phone home bar -->
+                                <rect x="367" y="320" width="36" height="4" rx="2" fill="var(--c-border)" />
+
+                                <!-- File list simulation on phone screen -->
+                                <rect x="347" y="157" width="76" height="18" rx="4" fill="var(--c-surface)" opacity="0.9" />
+                                <rect x="347" y="180" width="76" height="18" rx="4" fill="var(--c-surface)" opacity="0.9" />
+                                <circle cx="358" cy="166" r="4" fill="var(--c-blue)" />
+                                <circle cx="358" cy="189" r="4" fill="var(--c-green)" />
+                                <rect x="368" y="163" width="40" height="6" rx="2" fill="var(--c-text-2)" />
+                                <rect x="368" y="186" width="32" height="6" rx="2" fill="var(--c-text-2)" />
+
+                                <!-- Transferring status box -->
+                                <rect x="347" y="210" width="76" height="60" rx="6" fill="var(--c-surface-2)" stroke="var(--c-border)" stroke-width="1" />
+                                <circle cx="385" cy="235" r="12" fill="var(--c-glow-blue)" />
+                                <!-- Arrow -->
+                                <path d="M385 228 L385 242 M380 237 L385 242 L390 237" stroke="var(--c-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <rect x="357" y="255" width="56" height="4" rx="2" fill="var(--c-border)" />
+                                <rect x="357" y="255" width="38" height="4" rx="2" fill="var(--c-blue)" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Trust / Privacy Section -->
+        <section class="privacy-promise">
+            <div class="privacy-promise-bg"></div>
+            <div class="container">
+                <div class="privacy-promise-grid reveal-stagger">
+                    
+                    <!-- Card 1 -->
+                    <div class="privacy-card">
+                        <div class="privacy-card-icon" role="img" aria-label="Lock security icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <h3>Private by design</h3>
+                        <p>Your files never touch any server. Ever. Transfers stay completely local.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="privacy-card">
+                        <div class="privacy-card-icon" role="img" aria-label="Lightning connection icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                        </div>
+                        <h3>Works offline</h3>
+                        <p>Files transfer over local Wi-Fi at full network speeds. No internet required.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="privacy-card">
+                        <div class="privacy-card-icon" role="img" aria-label="Slash profile circle icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                        </div>
+                        <h3>No accounts</h3>
+                        <p>No sign-up, no login, no profile, no email. Just open the app and send.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <div class="footer-links">
-                <a href="/privacy/gravitysend.html">Privacy Policy</a>
-                <a href="/app-ads.txt">app-ads.txt</a>
-                <a href="#products">Portfolio</a>
+        <div class="container">
+            <div class="footer-row-1">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 100 100" width="20" height="20" fill="none" stroke="url(#brand-grad-footer)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Team Antigravity Logo">
+                        <defs>
+                            <linearGradient id="brand-grad-footer" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="var(--c-blue)" />
+                                <stop offset="100%" stop-color="var(--c-green)" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M50 15 L20 85 M50 15 L80 85 M35 60 L65 60" />
+                        <circle cx="50" cy="15" r="4" fill="var(--c-text-1)" />
+                    </svg>
+                    <span>Team Antigravity</span>
+                </div>
+                <div class="footer-links">
+                    <a href="privacy/gravitysend.html">Privacy Policy</a>
+                    <a href="app-ads.txt">app-ads.txt</a>
+                    <a href="#gravitysend">Portfolio</a>
+                </div>
+                <span class="footer-tagline">Making software simple for everyone.</span>
             </div>
-            <div class="copyright">
-                &copy; 2026 Team Antigravity. Making software simple for everyone.
+            <div class="footer-row-2">
+                &copy; 2026 Team Antigravity &middot; Built with care, zero telemetry.
             </div>
         </div>
     </footer>
 
-    <script src="main.js"></script>
 </body>
 </html>

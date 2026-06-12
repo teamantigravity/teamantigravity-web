@@ -1,111 +1,267 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // --- Neural Theme Architecture ---
-  const themeToggle = document.getElementById('theme-toggle');
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const root = document.documentElement;
-  
-  // Apply theme to DOM and save to localStorage
-  const setTheme = (theme, saveToStorage = true) => {
-    root.setAttribute('data-theme', theme);
-    if (saveToStorage) {
-      localStorage.setItem('neural-theme', theme);
-    }
-    if (themeToggle) {
-        themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Activate Light Space' : 'Activate Dark Space');
-    }
-    updateAtmosphere(); // Re-calculate atmosphere when theme changes
-  };
+'use strict';
 
-  // Initialization: User Preference > OS Preference
-  const savedTheme = localStorage.getItem('neural-theme');
-  if (savedTheme) {
-    setTheme(savedTheme, false);
-  } else {
-    setTheme(mediaQuery.matches ? 'dark' : 'light', false);
+(function() {
+  // --- Initialization ---
+  function init() {
+    initTheme();
+    initNav();
+    initScrollReveal();
+    initSmoothScroll();
+    initHeroParticles();
   }
 
-  // Real-time OS Theme Tracker
-  mediaQuery.addEventListener('change', (e) => {
-    if (!localStorage.getItem('neural-theme')) {
-      setTheme(e.matches ? 'dark' : 'light', false);
-    }
-  });
-
-  // Manual Override
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = root.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme, true);
-    });
-  }
-
-  // --- Atmospheric Engine (Season & Time of Day) ---
-  function updateAtmosphere() {
-    const date = new Date();
-    const month = date.getMonth(); // 0-11
-    const hour = date.getHours(); // 0-23
+  // --- Theme Management ---
+  function initTheme() {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
-    // Determine Season
-    let season = 'winter';
-    if (month >= 2 && month <= 4) season = 'spring';
-    else if (month >= 5 && month <= 7) season = 'summer';
-    else if (month >= 8 && month <= 10) season = 'autumn';
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      if (themeToggleBtn) {
+        themeToggleBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+      }
+    }
 
-    // Determine Time of Day
-    let timeOfDay = 'night';
-    if (hour >= 5 && hour < 11) timeOfDay = 'morning';
-    else if (hour >= 11 && hour < 17) timeOfDay = 'afternoon';
-    else if (hour >= 17 && hour < 20) timeOfDay = 'evening';
+    // Load theme: storage > system
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      setTheme(mediaQuery.matches ? 'dark' : 'light');
+    }
 
-    // Top-tier curated color palettes for seasons (RGB values)
-    const palettes = {
-      spring: ['167, 243, 208', '244, 165, 255', '147, 197, 253', '253, 230, 138'], // Soft greens, pinks, blues
-      summer: ['253, 224, 71', '103, 232, 249', '134, 239, 172', '251, 146, 60'], // Vibrant yellows, cyans, greens
-      autumn: ['249, 115, 22', '161, 98, 7', '252, 211, 77', '225, 29, 72'], // Deep oranges, browns, reds
-      winter: ['147, 197, 253', '196, 181, 253', '248, 250, 252', '56, 189, 248']  // Frosty blues, purples, white
-    };
+    // Listen to theme switch button
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+      });
+    }
 
-    // Opacity tuning based on time of day to match the vibe
-    const opacities = {
-      morning:   { light: 0.35, dark: 0.20 },
-      afternoon: { light: 0.45, dark: 0.25 },
-      evening:   { light: 0.55, dark: 0.35 },
-      night:     { light: 0.25, dark: 0.12 }
-    };
-
-    const isDark = root.getAttribute('data-theme') === 'dark';
-    const opacity = isDark ? opacities[timeOfDay].dark : opacities[timeOfDay].light;
-    const colors = palettes[season];
-
-    // Inject the atmospheric variables into the CSS globally
-    root.style.setProperty('--mesh-color-1', `rgba(${colors[0]}, ${opacity})`);
-    root.style.setProperty('--mesh-color-2', `rgba(${colors[1]}, ${opacity})`);
-    root.style.setProperty('--mesh-color-3', `rgba(${colors[2]}, ${opacity})`);
-    root.style.setProperty('--mesh-color-4', `rgba(${colors[3]}, ${opacity})`);
-  }
-
-  // Initial atmosphere setup
-  updateAtmosphere();
-  // Update atmosphere every minute to catch hour changes smoothly
-  setInterval(updateAtmosphere, 60000);
-
-  // --- Intersection Observer for Organic Scroll Reveals ---
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+    // Listen to system preferences change (only if no override exists)
+    mediaQuery.addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
       }
     });
-  }, observerOptions);
+  }
 
-  const animatedElements = document.querySelectorAll('.animate-on-scroll');
-  animatedElements.forEach(el => observer.observe(el));
-});
+  // --- Sticky Navigation Scroll behavior ---
+  function initNav() {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
+
+  // --- Scroll Reveal with IntersectionObserver ---
+  function initScrollReveal() {
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          
+          // Stagger children logic
+          if (entry.target.classList.contains('reveal-stagger')) {
+            const children = entry.target.children;
+            Array.from(children).forEach((child, index) => {
+              if (isReducedMotion) {
+                child.style.transition = 'none';
+                child.style.opacity = '1';
+                child.style.transform = 'none';
+              } else {
+                child.style.setProperty('--stagger-delay', `${index * 0.1}s`);
+              }
+            });
+          }
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
+    revealElements.forEach(el => observer.observe(el));
+  }
+
+  // --- Smooth Scrolling for anchor links ---
+  function initSmoothScroll() {
+    const nav = document.querySelector('nav');
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (!targetElement) return;
+        
+        e.preventDefault();
+        const navHeight = nav ? nav.offsetHeight : 0;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      });
+    });
+  }
+
+  // --- Hero Section Particle Field ---
+  function initHeroParticles() {
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isReducedMotion) return;
+
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    let particles = [];
+    const particleCount = 40;
+    let width = canvas.width = hero.offsetWidth;
+    let height = canvas.height = hero.offsetHeight;
+    let mouse = { x: -1000, y: -1000 };
+    let animationFrameId = null;
+
+    class Particle {
+      constructor() {
+        this.reset();
+        // Distribute initially throughout canvas
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.radius = 1 + Math.random() * 1.5; // radius 1-2.5px
+        this.color = Math.random() > 0.5 ? 'rgba(56, 189, 248, 0.25)' : 'rgba(52, 211, 153, 0.15)'; // Blue/Green
+        this.vx = (Math.random() - 0.5) * 0.4; // Max 0.2px/frame velocity
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.opacity = 0.2 + Math.random() * 0.6;
+        this.opacitySpeed = 0.005 + Math.random() * 0.01;
+        this.opacityDirection = Math.random() > 0.5 ? 1 : -1;
+      }
+
+      update() {
+        // Opacity oscillation
+        this.opacity += this.opacitySpeed * this.opacityDirection;
+        if (this.opacity >= 0.8 || this.opacity <= 0.2) {
+          this.opacityDirection *= -1;
+        }
+
+        // Repulsion from mouse vector
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const repulsionRadius = 120;
+
+        if (dist < repulsionRadius) {
+          const force = (repulsionRadius - dist) / repulsionRadius;
+          const angle = Math.atan2(dy, dx);
+          // Gently push particle away
+          this.x += Math.cos(angle) * force * 1.8;
+          this.y += Math.sin(angle) * force * 1.8;
+        }
+
+        // Slow standard drift
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Wrap around boundaries
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        
+        // Build color string with current dynamic opacity
+        const colorBase = this.color.substring(0, this.color.lastIndexOf(','));
+        ctx.fillStyle = `${colorBase}, ${this.opacity * 0.6})`;
+        ctx.fill();
+      }
+    }
+
+    // Initialize particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    }
+
+    // Mouse movement listeners
+    hero.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    // Handle debounced resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        width = canvas.width = hero.offsetWidth;
+        height = canvas.height = hero.offsetHeight;
+        particles.forEach(p => p.reset());
+      }, 150);
+    });
+
+    // Start/stop loop based on visibility state
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        animate();
+      }
+    });
+
+    // Start particle system
+    animate();
+  }
+
+  // Trigger setup on DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', init);
+})();

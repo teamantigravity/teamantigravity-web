@@ -3,33 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GravitySend Privacy Policy | Team Antigravity</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>GravitySend Privacy Policy — Team Antigravity</title>
+    <meta name="description" content="Privacy Policy for GravitySend app by Team Antigravity. We respect your privacy and collect zero data.">
+    <meta name="theme-color" content="#0B0D10" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../main.js" defer></script>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="/" class="brand group">
+    <!-- Skip Link for Keyboard Accessibility -->
+    <a href="#privacy-content" class="skip-link">Skip to content</a>
+
+    <!-- Sticky Navigation Header -->
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="container nav-wrapper">
+            <a href="../" class="brand">
                 <div class="brand-icon">
-                    <svg viewBox="0 0 100 100" width="20" height="20" fill="none" stroke="url(#brand-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 100 100" width="28" height="28" fill="none" stroke="url(#brand-grad-privacy)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Team Antigravity Logo">
                         <defs>
-                            <linearGradient id="brand-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <linearGradient id="brand-grad-privacy" x1="0%" y1="100%" x2="100%" y2="0%">
                                 <stop offset="0%" stop-color="var(--c-blue)" />
                                 <stop offset="100%" stop-color="var(--c-green)" />
                             </linearGradient>
                         </defs>
-                        <!-- Geometric A -->
+                        <!-- Geometric A Logo -->
                         <path d="M50 15 L20 85 M50 15 L80 85 M35 60 L65 60" />
-                        <circle cx="50" cy="15" r="4" fill="var(--text-primary)" />
+                        <circle cx="50" cy="15" r="4" fill="var(--c-text-1)" />
                     </svg>
                 </div>
-                Team Antigravity
+                <span class="brand-wordmark">Team Antigravity</span>
             </a>
             
-            <div class="nav-controls">
-                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+            <div class="nav-actions">
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Switch to light mode">
                     <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
                         <mask class="moon" id="moon-mask">
                             <rect x="0" y="0" width="100%" height="100%" fill="white" />
@@ -48,41 +65,101 @@
                         </g>
                     </svg>
                 </button>
+                <a href="../#gravitysend" class="nav-cta">Get GravitySend &rarr;</a>
             </div>
         </div>
     </nav>
 
-    <main class="container doc-page">
-        <header class="doc-header animate-on-scroll">
+    <!-- Main Content Container -->
+    <main id="privacy-content" class="container doc-page">
+        <header class="doc-header reveal">
             <h1>GravitySend Privacy Policy</h1>
-            <p><strong>Effective Date:</strong> June 10, 2026</p>
+            <p class="hero-subheading" style="margin-bottom: 0;">We collect nothing. Your files are your business.</p>
         </header>
 
-        <article class="doc-content animate-on-scroll">
-            <p>Team Antigravity offers GravitySend for free to make your life easier. We believe apps should just work, without tracking your every move.</p>
+        <article class="reveal-stagger">
+            
+            <!-- Section 1: Data Collection -->
+            <section class="doc-section">
+                <h2>1. Data Collection: None. Zero.</h2>
+                <p>
+                    GravitySend is designed to work completely locally. We do not track, collect, store, upload, or sell your personal information, file metadata, or app usage statistics. 
+                </p>
+                <p>
+                    There are no user registration forms, no databases keeping logs of your activity, and no telemetry tracking your clicks.
+                </p>
+            </section>
 
-            <h2>1. Local Privacy</h2>
-            <p>Your files are sent directly between your devices over your own Wi-Fi. We never upload your files to the cloud, and they never touch our servers.</p>
+            <!-- Section 2: Permissions Used -->
+            <section class="doc-section">
+                <h2>2. Permissions Used &amp; Why</h2>
+                <p>
+                    To function properly, GravitySend requests the following device permissions. We only use them to complete transfers:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Local Network Access:</strong> Required to scan your local Wi-Fi router network, detect your other active devices running GravitySend, and transmit files directly to them.</li>
+                    <li><strong>Camera Access (Optional):</strong> Used exclusively to scan connection QR codes generated by other devices to pair them quickly. No image data is ever saved or transmitted.</li>
+                    <li><strong>Storage / Photos Access:</strong> Required to select files or photos you choose to send, and to save incoming files to your device's downloads folder.</li>
+                </ul>
+            </section>
 
-            <h2>2. Advertisements</h2>
-            <p>We use Google AdMob to show ads so we can keep the app completely free to use. Google may collect standard, anonymous device information to show these ads.</p>
+            <!-- Section 3: Third-Party Services -->
+            <section class="doc-section">
+                <h2>3. Third-Party Services</h2>
+                <p>
+                    GravitySend does not bundle third-party analytics SDKs (like Firebase or Google Analytics), nor do we sell advertising space through tracking-based SDKs in this premium experience.
+                </p>
+                <p>
+                    Your files are streamed directly peer-to-peer (P2P) between your own hardware components over your local network socket. Nothing is stored on intermediate servers.
+                </p>
+            </section>
+
+            <!-- Section 4: Contact -->
+            <section class="doc-section">
+                <h2>4. Contact Us</h2>
+                <p>
+                    If you have any questions or suggestions regarding our privacy protocol, please contact us at:
+                    <a href="mailto:hello@teamantigravity.com" style="color: var(--c-blue); text-decoration: underline;">hello@teamantigravity.com</a>
+                </p>
+            </section>
+
+            <!-- Section 5: Last Updated -->
+            <section class="doc-section" style="border-top: 1px solid var(--c-border); padding-top: var(--space-6); margin-top: var(--space-12);">
+                <p style="font-size: var(--t-sm); color: var(--c-text-3);">Last updated: June 2026</p>
+            </section>
+
         </article>
     </main>
 
     <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <div class="footer-links">
-                <a href="/">Home</a>
-                <a href="/app-ads.txt">app-ads.txt</a>
-                <a href="/#products">Portfolio</a>
+        <div class="container">
+            <div class="footer-row-1">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 100 100" width="20" height="20" fill="none" stroke="url(#brand-grad-footer)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Team Antigravity Logo">
+                        <defs>
+                            <linearGradient id="brand-grad-footer" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="var(--c-blue)" />
+                                <stop offset="100%" stop-color="var(--c-green)" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M50 15 L20 85 M50 15 L80 85 M35 60 L65 60" />
+                        <circle cx="50" cy="15" r="4" fill="var(--c-text-1)" />
+                    </svg>
+                    <span>Team Antigravity</span>
+                </div>
+                <div class="footer-links">
+                    <a href="gravitysend.html">Privacy Policy</a>
+                    <a href="../app-ads.txt">app-ads.txt</a>
+                    <a href="../#gravitysend">Portfolio</a>
+                </div>
+                <span class="footer-tagline">Making software simple for everyone.</span>
             </div>
-            <div class="copyright">
-                &copy; 2026 Team Antigravity. Making software simple for everyone.
+            <div class="footer-row-2">
+                &copy; 2026 Team Antigravity &middot; Built with care, zero telemetry.
             </div>
         </div>
     </footer>
 
-    <script src="/main.js"></script>
 </body>
 </html>
