@@ -9,6 +9,7 @@
     initSmoothScroll();
     initHeroParticles();
     initReleaseFetcher();
+    initBuildStatusDashboard();
   }
 
   // --- Theme Management ---
@@ -304,6 +305,139 @@
         statusEl.style.color = 'var(--c-text-3)';
       }
     }
+  }
+
+  // --- Build Status Dashboard ---
+  const GITHUB_OWNER = 'teamantigravity';
+  const GITHUB_REPO  = 'gravitysend';
+  const BASE_URL     = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows`;
+
+  function resolveStatus(run) {
+    if (!run) return { key: 'unknown', label: 'Unknown', dotClass: 'status-unknown', pillClass: 'resolved-unknown' };
+    const { status, conclusion, html_url, created_at } = run;
+    if (status === 'in_progress' || status === 'queued' || status === 'waiting') {
+      return { key: 'progress', label: 'Building', dotClass: 'status-progress', pillClass: 'resolved-progress', url: html_url, date: created_at };
+    }
+    if (status === 'completed') {
+      if (conclusion === 'success') {
+        return { key: 'pass', label: 'Passing', dotClass: 'status-pass', pillClass: 'resolved-pass', url: html_url, date: created_at };
+      }
+      if (conclusion === 'failure' || conclusion === 'timed_out') {
+        return { key: 'fail', label: 'Failing', dotClass: 'status-fail', pillClass: 'resolved-fail', url: html_url, date: created_at };
+      }
+      if (conclusion === 'cancelled') {
+        return { key: 'cancelled', label: 'Cancelled', dotClass: 'status-cancelled', pillClass: 'resolved-unknown', url: html_url, date: created_at };
+      }
+    }
+    return { key: 'unknown', label: 'Unknown', dotClass: 'status-unknown', pillClass: 'resolved-unknown' };
+  }
+
+  function timeAgo(isoString) {
+    if (!isoString) return '';
+    const diff = Date.now() - new Date(isoString).getTime();
+    const mins  = Math.floor(diff / 60_000);
+    const hours = Math.floor(diff / 3_600_000);
+    const days  = Math.floor(diff / 86_400_000);
+    if (mins < 2)  return 'just now';
+    if (mins < 60) return `${mins}m ago`;
+    if (hours < 24) return `${hours}h ago`;
+    return `${days}d ago`;
+  }
+
+  function updatePill(pill, s) {
+    const dot   = pill.querySelector('.status-dot');
+    const label = pill.querySelector('.pill-label');
+    if (!dot) return;
+
+    dot.className = `status-dot ${s.dotClass}`;
+
+    ['resolved-pass','resolved-fail','resolved-progress','resolved-unknown'].forEach(c => pill.classList.remove(c));
+    pill.classList.add(s.pillClass);
+
+    const ago     = timeAgo(s.date);
+    const tooltip = ago ? `${s.label} · ${ago}` : s.label;
+    pill.setAttribute('data-tooltip', tooltip);
+    pill.setAttribute('aria-label', `${label.textContent}: ${tooltip}`);
+
+    if (s.url) {
+      pill.style.cursor = 'pointer';
+      pill.setAttribute('role', 'link');
+      pill.setAttribute('tabindex', '0');
+      pill.onclick = () => window.open(s.url, '_blank', 'noopener');
+      pill.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          window.open(s.url, '_blank', 'noopener');
+        }
+      };
+    }
+  }
+
+  async function fetchWorkflowStatusFallback(pill, workflowFile) {
+    try {
+      const res = await fetch(`${BASE_URL}/${workflowFile}/runs?per_page=1&branch=main`, {
+        headers: { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data   = await res.json();
+      const latestRun = data.workflow_runs?.[0] ?? null;
+      const s      = resolveStatus(latestRun);
+      updatePill(pill, s);
+    } catch (err) {
+      console.warn(`[GravitySend build status] Direct fetch failed for ${workflowFile}:`, err.message);
+      const dot = pill.querySelector('.status-dot');
+      if (dot) dot.className = 'status-dot status-unknown';
+      pill.setAttribute('data-tooltip', 'Status unavailable');
+    }
+  }
+
+  async function loadBuildStatuses() {
+    const container = document.getElementById('gravitysend-platforms');
+    if (!container) return;
+
+    const pills = container.querySelectorAll('.platform-pill');
+    const updatedEl = document.getElementById('build-updated-time');
+
+    let processedViaAPI = false;
+
+    // Try Vercel Serverless Function first
+    try {
+      const res = await fetch('/api/build-status');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const statuses = await res.json();
+
+      pills.forEach(pill => {
+        const platform = pill.getAttribute('data-platform');
+        if (platform && statuses[platform] !== undefined) {
+          const run = statuses[platform];
+          const s = resolveStatus(run);
+          updatePill(pill, s);
+        }
+      });
+      processedViaAPI = true;
+    } catch (err) {
+      console.log('[GravitySend build status] Vercel proxy unavailable, falling back to direct GitHub API:', err.message);
+    }
+
+    // Fallback: fetch directly from GitHub
+    if (!processedViaAPI) {
+      const promises = Array.from(pills).map(pill => {
+        const workflowFile = pill.getAttribute('data-workflow');
+        if (workflowFile) {
+          return fetchWorkflowStatusFallback(pill, workflowFile);
+        }
+      });
+      await Promise.allSettled(promises);
+    }
+
+    if (updatedEl) {
+      const now = new Date();
+      updatedEl.textContent = `Updated ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    }
+  }
+
+  function initBuildStatusDashboard() {
+    loadBuildStatuses();
+    setInterval(loadBuildStatuses, 60_000);
   }
 
   // Trigger setup on DOMContentLoaded
