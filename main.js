@@ -274,8 +274,8 @@
     if (!btnWindows) return;
 
     try {
-      // Fetch the specific 'nightly' release which holds the continuous build artifacts
-      const response = await fetch('https://api.github.com/repos/teamantigravity/gravitysend/releases/tags/nightly');
+      // Fetch the specific 'latest-successful-build' release which holds the continuous build artifacts
+      const response = await fetch('https://api.github.com/repos/teamantigravity/gravitysend/releases/tags/latest-successful-build');
       if (!response.ok) throw new Error('Failed to fetch releases');
       const data = await response.json();
       
