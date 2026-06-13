@@ -8,6 +8,7 @@
     initScrollReveal();
     initSmoothScroll();
     initHeroParticles();
+    initReleaseFetcher();
   }
 
   // --- Theme Management ---
@@ -260,6 +261,48 @@
 
     // Start particle system
     animate();
+  }
+
+  // --- Dynamic Release Fetching ---
+  async function initReleaseFetcher() {
+    const statusEl = document.getElementById('download-status');
+    const btnWindows = document.getElementById('btn-windows');
+    const btnMacos = document.getElementById('btn-macos');
+    const btnAndroid = document.getElementById('btn-android');
+    const btnLinux = document.getElementById('btn-linux');
+
+    if (!btnWindows) return;
+
+    try {
+      const response = await fetch('https://api.github.com/repos/teamantigravity/gravitysend/releases/latest');
+      if (!response.ok) throw new Error('Failed to fetch releases');
+      const data = await response.json();
+      
+      let windowsUrl, macosUrl, androidUrl, linuxUrl;
+
+      for (const asset of data.assets) {
+        if (asset.name.endsWith('-windows-x64.exe')) windowsUrl = asset.browser_download_url;
+        else if (asset.name.endsWith('-macos-universal.dmg')) macosUrl = asset.browser_download_url;
+        else if (asset.name.endsWith('-android-arm64.apk')) androidUrl = asset.browser_download_url;
+        else if (asset.name.endsWith('-linux-x86_64.deb')) linuxUrl = asset.browser_download_url;
+      }
+
+      if (windowsUrl) btnWindows.href = windowsUrl;
+      if (macosUrl) btnMacos.href = macosUrl;
+      if (androidUrl) btnAndroid.href = androidUrl;
+      if (linuxUrl) btnLinux.href = linuxUrl;
+
+      if (statusEl) {
+        statusEl.textContent = 'Ready to download v' + data.tag_name.replace('v', '');
+        statusEl.style.color = 'var(--c-green)';
+      }
+    } catch (err) {
+      console.error('Error fetching release:', err);
+      if (statusEl) {
+        statusEl.textContent = 'Could not fetch latest release. Links point to releases page.';
+        statusEl.style.color = 'var(--c-text-3)';
+      }
+    }
   }
 
   // Trigger setup on DOMContentLoaded

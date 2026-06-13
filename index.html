@@ -218,13 +218,26 @@
                         <span class="platform-pill">Linux</span>
                     </div>
 
-                    <a href="#" class="btn btn-primary">
-                        Download Free
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </a>
+                    <!-- Dynamic Download Buttons -->
+                    <div class="download-buttons reveal">
+                        <a href="https://github.com/teamantigravity/gravitysend/releases/latest" id="btn-windows" class="btn btn-primary" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                            Windows
+                        </a>
+                        <a href="https://github.com/teamantigravity/gravitysend/releases/latest" id="btn-macos" class="btn btn-primary" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5h-1c-1-.5-2-2-2-5Z"></path></svg>
+                            macOS
+                        </a>
+                        <a href="https://github.com/teamantigravity/gravitysend/releases/latest" id="btn-android" class="btn btn-primary" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 10h-10v8h10z"></path><path d="M12 10v-6"></path><path d="M10 4l-2 2"></path><path d="M14 4l2 2"></path><circle cx="9" cy="14" r="1"></circle><circle cx="15" cy="14" r="1"></circle></svg>
+                            Android (APK)
+                        </a>
+                        <a href="https://github.com/teamantigravity/gravitysend/releases/latest" id="btn-linux" class="btn btn-primary" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M2 12h20"></path></svg>
+                            Linux (.deb)
+                        </a>
+                    </div>
+                    <p class="download-fallback" id="download-status" style="font-size: 0.85em; opacity: 0.7; margin-top: 10px;">Fetching latest releases...</p>
 
                     <div class="product-meta">Bundle ID: com.gravitysend.app</div>
                 </div>

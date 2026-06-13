@@ -971,3 +971,21 @@
     }
   }
 }
+
+.download-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+.download-buttons .btn {
+    flex: 1 1 calc(50% - 12px);
+    justify-content: center;
+    font-size: 0.95em;
+    padding: 10px 16px;
+}
+@media (min-width: 768px) {
+    .download-buttons .btn {
+        flex: 1 1 auto;
+    }
+}
