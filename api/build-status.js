@@ -35,16 +35,20 @@ export default async function handler(req, res) {
     const jobsData = await jobsRes.json();
 
     const statuses = {};
+    // Job names in build-apps.yml map 1:1 to platform keys. Match exactly so
+    // that "linux" does not also capture "linux-arm64".
     const jobMapping = {
       android: 'android',
       ios: 'ios',
       macos: 'macos',
       windows: 'windows',
-      linux: 'linux'
+      linux: 'linux',
+      'linux-arm64': 'linux-arm64',
     };
 
     for (const job of jobsData.jobs || []) {
-      const platform = Object.keys(jobMapping).find(k => job.name.toLowerCase() === jobMapping[k]);
+      const name = job.name.toLowerCase();
+      const platform = Object.keys(jobMapping).find(k => name === jobMapping[k]);
       if (platform) {
         statuses[platform] = {
           status: job.status,
