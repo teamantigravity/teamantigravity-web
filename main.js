@@ -276,17 +276,17 @@
 
     try {
       // Fetch the specific 'latest-successful-build' release which holds the continuous build artifacts
-      const response = await fetch('https://api.github.com/repos/teamantigravity/gravitysend/releases/tags/latest-successful-build');
+      const response = await fetch('https://api.github.com/repos/teamantigravity/gravity-torrent/releases/tags/latest-successful-build');
       if (!response.ok) throw new Error('Failed to fetch releases');
       const data = await response.json();
       
       let windowsUrl, macosUrl, androidUrl, linuxUrl;
 
       for (const asset of data.assets) {
-        if (asset.name.endsWith('-windows-x64.exe')) windowsUrl = asset.browser_download_url;
-        else if (asset.name.endsWith('-macos-universal.dmg')) macosUrl = asset.browser_download_url;
-        else if (asset.name.endsWith('-android-arm64.apk')) androidUrl = asset.browser_download_url;
-        else if (asset.name.endsWith('-linux-x86_64.deb')) linuxUrl = asset.browser_download_url;
+        if (asset.name.endsWith('-windows-x64.zip')) windowsUrl = asset.browser_download_url;
+        else if (asset.name.endsWith('-macos.zip')) macosUrl = asset.browser_download_url;
+        else if (asset.name.endsWith('-android.apk')) androidUrl = asset.browser_download_url;
+        else if (asset.name.endsWith('-linux-x64.zip')) linuxUrl = asset.browser_download_url;
       }
 
       if (windowsUrl) btnWindows.href = windowsUrl;
@@ -309,7 +309,7 @@
 
   // --- Build Status Dashboard ---
   const GITHUB_OWNER = 'teamantigravity';
-  const GITHUB_REPO  = 'gravitysend';
+  const GITHUB_REPO  = 'gravity-torrent';
   const BASE_URL     = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows`;
 
   function resolveStatus(run) {
@@ -372,26 +372,53 @@
     }
   }
 
-  async function fetchWorkflowStatusFallback(pill, workflowFile) {
+  async function fetchWorkflowStatusFallback(pills) {
     try {
-      const res = await fetch(`${BASE_URL}/${workflowFile}/runs?per_page=1&branch=main`, {
+      // 1. Fetch latest workflow run
+      const runRes = await fetch(`${BASE_URL}/build-apps.yml/runs?per_page=1&branch=main`, {
         headers: { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data   = await res.json();
-      const latestRun = data.workflow_runs?.[0] ?? null;
-      const s      = resolveStatus(latestRun);
-      updatePill(pill, s);
+      if (!runRes.ok) throw new Error(`HTTP ${runRes.status} on runs`);
+      const runData = await runRes.json();
+      const latestRun = runData.workflow_runs?.[0];
+      if (!latestRun) throw new Error('No runs found');
+
+      // 2. Fetch jobs
+      const jobsRes = await fetch(latestRun.jobs_url, {
+        headers: { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }
+      });
+      if (!jobsRes.ok) throw new Error(`HTTP ${jobsRes.status} on jobs`);
+      const jobsData = await jobsRes.json();
+
+      const jobMapping = {
+        android: 'android',
+        ios: 'ios',
+        macos: 'macos',
+        windows: 'windows',
+        linux: 'linux'
+      };
+
+      pills.forEach(pill => {
+        const platform = pill.getAttribute('data-platform');
+        const jobName = jobMapping[platform];
+        if (jobName) {
+          const job = jobsData.jobs?.find(j => j.name.toLowerCase() === jobName);
+          const s = resolveStatus(job);
+          updatePill(pill, s);
+        }
+      });
     } catch (err) {
-      console.warn(`[GravitySend build status] Direct fetch failed for ${workflowFile}:`, err.message);
-      const dot = pill.querySelector('.status-dot');
-      if (dot) dot.className = 'status-dot status-unknown';
-      pill.setAttribute('data-tooltip', 'Status unavailable');
+      console.warn('[Gravity Torrent build status] Direct fetch fallback failed:', err.message);
+      pills.forEach(pill => {
+        const dot = pill.querySelector('.status-dot');
+        if (dot) dot.className = 'status-dot status-unknown';
+        pill.setAttribute('data-tooltip', 'Status unavailable');
+      });
     }
   }
 
   async function loadBuildStatuses() {
-    const container = document.getElementById('gravitysend-platforms');
+    const container = document.getElementById('gravitorrent-platforms');
     if (!container) return;
 
     const pills = container.querySelectorAll('.platform-pill');
@@ -415,18 +442,12 @@
       });
       processedViaAPI = true;
     } catch (err) {
-      console.log('[GravitySend build status] Vercel proxy unavailable, falling back to direct GitHub API:', err.message);
+      console.log('[Gravity Torrent build status] Vercel proxy unavailable, falling back to direct GitHub API:', err.message);
     }
 
     // Fallback: fetch directly from GitHub
     if (!processedViaAPI) {
-      const promises = Array.from(pills).map(pill => {
-        const workflowFile = pill.getAttribute('data-workflow');
-        if (workflowFile) {
-          return fetchWorkflowStatusFallback(pill, workflowFile);
-        }
-      });
-      await Promise.allSettled(promises);
+      await fetchWorkflowStatusFallback(pills);
     }
 
     if (updatedEl) {

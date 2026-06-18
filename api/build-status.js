@@ -1,12 +1,6 @@
-const WORKFLOWS = {
-  android: 'build_android_apk.yml',
-  ios:     'build_ios.yml',
-  macos:   'build_macos.yml',
-  windows: 'build_windows.yml',
-  linux:   'build_linux.yml',
-};
 const OWNER  = 'teamantigravity';
-const REPO   = 'gravitysend';
+const REPO   = 'gravity-torrent';
+const WORKFLOW_FILE = 'build-apps.yml';
 const TOKEN  = process.env.GITHUB_TOKEN; // set in Vercel project settings
 const BRANCH = 'main';
 
@@ -22,27 +16,48 @@ export default async function handler(req, res) {
     ...(TOKEN ? { 'Authorization': `Bearer ${TOKEN}` } : {}),
   };
 
-  const results = await Promise.allSettled(
-    Object.entries(WORKFLOWS).map(async ([key, file]) => {
-      const url = `https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${file}/runs?per_page=1&branch=${BRANCH}`;
-      const r   = await fetch(url, { headers });
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      const d   = await r.json();
-      return [key, d.workflow_runs?.[0] ?? null];
-    })
-  );
+  try {
+    // 1. Fetch latest workflow run for build-apps.yml
+    const runUrl = `https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/runs?per_page=1&branch=${BRANCH}`;
+    const runRes = await fetch(runUrl, { headers });
+    if (!runRes.ok) throw new Error(`HTTP ${runRes.status} on runs`);
+    const runData = await runRes.json();
+    const latestRun = runData.workflow_runs?.[0];
 
-  const statuses = {};
-  results.forEach((r) => {
-    if (r.status === 'fulfilled') {
-      const [key, run] = r.value;
-      statuses[key] = run
-        ? { status: run.status, conclusion: run.conclusion, url: run.html_url, date: run.created_at }
-        : null;
-    } else {
-      console.error('Error fetching a workflow run:', r.reason);
+    if (!latestRun) {
+      return res.status(200).json({});
     }
-  });
 
-  res.status(200).json(statuses);
+    // 2. Fetch jobs for the latest workflow run
+    const jobsUrl = latestRun.jobs_url;
+    const jobsRes = await fetch(jobsUrl, { headers });
+    if (!jobsRes.ok) throw new Error(`HTTP ${jobsRes.status} on jobs`);
+    const jobsData = await jobsRes.json();
+
+    const statuses = {};
+    const jobMapping = {
+      android: 'android',
+      ios: 'ios',
+      macos: 'macos',
+      windows: 'windows',
+      linux: 'linux'
+    };
+
+    for (const job of jobsData.jobs || []) {
+      const platform = Object.keys(jobMapping).find(k => job.name.toLowerCase() === jobMapping[k]);
+      if (platform) {
+        statuses[platform] = {
+          status: job.status,
+          conclusion: job.conclusion,
+          url: job.html_url,
+          date: job.started_at || job.created_at,
+        };
+      }
+    }
+
+    res.status(200).json(statuses);
+  } catch (err) {
+    console.error('Error fetching build status:', err);
+    res.status(500).json({ error: 'Failed to fetch build status' });
+  }
 }
