@@ -264,46 +264,27 @@
     animate();
   }
 
-  // --- Dynamic Release Fetching ---
+  // --- Dynamic Release Metadata ---
+  // Download links point at the resilient /api/latest-download endpoint (which
+  // resolves the correct release asset and 302-redirects, with a releases-page
+  // fallback), so we do not override hrefs here. We only enrich the status line
+  // with the latest successful build date when the release API is reachable.
   async function initReleaseFetcher() {
     const statusEl = document.getElementById('download-status');
-    const btnWindows = document.getElementById('btn-windows');
-    const btnMacos = document.getElementById('btn-macos');
-    const btnAndroid = document.getElementById('btn-android');
-    const btnLinux = document.getElementById('btn-linux');
-
-    if (!btnWindows) return;
+    if (!statusEl) return;
 
     try {
-      // Fetch the specific 'latest-successful-build' release which holds the continuous build artifacts
       const response = await fetch('https://api.github.com/repos/teamantigravity/gravity-torrent/releases/tags/latest-successful-build');
-      if (!response.ok) throw new Error('Failed to fetch releases');
+      if (!response.ok) throw new Error('Failed to fetch release metadata');
       const data = await response.json();
-      
-      let windowsUrl, macosUrl, androidUrl, linuxUrl;
-
-      for (const asset of data.assets) {
-        if (asset.name.endsWith('-windows-x64.zip')) windowsUrl = asset.browser_download_url;
-        else if (asset.name.endsWith('-macos.zip')) macosUrl = asset.browser_download_url;
-        else if (asset.name.endsWith('-android.apk')) androidUrl = asset.browser_download_url;
-        else if (asset.name.endsWith('-linux-x64.zip')) linuxUrl = asset.browser_download_url;
-      }
-
-      if (windowsUrl) btnWindows.href = windowsUrl;
-      if (macosUrl) btnMacos.href = macosUrl;
-      if (androidUrl) btnAndroid.href = androidUrl;
-      if (linuxUrl) btnLinux.href = linuxUrl;
-
-      if (statusEl) {
-        statusEl.textContent = 'Ready to download v' + data.tag_name.replace('v', '');
-        statusEl.style.color = 'var(--c-green)';
-      }
+      const when = data.published_at || data.created_at;
+      const ago = when ? timeAgo(when) : '';
+      statusEl.innerHTML =
+        `Downloads always serve the latest successful build${ago ? ' \u00b7 updated ' + ago : ''}. ` +
+        '<a href="https://github.com/teamantigravity/gravity-torrent/releases">All releases</a>';
     } catch (err) {
-      console.error('Error fetching release:', err);
-      if (statusEl) {
-        statusEl.textContent = 'Could not fetch latest release. Links point to releases page.';
-        statusEl.style.color = 'var(--c-text-3)';
-      }
+      // Leave the static fallback text in place (it already links to releases).
+      console.warn('[Gravity Torrent] Release metadata unavailable:', err.message);
     }
   }
 
@@ -314,7 +295,11 @@
 
   function resolveStatus(run) {
     if (!run) return { key: 'unknown', label: 'Unknown', dotClass: 'status-unknown', pillClass: 'resolved-unknown' };
-    const { status, conclusion, html_url, created_at } = run;
+    const { status, conclusion } = run;
+    // Accept both raw GitHub job objects (html_url/created_at/started_at) and
+    // the normalized objects returned by /api/build-status (url/date).
+    const html_url = run.html_url || run.url;
+    const created_at = run.date || run.started_at || run.created_at;
     if (status === 'in_progress' || status === 'queued' || status === 'waiting') {
       return { key: 'progress', label: 'Building', dotClass: 'status-progress', pillClass: 'resolved-progress', url: html_url, date: created_at };
     }
@@ -395,7 +380,8 @@
         ios: 'ios',
         macos: 'macos',
         windows: 'windows',
-        linux: 'linux'
+        linux: 'linux',
+        'linux-arm64': 'linux-arm64'
       };
 
       pills.forEach(pill => {

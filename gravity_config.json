@@ -1,0 +1,4 @@
+{
+  "_comment": "Remote config / kill-switch for Gravity Torrent. Set show_ads to false to disable ads on supported mobile platforms even when AdMob IDs are configured. Ads only ever display when show_ads is true AND the platform is Android/iOS AND valid AdMob IDs were compiled into the build.",
+  "show_ads": true
+}
