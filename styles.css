@@ -18,6 +18,7 @@
     --c-text-3: #4A5568;
     --c-blue: #38BDF8;
     --c-green: #34D399;
+    --c-purple: #8B6CFF;
     --c-accent-grad: linear-gradient(135deg, var(--c-blue) 0%, var(--c-green) 100%);
     --c-glow-blue: rgba(56, 189, 248, 0.12);
     --c-glow-green: rgba(52, 211, 153, 0.12);
@@ -1127,5 +1128,10 @@
 [data-theme="light"] .platforms .platform-pill[data-tooltip]:hover::after {
   background: rgba(255,255,255,0.95);
   box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 

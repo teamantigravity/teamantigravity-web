@@ -85,7 +85,7 @@
                         </g>
                     </svg>
                 </button>
-                <a href="#products" class="nav-cta">View Products &rarr;</a>
+                <a href="#gravitysend" class="nav-cta">Get GravitySend &rarr;</a>
             </div>
         </div>
     </nav>
@@ -120,13 +120,7 @@
                         <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                 </a>
-                <a href="#gravitorrent" class="btn btn-primary" style="background: var(--c-purple); border-color: var(--c-purple);">
-                    Get Gravitorrent
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </a>
+                <a href="#products" class="btn btn-outline">See how it works &darr;</a>
             </div>
 
             <div class="hero-social-proof reveal">
