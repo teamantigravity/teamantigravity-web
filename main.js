@@ -344,14 +344,15 @@
     pill.setAttribute('data-tooltip', tooltip);
     pill.setAttribute('aria-label', `${label.textContent}: ${tooltip}`);
 
-    if (s.url) {
+    const platform = pill.getAttribute('data-platform');
+    if (platform) {
       pill.style.cursor = 'pointer';
       pill.setAttribute('role', 'link');
       pill.setAttribute('tabindex', '0');
-      pill.onclick = () => window.open(s.url, '_blank', 'noopener');
+      pill.onclick = () => window.open(`/api/latest-download?platform=${platform}`, '_blank', 'noopener');
       pill.onkeydown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
-          window.open(s.url, '_blank', 'noopener');
+          window.open(`/api/latest-download?platform=${platform}`, '_blank', 'noopener');
         }
       };
     }
