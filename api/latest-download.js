@@ -28,6 +28,7 @@ const PRODUCTS = {
     platforms: {
       // Multiple ABIs are published; arm64 covers essentially all modern phones.
       android: { contains: ['android'], ext: ['.apk'], prefer: ['arm64'] },
+      ios: { contains: ['ios'], ext: ['.ipa', '.zip'] },
       macos: { contains: ['macos'], ext: ['.dmg'] },
       windows: { contains: ['windows'], ext: ['.exe', '.msix'] },
       linux: { contains: ['linux'], ext: ['.deb', '.tar.gz', '.appimage', '.zip'] },

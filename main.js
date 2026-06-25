@@ -10,7 +10,7 @@
   // Platforms that have a resolvable direct download per product.
   const DOWNLOADABLE = {
     'gravity-torrent': ['windows', 'macos', 'linux', 'linux-arm64', 'android', 'ios'],
-    'gravity-send': ['windows', 'macos', 'linux', 'android'],
+    'gravity-send': ['windows', 'macos', 'linux', 'android', 'ios'],
   };
 
   function init() {
