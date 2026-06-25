@@ -1,453 +1,269 @@
 'use strict';
 
-(function() {
-  // --- Initialization ---
+(function () {
+  const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const RELEASES = {
+    'gravity-torrent': 'https://github.com/teamantigravity/gravity-torrent/releases',
+    gravitysend: 'https://github.com/teamantigravity/gravitysend/releases',
+  };
+  // Platforms that have a resolvable direct download per product.
+  const DOWNLOADABLE = {
+    'gravity-torrent': ['windows', 'macos', 'linux', 'linux-arm64', 'android', 'ios'],
+    gravitysend: ['windows', 'macos', 'linux', 'android'],
+  };
+
   function init() {
     initTheme();
     initNav();
-    initScrollReveal();
     initSmoothScroll();
-    initHeroParticles();
-    initReleaseFetcher();
-    initBuildStatusDashboard();
+    initScrollReveal();
+    initHeroCanvas();
+    initTilt();
+    initBuildStatus();
   }
 
-  // --- Theme Management ---
+  /* ---------------------------- Theme ---------------------------- */
   function initTheme() {
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    function setTheme(theme) {
+    const btn = document.getElementById('theme-toggle');
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const apply = (theme) => {
       document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      if (themeToggleBtn) {
-        themeToggleBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
-      }
-    }
+      try { localStorage.setItem('theme', theme); } catch (_) {}
+      if (btn) btn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    };
 
-    // Load theme: storage > system
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      setTheme(mediaQuery.matches ? 'dark' : 'light');
-    }
+    let saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (_) {}
+    apply(saved || (mq.matches ? 'dark' : 'light'));
 
-    // Listen to theme switch button
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+        apply(cur === 'light' ? 'dark' : 'light');
       });
     }
-
-    // Listen to system preferences change (only if no override exists)
-    mediaQuery.addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        setTheme(e.matches ? 'dark' : 'light');
-      }
+    mq.addEventListener('change', (e) => {
+      let s = null; try { s = localStorage.getItem('theme'); } catch (_) {}
+      if (!s) apply(e.matches ? 'dark' : 'light');
     });
   }
 
-  // --- Sticky Navigation Scroll behavior ---
+  /* ---------------------------- Nav ---------------------------- */
   function initNav() {
     const nav = document.querySelector('nav');
     if (!nav) return;
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    }, { passive: true });
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // --- Scroll Reveal with IntersectionObserver ---
-  function initScrollReveal() {
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          
-          // Stagger children logic
-          if (entry.target.classList.contains('reveal-stagger')) {
-            const children = entry.target.children;
-            Array.from(children).forEach((child, index) => {
-              if (isReducedMotion) {
-                child.style.transition = 'none';
-                child.style.opacity = '1';
-                child.style.transform = 'none';
-              } else {
-                child.style.setProperty('--stagger-delay', `${index * 0.1}s`);
-              }
-            });
-          }
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
-    revealElements.forEach(el => observer.observe(el));
-  }
-
-  // --- Smooth Scrolling for anchor links ---
+  /* ------------------------ Smooth scroll ------------------------ */
   function initSmoothScroll() {
     const nav = document.querySelector('nav');
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (e) => {
-        const targetId = link.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (!targetElement) return;
-        
+        const id = link.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (!target) return;
         e.preventDefault();
-        const navHeight = nav ? nav.offsetHeight : 0;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
-        
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
+        const offset = (nav ? nav.offsetHeight : 0) + 12;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
       });
     });
   }
 
-  // --- Hero Section Particle Field ---
-  function initHeroParticles() {
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isReducedMotion) return;
+  /* ----------------------- Scroll reveal ----------------------- */
+  function initScrollReveal() {
+    const els = document.querySelectorAll('.reveal, .reveal-stagger');
+    if (!('IntersectionObserver' in window) || REDUCED_MOTION) {
+      els.forEach((el) => el.classList.add('revealed'));
+      return;
+    }
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('revealed');
+        if (entry.target.classList.contains('reveal-stagger')) {
+          Array.from(entry.target.children).forEach((child, i) => {
+            child.style.setProperty('--stagger-delay', `${i * 0.09}s`);
+          });
+        }
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+  }
 
+  /* --------------------- Hero particle field --------------------- */
+  function initHeroCanvas() {
+    if (REDUCED_MOTION) return;
     const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-
+    const hero = document.querySelector('.hero');
+    if (!canvas || !hero) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const hero = document.querySelector('.hero');
-    if (!hero) return;
+    const COLORS = ['66,133,244', '234,67,53', '251,188,5', '52,168,83'];
+    let w, h, dpr, particles, raf, mouse = { x: -9999, y: -9999 };
 
-    let particles = [];
-    const particleCount = 40;
-    let width = canvas.width = hero.offsetWidth;
-    let height = canvas.height = hero.offsetHeight;
-    let mouse = { x: -1000, y: -1000 };
-    let animationFrameId = null;
+    function size() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = hero.offsetWidth; h = hero.offsetHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.min(64, Math.floor((w * h) / 22000));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+        r: 1 + Math.random() * 1.8, c: COLORS[(Math.random() * COLORS.length) | 0],
+      }));
+    }
 
-    class Particle {
-      constructor() {
-        this.reset();
-        // Distribute initially throughout canvas
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-      }
-
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = 1 + Math.random() * 1.5; // radius 1-2.5px
-        this.color = Math.random() > 0.5 ? 'rgba(56, 189, 248, 0.25)' : 'rgba(52, 211, 153, 0.15)'; // Blue/Green
-        this.vx = (Math.random() - 0.5) * 0.4; // Max 0.2px/frame velocity
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.opacity = 0.2 + Math.random() * 0.6;
-        this.opacitySpeed = 0.005 + Math.random() * 0.01;
-        this.opacityDirection = Math.random() > 0.5 ? 1 : -1;
-      }
-
-      update() {
-        // Opacity oscillation
-        this.opacity += this.opacitySpeed * this.opacityDirection;
-        if (this.opacity >= 0.8 || this.opacity <= 0.2) {
-          this.opacityDirection *= -1;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+        const d = Math.hypot(dx, dy);
+        if (d < 130) { const f = (130 - d) / 130; p.x += (dx / d) * f * 1.6; p.y += (dy / d) * f * 1.6; }
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.c},0.7)`; ctx.fill();
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j];
+          const dist = Math.hypot(p.x - q.x, p.y - q.y);
+          if (dist < 120) {
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(${p.c},${0.12 * (1 - dist / 120)})`;
+            ctx.lineWidth = 1; ctx.stroke();
+          }
         }
-
-        // Repulsion from mouse vector
-        const dx = this.x - mouse.x;
-        const dy = this.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const repulsionRadius = 120;
-
-        if (dist < repulsionRadius) {
-          const force = (repulsionRadius - dist) / repulsionRadius;
-          const angle = Math.atan2(dy, dx);
-          // Gently push particle away
-          this.x += Math.cos(angle) * force * 1.8;
-          this.y += Math.sin(angle) * force * 1.8;
-        }
-
-        // Slow standard drift
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Wrap around boundaries
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
       }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        
-        // Build color string with current dynamic opacity
-        const colorBase = this.color.substring(0, this.color.lastIndexOf(','));
-        ctx.fillStyle = `${colorBase}, ${this.opacity * 0.6})`;
-        ctx.fill();
-      }
+      raf = requestAnimationFrame(frame);
     }
 
-    // Initialize particles
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    // Animation loop
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      animationFrameId = requestAnimationFrame(animate);
-    }
-
-    // Mouse movement listeners
-    hero.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+    size();
+    frame();
+    hero.addEventListener('pointermove', (e) => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
     });
-
-    hero.addEventListener('mouseleave', () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
-    });
-
-    // Handle debounced resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        width = canvas.width = hero.offsetWidth;
-        height = canvas.height = hero.offsetHeight;
-        particles.forEach(p => p.reset());
-      }, 150);
-    });
-
-    // Start/stop loop based on visibility state
+    hero.addEventListener('pointerleave', () => { mouse.x = -9999; mouse.y = -9999; });
+    let t;
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(size, 180); });
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationFrameId);
-      } else {
-        animate();
-      }
+      cancelAnimationFrame(raf);
+      if (!document.hidden) frame();
     });
-
-    // Start particle system
-    animate();
   }
 
-  // --- Dynamic Release Metadata ---
-  // Download links point at the resilient /api/latest-download endpoint (which
-  // resolves the correct release asset and 302-redirects, with a releases-page
-  // fallback), so we do not override hrefs here. We only enrich the status line
-  // with the latest successful build date when the release API is reachable.
-  async function initReleaseFetcher() {
-    const statusEl = document.getElementById('download-status');
-    if (!statusEl) return;
-
-    try {
-      const response = await fetch('https://api.github.com/repos/teamantigravity/gravity-torrent/releases/tags/latest-successful-build');
-      if (!response.ok) throw new Error('Failed to fetch release metadata');
-      const data = await response.json();
-      const when = data.published_at || data.created_at;
-      const ago = when ? timeAgo(when) : '';
-      statusEl.innerHTML =
-        `Downloads always serve the latest successful build${ago ? ' \u00b7 updated ' + ago : ''}. ` +
-        '<a href="https://github.com/teamantigravity/gravity-torrent/releases">All releases</a>';
-    } catch (err) {
-      // Leave the static fallback text in place (it already links to releases).
-      console.warn('[Gravity Torrent] Release metadata unavailable:', err.message);
-    }
+  /* --------------------------- 3D tilt --------------------------- */
+  function initTilt() {
+    if (REDUCED_MOTION || !window.matchMedia('(pointer: fine)').matches) return;
+    document.querySelectorAll('[data-tilt]').forEach((el) => {
+      const MAX = 5;
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transition = 'transform 0.1s linear';
+        el.style.transform = `perspective(1100px) rotateX(${(-py * MAX).toFixed(2)}deg) rotateY(${(px * MAX).toFixed(2)}deg)`;
+      });
+      el.addEventListener('pointerleave', () => {
+        el.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1)';
+        el.style.transform = 'perspective(1100px) rotateX(0) rotateY(0)';
+      });
+    });
   }
 
-  // --- Build Status Dashboard ---
-  const GITHUB_OWNER = 'teamantigravity';
-  const GITHUB_REPO  = 'gravity-torrent';
-  const BASE_URL     = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows`;
+  /* ----------------------- Build status ----------------------- */
+  function timeAgo(iso) {
+    if (!iso) return '';
+    const diff = Date.now() - new Date(iso).getTime();
+    const m = Math.floor(diff / 60000), hr = Math.floor(diff / 3600000), d = Math.floor(diff / 86400000);
+    if (m < 2) return 'just now';
+    if (m < 60) return `${m}m ago`;
+    if (hr < 24) return `${hr}h ago`;
+    return `${d}d ago`;
+  }
 
   function resolveStatus(run) {
-    if (!run) return { key: 'unknown', label: 'Unknown', dotClass: 'status-unknown', pillClass: 'resolved-unknown' };
-    const { status, conclusion } = run;
-    // Accept both raw GitHub job objects (html_url/created_at/started_at) and
-    // the normalized objects returned by /api/build-status (url/date).
-    const html_url = run.html_url || run.url;
-    const created_at = run.date || run.started_at || run.created_at;
-    if (status === 'in_progress' || status === 'queued' || status === 'waiting') {
-      return { key: 'progress', label: 'Building', dotClass: 'status-progress', pillClass: 'resolved-progress', url: html_url, date: created_at };
+    if (!run) return { label: 'Unknown', dot: 'status-unknown' };
+    const url = run.url || run.html_url;
+    const date = run.date || run.started_at || run.created_at;
+    if (['in_progress', 'queued', 'waiting', 'pending', 'requested'].includes(run.status)) {
+      return { label: 'Building', dot: 'status-progress', url, date };
     }
-    if (status === 'completed') {
-      if (conclusion === 'success') {
-        return { key: 'pass', label: 'Passing', dotClass: 'status-pass', pillClass: 'resolved-pass', url: html_url, date: created_at };
-      }
-      if (conclusion === 'failure' || conclusion === 'timed_out') {
-        return { key: 'fail', label: 'Failing', dotClass: 'status-fail', pillClass: 'resolved-fail', url: html_url, date: created_at };
-      }
-      if (conclusion === 'cancelled') {
-        return { key: 'cancelled', label: 'Cancelled', dotClass: 'status-cancelled', pillClass: 'resolved-unknown', url: html_url, date: created_at };
-      }
+    if (run.status === 'completed') {
+      if (run.conclusion === 'success') return { label: 'Passing', dot: 'status-pass', url, date };
+      if (['failure', 'timed_out', 'startup_failure'].includes(run.conclusion)) return { label: 'Failing', dot: 'status-fail', url, date };
+      if (run.conclusion === 'cancelled') return { label: 'Cancelled', dot: 'status-unknown', url, date };
     }
-    return { key: 'unknown', label: 'Unknown', dotClass: 'status-unknown', pillClass: 'resolved-unknown' };
+    return { label: 'Unknown', dot: 'status-unknown', url, date };
   }
 
-  function timeAgo(isoString) {
-    if (!isoString) return '';
-    const diff = Date.now() - new Date(isoString).getTime();
-    const mins  = Math.floor(diff / 60_000);
-    const hours = Math.floor(diff / 3_600_000);
-    const days  = Math.floor(diff / 86_400_000);
-    if (mins < 2)  return 'just now';
-    if (mins < 60) return `${mins}m ago`;
-    if (hours < 24) return `${hours}h ago`;
-    return `${days}d ago`;
-  }
-
-  function updatePill(pill, s) {
-    const dot   = pill.querySelector('.status-dot');
+  function updatePill(pill, product, s) {
+    const dot = pill.querySelector('.status-dot');
     const label = pill.querySelector('.pill-label');
-    if (!dot) return;
-
-    dot.className = `status-dot ${s.dotClass}`;
-
-    ['resolved-pass','resolved-fail','resolved-progress','resolved-unknown'].forEach(c => pill.classList.remove(c));
-    pill.classList.add(s.pillClass);
-
-    const ago     = timeAgo(s.date);
-    const tooltip = ago ? `${s.label} · ${ago}` : s.label;
-    pill.setAttribute('data-tooltip', tooltip);
-    pill.setAttribute('aria-label', `${label.textContent}: ${tooltip}`);
+    if (dot) dot.className = `status-dot ${s.dot}`;
+    const ago = timeAgo(s.date);
+    pill.setAttribute('data-tooltip', ago ? `${s.label} · ${ago}` : s.label);
+    if (label) pill.setAttribute('aria-label', `${label.textContent}: ${s.label}${ago ? ' ' + ago : ''}`);
 
     const platform = pill.getAttribute('data-platform');
-    if (platform) {
-      pill.style.cursor = 'pointer';
-      pill.setAttribute('role', 'link');
-      pill.setAttribute('tabindex', '0');
-      pill.onclick = () => window.open(`/api/latest-download?platform=${platform}`, '_blank', 'noopener');
-      pill.onkeydown = (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          window.open(`/api/latest-download?platform=${platform}`, '_blank', 'noopener');
-        }
-      };
-    }
+    const downloadable = (DOWNLOADABLE[product] || []).includes(platform);
+    const href = downloadable
+      ? `/api/latest-download?product=${product}&platform=${platform}`
+      : RELEASES[product];
+    pill.setAttribute('role', 'link');
+    pill.setAttribute('tabindex', '0');
+    pill.style.cursor = 'pointer';
+    const go = () => window.open(href, '_blank', 'noopener');
+    pill.onclick = go;
+    pill.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } };
   }
 
-  async function fetchWorkflowStatusFallback(pills) {
-    try {
-      // 1. Fetch latest workflow run
-      const runRes = await fetch(`${BASE_URL}/build-apps.yml/runs?per_page=1&branch=main`, {
-        headers: { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }
-      });
-      if (!runRes.ok) throw new Error(`HTTP ${runRes.status} on runs`);
-      const runData = await runRes.json();
-      const latestRun = runData.workflow_runs?.[0];
-      if (!latestRun) throw new Error('No runs found');
-
-      // 2. Fetch jobs
-      const jobsRes = await fetch(latestRun.jobs_url, {
-        headers: { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }
-      });
-      if (!jobsRes.ok) throw new Error(`HTTP ${jobsRes.status} on jobs`);
-      const jobsData = await jobsRes.json();
-
-      const jobMapping = {
-        android: 'android',
-        ios: 'ios',
-        macos: 'macos',
-        windows: 'windows',
-        linux: 'linux',
-        'linux-arm64': 'linux-arm64'
-      };
-
-      pills.forEach(pill => {
-        const platform = pill.getAttribute('data-platform');
-        const jobName = jobMapping[platform];
-        if (jobName) {
-          const job = jobsData.jobs?.find(j => j.name.toLowerCase() === jobName);
-          const s = resolveStatus(job);
-          updatePill(pill, s);
-        }
-      });
-    } catch (err) {
-      console.warn('[Gravity Torrent build status] Direct fetch fallback failed:', err.message);
-      pills.forEach(pill => {
-        const dot = pill.querySelector('.status-dot');
-        if (dot) dot.className = 'status-dot status-unknown';
-        pill.setAttribute('data-tooltip', 'Status unavailable');
-      });
-    }
-  }
-
-  async function loadBuildStatuses() {
-    const container = document.getElementById('gravitorrent-platforms');
-    if (!container) return;
-
+  async function loadProduct(container) {
+    const product = container.getAttribute('data-product');
     const pills = container.querySelectorAll('.platform-pill');
-    const updatedEl = document.getElementById('build-updated-time');
+    const updatedEl = document.querySelector(`[data-updated-for="${product}"]`);
 
-    let processedViaAPI = false;
-
-    // Try Vercel Serverless Function first
+    let statuses = null;
     try {
-      const res = await fetch('/api/build-status');
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const statuses = await res.json();
+      const res = await fetch(`/api/build-status?product=${product}`);
+      if (res.ok) statuses = await res.json();
+    } catch (_) {}
 
-      pills.forEach(pill => {
+    if (!statuses || statuses.error) {
+      // Graceful fallback: leave dots as unknown but keep pills actionable.
+      pills.forEach((pill) => updatePill(pill, product, { label: 'Status unavailable', dot: 'status-unknown' }));
+    } else {
+      pills.forEach((pill) => {
         const platform = pill.getAttribute('data-platform');
-        if (platform && statuses[platform] !== undefined) {
-          const run = statuses[platform];
-          const s = resolveStatus(run);
-          updatePill(pill, s);
-        }
+        updatePill(pill, product, resolveStatus(statuses[platform]));
       });
-      processedViaAPI = true;
-    } catch (err) {
-      console.log('[Gravity Torrent build status] Vercel proxy unavailable, falling back to direct GitHub API:', err.message);
-    }
-
-    // Fallback: fetch directly from GitHub
-    if (!processedViaAPI) {
-      await fetchWorkflowStatusFallback(pills);
     }
 
     if (updatedEl) {
       const now = new Date();
-      updatedEl.textContent = `Updated ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      updatedEl.textContent = `Updated ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} · always serves the latest successful build`;
     }
   }
 
-  function initBuildStatusDashboard() {
-    loadBuildStatuses();
-    setInterval(loadBuildStatuses, 60_000);
+  function initBuildStatus() {
+    const containers = document.querySelectorAll('.platforms[data-product]');
+    if (!containers.length) return;
+    const run = () => containers.forEach(loadProduct);
+    run();
+    setInterval(run, 60000);
   }
 
-  // Trigger setup on DOMContentLoaded
   document.addEventListener('DOMContentLoaded', init);
 })();

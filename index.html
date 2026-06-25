@@ -1,570 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Antigravity — Fast, Private Apps for Every Device</title>
-    <meta name="description" content="Team Antigravity builds cross-platform apps that respect your privacy. GravitySend transfers files between your devices at full Wi-Fi speed — no internet, no limits, no accounts.">
-    <meta name="author" content="Team Antigravity">
-    <meta name="theme-color" content="#0B0D10" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Antigravity — Fast, Private, Cross-Platform Apps</title>
+  <meta name="description" content="Team Antigravity builds beautiful, privacy-first apps for every device. GravitySend moves files between your devices at full Wi-Fi speed. Gravity Torrent streams and downloads torrents everywhere. No accounts. No servers. No tracking." />
+  <meta name="author" content="Team Antigravity" />
+  <meta name="theme-color" content="#07090e" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)" />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Team Antigravity — Fast, Private Apps">
-    <meta property="og:description" content="GravitySend: transfer files between all your devices at full Wi-Fi speed. No cloud. No limits. No tracking.">
-    <meta property="og:image" content="https://teamantigravity.vercel.app/og-image.png">
-    <meta property="og:url" content="https://teamantigravity.vercel.app">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Team Antigravity">
+  <meta property="og:title" content="Team Antigravity — Fast, Private, Cross-Platform Apps" />
+  <meta property="og:description" content="GravitySend & Gravity Torrent: beautiful cross-platform apps that respect your privacy. No accounts, no servers, no tracking." />
+  <meta property="og:image" content="https://teamantigravity.vercel.app/og-image.png" />
+  <meta property="og:url" content="https://teamantigravity.vercel.app" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Team Antigravity" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Team Antigravity" />
+  <meta name="twitter:description" content="Beautiful cross-platform apps that respect your privacy." />
+  <meta name="twitter:image" content="https://teamantigravity.vercel.app/og-image.png" />
+  <link rel="canonical" href="https://teamantigravity.vercel.app/" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Team Antigravity — GravitySend">
-    <meta name="twitter:description" content="Transfer files between all your devices at full Wi-Fi speed. No cloud. No limits.">
-    <meta name="twitter:image" content="https://teamantigravity.vercel.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://teamantigravity.vercel.app/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='10' fill='%234285f4'/><path d='M50 14a36 36 0 0 1 31 18' stroke='%23ea4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M81 68A36 36 0 0 1 19 68' stroke='%2334a853' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M19 32A36 36 0 0 1 50 14' stroke='%23fbbc05' stroke-width='9' fill='none' stroke-linecap='round'/></svg>" />
 
-    <!-- Preconnect for fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="main.js" defer></script>
 
-    <!-- Favicon (inline SVG favicon) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-
-    <link rel="stylesheet" href="styles.css">
-    <script src="main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Team Antigravity",
+    "url": "https://teamantigravity.vercel.app",
+    "logo": "https://teamantigravity.vercel.app/og-image.png",
+    "sameAs": ["https://github.com/teamantigravity"]
+  }
+  </script>
 </head>
 <body>
+  <a href="#products" class="skip-link">Skip to content</a>
 
-    <!-- Skip Link for Keyboard Accessibility -->
-    <a href="#gravitysend" class="skip-link">Skip to content</a>
+  <!-- ===================== NAV ===================== -->
+  <nav role="navigation" aria-label="Main navigation">
+    <div class="container nav-wrapper">
+      <a href="./" class="brand" aria-label="Team Antigravity home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+            <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="brand-wordmark">Team Antigravity</span>
+      </a>
 
-    <!-- Sticky Navigation Header -->
-    <nav role="navigation" aria-label="Main navigation">
-        <div class="container nav-wrapper">
-            <a href="./" class="brand">
-                <div class="brand-icon">
-                    <svg viewBox="0 0 100 100" width="28" height="28" fill="none" stroke="url(#brand-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Team Antigravity Logo">
-                        <defs>
-                            <linearGradient id="brand-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-                                <stop offset="0%" stop-color="var(--c-blue)" />
-                                <stop offset="100%" stop-color="var(--c-green)" />
-                            </linearGradient>
-                        </defs>
-                        <!-- Geometric A Logo -->
-                        <path d="M50 15 L20 85 M50 15 L80 85 M35 60 L65 60" />
-                        <circle cx="50" cy="15" r="4" fill="var(--c-text-1)" />
-                    </svg>
-                </div>
-                <span class="brand-wordmark">Team Antigravity</span>
-            </a>
-            
-            <div class="nav-actions">
-                <!-- Theme Toggle Button -->
-                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Switch to light mode">
-                    <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
-                        <mask class="moon" id="moon-mask">
-                            <rect x="0" y="0" width="100%" height="100%" fill="white" />
-                            <circle cx="24" cy="10" r="6" fill="black" />
-                        </mask>
-                        <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
-                        <g class="sun-beams" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <line x1="12" y1="1" x2="12" y2="3" />
-                            <line x1="12" y1="21" x2="12" y2="23" />
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                            <line x1="1" y1="12" x2="3" y2="12" />
-                            <line x1="21" y1="12" x2="23" y2="12" />
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                        </g>
-                    </svg>
-                </button>
-                <a href="#products" class="nav-cta">View Products &rarr;</a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#products">Products</a>
+          <a href="#gravitysend">GravitySend</a>
+          <a href="#gravitorrent">Gravity Torrent</a>
+          <a href="#privacy">Privacy</a>
+        </div>
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Switch color theme" title="Toggle theme">
+          <svg class="sun-and-moon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24">
+            <mask class="moon" id="moon-mask">
+              <rect x="0" y="0" width="100%" height="100%" fill="white" />
+              <circle cx="24" cy="10" r="6" fill="black" />
+            </mask>
+            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+            <g class="sun-beams" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </g>
+          </svg>
+        </button>
+        <a href="https://github.com/teamantigravity" class="nav-cta" target="_blank" rel="noopener">
+          GitHub
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <span class="orb orb-1"></span><span class="orb orb-2"></span>
+      <span class="orb orb-3"></span><span class="orb orb-4"></span>
+      <canvas id="hero-canvas"></canvas>
+    </div>
+    <div class="container hero-wrapper">
+      <span class="hero-eyebrow reveal">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" /></svg>
+        Software that defies gravity
+      </span>
+      <h1 class="reveal">Beautifully simple apps,<br /><span class="hero-text-grad">radically private.</span></h1>
+      <p class="hero-subheading reveal">We craft fast, elegant, cross-platform apps for every device you own — without accounts, servers, or tracking. Your data stays exactly where you put it.</p>
+      <div class="hero-ctas reveal">
+        <a href="#gravitysend" class="btn btn-primary">Explore GravitySend
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+        <a href="#gravitorrent" class="btn btn-ghost">Explore Gravity Torrent</a>
+      </div>
+      <div class="hero-trust reveal">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg> No accounts</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg> No servers</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg> No tracking</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Every platform</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== PRODUCTS ===================== -->
+  <main id="main-content">
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Our Products</span>
+          <h2>Two apps. Every device. Zero compromise.</h2>
+          <p>Each download below always serves the latest successful CI build, resolved live from GitHub Releases.</p>
+        </div>
+
+        <!-- ---------- GravitySend ---------- -->
+        <article id="gravitysend" class="product-card reveal" data-tilt>
+          <div class="product-content">
+            <span class="product-badge send">File Transfer</span>
+            <h3 class="product-title">GravitySend</h3>
+            <p class="product-tagline">Send photos, videos and files between all your devices at full local Wi-Fi speed — no cloud, no limits, no sign-ups.</p>
+            <ul class="feature-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg><span><strong>Peer-to-peer.</strong> Files stream directly between your devices over your local network.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg><span><strong>No size limits.</strong> Move gigabytes as fast as your network allows.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg><span><strong>Cross-platform.</strong> Windows, macOS, Linux and Android, all talking to each other.</span></li>
+            </ul>
+
+            <p class="micro-label">Live build status</p>
+            <div class="platforms" data-product="gravitysend" id="status-gravitysend" role="group" aria-label="GravitySend build status">
+              <span class="platform-pill" data-platform="android"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52M7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5m10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5"/></svg></span><span class="pill-label">Android</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="windows"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg></span><span class="pill-label">Windows</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="macos"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.46c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.45-1.6-2.98-1.62-1.27-.13-2.48.75-3.12.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69.99 1.51 2.1 2.58 2.06 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.61.67 2.7.65 1.12-.02 1.83-1.01 2.51-2.01.79-1.15 1.12-2.27 1.14-2.33-.03-.01-2.18-.84-2.2-3.32M14.3 6.25c.57-.69.95-1.65.85-2.6-.82.03-1.81.54-2.4 1.23-.53.61-.99 1.59-.87 2.52.91.07 1.85-.46 2.42-1.15"/></svg></span><span class="pill-label">macOS</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="linux"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg></span><span class="pill-label">Linux</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="ios"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.46c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.45-1.6-2.98-1.62-1.27-.13-2.48.75-3.12.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69.99 1.51 2.1 2.58 2.06 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.61.67 2.7.65 1.12-.02 1.83-1.01 2.51-2.01.79-1.15 1.12-2.27 1.14-2.33-.03-.01-2.18-.84-2.2-3.32M14.3 6.25c.57-.69.95-1.65.85-2.6-.82.03-1.81.54-2.4 1.23-.53.61-.99 1.59-.87 2.52.91.07 1.85-.46 2.42-1.15"/></svg></span><span class="pill-label">iOS</span><span class="status-dot status-unknown"></span></span>
             </div>
-        </div>
-    </nav>
+            <p class="build-updated" data-updated-for="gravitysend" aria-live="polite"></p>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-bg">
-            <div class="hero-ambient-1"></div>
-            <div class="hero-ambient-2"></div>
-            <canvas id="hero-canvas"></canvas>
+            <p class="micro-label">Download latest build</p>
+            <div class="download-buttons">
+              <a class="dl-btn" href="/api/latest-download?product=gravitysend&platform=windows" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg><span>Windows <span class="dl-sub">.exe</span></span></a>
+              <a class="dl-btn" href="/api/latest-download?product=gravitysend&platform=macos" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.46c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.45-1.6-2.98-1.62-1.27-.13-2.48.75-3.12.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69.99 1.51 2.1 2.58 2.06 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.61.67 2.7.65 1.12-.02 1.83-1.01 2.51-2.01.79-1.15 1.12-2.27 1.14-2.33-.03-.01-2.18-.84-2.2-3.32M14.3 6.25c.57-.69.95-1.65.85-2.6-.82.03-1.81.54-2.4 1.23-.53.61-.99 1.59-.87 2.52.91.07 1.85-.46 2.42-1.15"/></svg><span>macOS <span class="dl-sub">.dmg</span></span></a>
+              <a class="dl-btn" href="/api/latest-download?product=gravitysend&platform=linux" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg><span>Linux <span class="dl-sub">.deb</span></span></a>
+              <a class="dl-btn" href="/api/latest-download?product=gravitysend&platform=android" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52M7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5m10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5"/></svg><span>Android <span class="dl-sub">arm64 .apk</span></span></a>
+            </div>
+            <p class="download-note">Also on <a href="https://github.com/teamantigravity/gravitysend/releases" target="_blank" rel="noopener">all releases</a> · <a href="privacy/gravitysend.html">Privacy</a></p>
+          </div>
+
+          <div class="product-visual" aria-hidden="true">
+            <span class="visual-glow send"></span>
+            <div class="visual-card">
+              <div class="vc-bar"><i></i><i></i><i></i></div>
+              <div class="vc-body">
+                <div class="vc-row"><span class="vc-avatar bg-blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span><div style="flex:1"><div class="vc-line" style="width:55%"></div><div class="vc-line" style="width:35%;margin-top:7px;opacity:.6"></div></div></div>
+                <div class="vc-progress"><i></i></div>
+                <div class="vc-row"><span class="vc-avatar bg-green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 20h20"/></svg></span><div style="flex:1"><div class="vc-line" style="width:70%"></div><div class="vc-line" style="width:45%;margin-top:7px;opacity:.6"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ---------- Gravity Torrent ---------- -->
+        <article id="gravitorrent" class="product-card reverse reveal" data-tilt>
+          <div class="product-content">
+            <span class="product-badge torrent">Torrent · Stream</span>
+            <h3 class="product-title">Gravity Torrent</h3>
+            <p class="product-tagline">A next-generation, beautiful and lightweight torrent client. Pick a torrent, then stream or download it on all your devices.</p>
+            <ul class="feature-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg><span><strong>Stream instantly.</strong> Play media while it downloads — like WebTorrent, on mobile too.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg><span><strong>Truly cross-platform.</strong> Windows, macOS, Linux, Android &amp; iOS from one codebase.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg><span><strong>Per-torrent controls.</strong> Sequential mode, speed limits, tags, notifications and deep links.</span></li>
+            </ul>
+
+            <p class="micro-label">Live build status</p>
+            <div class="platforms" data-product="gravity-torrent" id="status-gravity-torrent" role="group" aria-label="Gravity Torrent build status">
+              <span class="platform-pill" data-platform="windows"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg></span><span class="pill-label">Windows</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="macos"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.46c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.45-1.6-2.98-1.62-1.27-.13-2.48.75-3.12.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69.99 1.51 2.1 2.58 2.06 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.61.67 2.7.65 1.12-.02 1.83-1.01 2.51-2.01.79-1.15 1.12-2.27 1.14-2.33-.03-.01-2.18-.84-2.2-3.32M14.3 6.25c.57-.69.95-1.65.85-2.6-.82.03-1.81.54-2.4 1.23-.53.61-.99 1.59-.87 2.52.91.07 1.85-.46 2.42-1.15"/></svg></span><span class="pill-label">macOS</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="linux"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg></span><span class="pill-label">Linux</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="linux-arm64"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg></span><span class="pill-label">Linux ARM</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="android"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52M7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5m10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5"/></svg></span><span class="pill-label">Android</span><span class="status-dot status-unknown"></span></span>
+              <span class="platform-pill" data-platform="ios"><span class="pill-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.46c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.45-1.6-2.98-1.62-1.27-.13-2.48.75-3.12.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69.99 1.51 2.1 2.58 2.06 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.61.67 2.7.65 1.12-.02 1.83-1.01 2.51-2.01.79-1.15 1.12-2.27 1.14-2.33-.03-.01-2.18-.84-2.2-3.32M14.3 6.25c.57-.69.95-1.65.85-2.6-.82.03-1.81.54-2.4 1.23-.53.61-.99 1.59-.87 2.52.91.07 1.85-.46 2.42-1.15"/></svg></span><span class="pill-label">iOS</span><span class="status-dot status-unknown"></span></span>
+            </div>
+            <p class="build-updated" data-updated-for="gravity-torrent" aria-live="polite"></p>
+
+            <p class="micro-label">Download latest build</p>
+            <div class="download-buttons">
+              <a class="dl-btn" href="/api/latest-download?product=gravity-torrent&platform=windows" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg><span>Windows <span class="dl-sub">.exe</span></span></a>
+              <a class="dl-btn" href="/api/latest-download?product=gravity-torrent&platform=macos" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.46c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.45-1.6-2.98-1.62-1.27-.13-2.48.75-3.12.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69.99 1.51 2.1 2.58 2.06 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.61.67 2.7.65 1.12-.02 1.83-1.01 2.51-2.01.79-1.15 1.12-2.27 1.14-2.33-.03-.01-2.18-.84-2.2-3.32M14.3 6.25c.57-.69.95-1.65.85-2.6-.82.03-1.81.54-2.4 1.23-.53.61-.99 1.59-.87 2.52.91.07 1.85-.46 2.42-1.15"/></svg><span>macOS <span class="dl-sub">.dmg</span></span></a>
+              <a class="dl-btn" href="/api/latest-download?product=gravity-torrent&platform=linux" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg><span>Linux <span class="dl-sub">x64 .zip</span></span></a>
+              <a class="dl-btn" href="/api/latest-download?product=gravity-torrent&platform=android" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52M7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5m10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5"/></svg><span>Android <span class="dl-sub">.apk</span></span></a>
+              <a class="dl-btn" href="/api/latest-download?product=gravity-torrent&platform=ios" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.46c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.45-1.6-2.98-1.62-1.27-.13-2.48.75-3.12.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69.99 1.51 2.1 2.58 2.06 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.61.67 2.7.65 1.12-.02 1.83-1.01 2.51-2.01.79-1.15 1.12-2.27 1.14-2.33-.03-.01-2.18-.84-2.2-3.32M14.3 6.25c.57-.69.95-1.65.85-2.6-.82.03-1.81.54-2.4 1.23-.53.61-.99 1.59-.87 2.52.91.07 1.85-.46 2.42-1.15"/></svg><span>iOS <span class="dl-sub">.ipa beta</span></span></a>
+            </div>
+            <p class="download-note">Also on <a href="https://github.com/teamantigravity/gravity-torrent/releases" target="_blank" rel="noopener">all releases</a> · <a href="privacy/gravitorrent.html">Privacy</a></p>
+          </div>
+
+          <div class="product-visual" aria-hidden="true">
+            <span class="visual-glow torrent"></span>
+            <div class="visual-card">
+              <div class="vc-bar"><i></i><i></i><i></i></div>
+              <div class="vc-body">
+                <div class="vc-row"><span class="vc-avatar bg-grad"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><div style="flex:1"><div class="vc-line" style="width:60%"></div><div class="vc-line" style="width:40%;margin-top:7px;opacity:.6"></div></div></div>
+                <div class="vc-progress"><i></i></div>
+                <div class="vc-progress" style="margin-top:4px"><i style="animation-delay:-1.5s"></i></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== PRIVACY ===================== -->
+    <section id="privacy" class="section privacy-band">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Privacy by design</span>
+          <h2>We don't want your data.</h2>
+          <p>We don't collect, store or sell your information, and we run no servers to do so. The only third party involved is Google AdMob, which serves ads inside the mobile apps.</p>
         </div>
-        <div class="container hero-wrapper">
-            <span class="hero-eyebrow">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                </svg>
-                Building tools that defy expectations
+        <div class="privacy-grid reveal-stagger">
+          <div class="privacy-card">
+            <span class="pc-icon bg-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg></span>
+            <h3>Zero collection</h3>
+            <p>No analytics SDKs, no telemetry, no profiles. We never see what you transfer or download.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg></span>
+            <h3>No servers</h3>
+            <p>We operate no backend. There is nowhere for your data to be stored, because we built nowhere to store it.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-yellow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" /></svg></span>
+            <h3>AdMob, disclosed</h3>
+            <p>Google AdMob shows ads in the mobile apps and may use a device ad identifier. That's the one exception — and we're upfront about it.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-red"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg></span>
+            <h3>You're in control</h3>
+            <p>Reset or limit ad personalization in your OS settings any time. Full details live in each app's policy.</p>
+          </div>
+        </div>
+        <div class="hero-ctas reveal" style="justify-content:center;margin-top:var(--space-12)">
+          <a class="btn btn-ghost" href="privacy/gravitysend.html">GravitySend privacy</a>
+          <a class="btn btn-ghost" href="privacy/gravitorrent.html">Gravity Torrent privacy</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div style="max-width:30ch">
+          <div class="footer-logo">
+            <span class="brand-icon" aria-hidden="true" style="width:32px;height:32px">
+              <svg width="20" height="20" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+                <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+              </svg>
             </span>
-            <h1 class="reveal">
-                Lightning Fast.<br>
-                Incredibly <span class="hero-text-grad">Simple.</span>
-            </h1>
-            <p class="hero-subheading reveal">
-                We build cross-platform apps that respect your privacy and stay out of your way. No cloud uploads, no accounts, no tracking — your data goes where you tell it.
-            </p>
-            
-            <div class="hero-ctas reveal">
-                <a href="#gravitysend" class="btn btn-primary">
-                    Get GravitySend
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </a>
-                <a href="#gravitorrent" class="btn btn-primary" style="background: var(--c-purple); border-color: var(--c-purple);">
-                    Get Gravitorrent
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </a>
-            </div>
-
-            <div class="hero-social-proof reveal">
-                <span>Available on 5 platforms</span>
-                <span class="social-dot" aria-hidden="true">&middot;</span>
-                <span>Zero cloud dependency</span>
-                <span class="social-dot" aria-hidden="true">&middot;</span>
-                <span>Privacy first</span>
-            </div>
+            <span class="brand-wordmark">Team Antigravity</span>
+          </div>
+          <p style="color:var(--c-text-3);font-size:var(--t-sm);margin-top:var(--space-3)">Making software simple for everyone — with zero telemetry.</p>
         </div>
-    </header>
-
-    <main id="main-content">
-        <!-- GravitySend Section -->
-        <section id="gravitysend" class="product">
-            <div class="container product-wrapper">
-                
-                <!-- Content Column -->
-                <div class="product-content reveal">
-                    <span class="product-eyebrow">Available Now on 5 Platforms</span>
-                    <h2>Move files at the speed of your Wi-Fi.</h2>
-                    <p class="product-description">
-                        GravitySend transfers files directly between your devices over local Wi-Fi — no internet, no size limits, no sign-ups. Send a 20GB video to your Mac in the time it takes to grab a coffee. Your files never leave your network.
-                    </p>
-
-                    <!-- Feature List -->
-                    <div class="feature-list reveal-stagger">
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper" role="img" aria-label="Lightning bolt icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                                </svg>
-                            </div>
-                            <div class="feature-info">
-                                <h4>No size limits</h4>
-                                <p>Send entire folders, 4K videos, anything.</p>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper" role="img" aria-label="Shield lock icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                </svg>
-                            </div>
-                            <div class="feature-info">
-                                <h4>Completely private</h4>
-                                <p>Files travel over local Wi-Fi only.</p>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper" role="img" aria-label="Exchange arrows icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <polyline points="17 1 21 5 17 9"></polyline>
-                                    <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-                                    <polyline points="7 23 3 19 7 15"></polyline>
-                                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
-                                </svg>
-                            </div>
-                            <div class="feature-info">
-                                <h4>All your devices</h4>
-                                <p>Android &middot; iOS &middot; macOS &middot; Windows &middot; Linux</p>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper" role="img" aria-label="Adjustments icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <line x1="4" y1="21" x2="4" y2="14"></line>
-                                    <line x1="4" y1="10" x2="4" y2="3"></line>
-                                    <line x1="12" y1="21" x2="12" y2="12"></line>
-                                    <line x1="12" y1="8" x2="12" y2="3"></line>
-                                    <line x1="20" y1="21" x2="20" y2="16"></line>
-                                    <line x1="20" y1="12" x2="20" y2="3"></line>
-                                    <line x1="1" y1="14" x2="7" y2="14"></line>
-                                    <line x1="9" y1="8" x2="15" y2="8"></line>
-                                    <line x1="17" y1="16" x2="23" y2="16"></line>
-                                </svg>
-                            </div>
-                            <div class="feature-info">
-                                <h4>Zero setup</h4>
-                                <p>Open the app, scan a code, done.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dynamic Download Buttons -->
-                    <div class="download-buttons reveal">
-                        <a href="https://github.com/teamantigravity/gravitysend/releases/download/latest-successful-build/GravitySend-windows-x64.exe" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
-                            Windows
-                        </a>
-                        <a href="https://github.com/teamantigravity/gravitysend/releases/download/latest-successful-build/GravitySend-macos-universal.dmg" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                            macOS
-                        </a>
-                        <a href="https://apps.apple.com/app/id1662865017" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                            iOS
-                        </a>
-                        <a href="https://github.com/teamantigravity/gravitysend/releases/download/latest-successful-build/GravitySend-android-arm64.apk" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg width="18" height="18" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M430.4 162.5c-4-4.8-10.7-5.9-15.9-2.6l-50.5 31.8c-38.3-23.7-83-36.9-130.6-36.9s-92.3 13.2-130.6 36.9l-50.5-31.8c-5.2-3.3-12-2.2-15.9 2.6-4 4.8-3.4 11.6 1.4 15.6l49.9 34.4C37.4 256.7 0 330.1 0 416h448c0-85.9-37.4-159.3-88.3-203.5l49.9-34.4c4.8-4 5.4-10.8 1.4-15.6zM128 352c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm192 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg>
-                            Android (APK)
-                        </a>
-                        <a href="https://github.com/teamantigravity/gravitysend/releases/download/latest-successful-build/GravitySend-linux-x86_64.deb" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg width="18" height="18" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1.1-5.5-.1-1.4.9-1.9 2.6-2 4-.3 1.5.6 2.6 1.4 3.7 1.8 2.3 4.2 4.1 6.3 6.3 1.9 2 4.2 3.6 6 5.6 1.8 1.9 3 4.4 4.1 6.8 1.1 2.5 1.6 5.3 3 7.6 1.4 2.4 3.5 4.3 5.3 6.4 1.8 2.1 3.5 4.3 5.4 6.3 1.8 1.9 3.4 4.3 5.4 6 1.7 1.4 3.8 2.4 5.9 3.4 1.9.9 4 1.6 6 2.1 2.3.5 4.5 1 6.7 1.8 2.4.9 4.7 2.1 7.2 2.6 2.7.5 5.5.3 8.3.1 2.9-.2 5.8-.4 8.7-.3 3 .1 6 .5 8.9 1 2.8.5 5.5 1.4 8.2 2.1 2.6.7 5.1 1.7 7.6 2.8 2.4 1.1 4.7 2.4 7 3.8 2.3 1.3 4.4 3 6.4 4.7 1.9 1.6 3.5 3.5 5.1 5.5 1.6 1.9 3 4 4.1 6.3 1.2 2.3 2.1 4.8 2.7 7.4.7 2.6 1.1 5.4 1.1 8.2 0 2.8-.2 5.7-.8 8.4-.5 2.6-1.5 5.2-2.7 7.7-1.3 2.4-2.9 4.7-4.7 6.8-1.9 2-4 3.9-6.3 5.5-2.2 1.6-4.6 3.1-7.1 4.4-2.5 1.2-5.2 2.2-7.9 3.1-2.7.8-5.5 1.4-8.3 1.9-2.9.4-5.8.7-8.8.8-3 .1-6.1 0-9.2-.3-3.1-.3-6.2-.8-9.2-1.5-3.1-.7-6.1-1.6-9-2.7-3-1.1-5.9-2.4-8.7-3.9-2.8-1.5-5.5-3.2-8.1-5.1-2.6-1.9-5-4-7.2-6.3-2.1-2.3-4-4.8-5.7-7.4-1.7-2.6-3.1-5.4-4.2-8.3-1.1-2.9-1.9-6-2.3-9.1-.4-3.1-.6-6.4-.3-9.6.2-3.1.8-6.1 1.7-9.1.9-2.9 2.1-5.7 3.6-8.3 1.5-2.6 3.3-5 5.3-7.2 2-2.1 4.2-4 6.5-5.7 2.3-1.7 4.8-3.2 7.4-4.4 2.6-1.2 5.3-2.2 8.1-3.1 2.8-.8 5.7-1.4 8.6-1.8 2.9-.4 5.9-.6 8.9-.7 3-.1 6 .1 9 .3 3 .3 6 .7 9 1.3 2.9.6 5.8 1.4 8.6 2.3 2.8.9 5.5 2.1 8.1 3.4 2.6 1.4 5.1 2.9 7.4 4.7 2.3 1.8 4.4 3.8 6.3 6 1.9 2.1 3.5 4.4 4.9 6.8 1.3 2.4 2.3 5 3.1 7.6.7 2.6 1.1 5.3 1.3 8.1.1 2.8 0 5.6-.4 8.4-.5 2.7-1.3 5.4-2.4 8-1.1 2.5-2.5 4.9-4.1 7.1-1.6 2.2-3.5 4.2-5.5 6-2 1.8-4.2 3.4-6.6 4.8-2.3 1.4-4.8 2.6-7.4 3.6-2.6 1-5.2 1.8-7.9 2.4-2.7.6-5.5 1.1-8.3 1.4-2.8.3-5.7.4-8.6.3-2.9-.1-5.8-.4-8.7-.9-2.8-.5-5.7-1.3-8.4-2.3-2.8-1-5.5-2.2-8-3.6-2.6-1.4-5-3.1-7.3-5-2.2-1.9-4.2-4.1-5.9-6.4-1.7-2.3-3.2-4.8-4.4-7.4-1.2-2.6-2.1-5.4-2.7-8.2-.6-2.8-1-5.7-1.1-8.6-.1-2.9 0-5.8.4-8.7.5-2.8 1.2-5.6 2.2-8.3 1-2.7 2.3-5.3 3.8-7.8 1.5-2.4 3.3-4.7 5.2-6.7 2-2 4.1-3.8 6.4-5.4 2.3-1.6 4.8-3 7.4-4.2 2.6-1.1 5.4-2 8.2-2.7 2.9-.6 5.8-1.1 8.8-1.4 3-.3 6-.4 9.1-.4 3 .1 6.1.4 9.1.9 3 .5 6 1.1 8.9 1.9 2.9.8 5.7 1.8 8.4 2.9 2.7 1.1 5.3 2.5 7.7 4.1 2.4 1.5 4.6 3.3 6.6 5.2 2 1.9 3.7 4 5.2 6.3 1.5 2.3 2.7 4.7 3.6 7.3.9 2.5 1.5 5.2 1.8 7.9.2 2.7.2 5.5-.1 8.2-.3 2.7-.9 5.4-1.8 8-1 2.6-2.2 5.1-3.7 7.4-1.5 2.3-3.2 4.4-5.2 6.3-2 1.9-4.2 3.6-6.5 5.1-2.4 1.4-4.9 2.6-7.5 3.5-2.6.9-5.3 1.6-8.1 2.1-2.8.5-5.6.8-8.5.9-2.9.1-5.8.1-8.7-.2-2.9-.3-5.8-.8-8.6-1.5-2.8-.7-5.5-1.6-8.2-2.7-2.6-1.1-5.1-2.5-7.5-4.1-2.3-1.6-4.5-3.4-6.4-5.4-1.9-2-3.6-4.2-5.1-6.6-1.4-2.4-2.6-4.9-3.4-7.5-.8-2.6-1.3-5.4-1.5-8.2-.2-2.8-.1-5.7.3-8.5.4-2.8 1.1-5.5 2-8.2.9-2.7 2.1-5.2 3.5-7.6 1.4-2.4 3-4.6 4.9-6.6 1.8-2 3.9-3.8 6.1-5.3 2.2-1.5 4.6-2.8 7.1-3.9 2.5-1.1 5.1-2 7.8-2.7 2.7-.7 5.5-1.2 8.3-1.5 2.9-.3 5.8-.4 8.7-.3 3 .1 5.9.3 8.9.8 2.9.5 5.8 1.2 8.5 2 2.8.8 5.4 1.9 8 3.1 2.5 1.2 5 2.6 7.3 4.2 2.3 1.6 4.4 3.4 6.3 5.4 1.9 2 3.6 4.1 5.1 6.5 1.4 2.3 2.5 4.8 3.4 7.4.8 2.5 1.3 5.2 1.5 7.9.2 2.7.1 5.5-.2 8.2-.4 2.7-1.1 5.4-2 8-1 2.6-2.2 5.1-3.7 7.4-1.5 2.3-3.2 4.4-5.2 6.3-2 1.9-4.2 3.5-6.5 4.9-2.4 1.4-4.8 2.5-7.4 3.4-2.6.9-5.3 1.5-8.1 1.9-2.8.4-5.7.6-8.5.5-2.9-.1-5.8-.4-8.7-.9-2.9-.5-5.7-1.3-8.4-2.3-2.8-1-5.5-2.2-8.1-3.6-2.6-1.4-5-3-7.3-4.9-2.2-1.9-4.3-4-6.1-6.3-1.8-2.3-3.3-4.8-4.6-7.5-1.2-2.6-2.2-5.4-2.8-8.2-.6-2.8-1-5.7-1-8.6 0-2.9.3-5.8.8-8.7.6-2.8 1.4-5.6 2.5-8.3 1.1-2.7 2.5-5.2 4.1-7.6 1.6-2.4 3.4-4.6 5.4-6.6 2-2 4.2-3.8 6.6-5.4 2.4-1.5 4.9-2.8 7.6-3.9 2.7-1.1 5.5-2 8.3-2.6 2.9-.7 5.8-1.1 8.8-1.3 3-.2 6.1-.2 9.1.1 3.1.2 6.1.7 9.1 1.4 3 .7 6 1.5 8.8 2.6 2.9 1 5.6 2.3 8.3 3.8 2.6 1.5 5 3.2 7.3 5.1 2.2 1.9 4.3 4 6.2 6.3 1.8 2.3 3.4 4.8 4.7 7.4 1.3 2.6 2.3 5.4 3 8.2.7 2.8 1.1 5.7 1.2 8.6.1 2.9-.1 5.9-.6 8.8-.5 2.9-1.3 5.7-2.4 8.5-1.1 2.8-2.5 5.4-4.1 7.9-1.6 2.5-3.5 4.8-5.6 6.9-2.1 2.1-4.4 4-6.9 5.6-2.5 1.6-5.1 2.9-7.9 3.9-2.7 1.1-5.6 1.8-8.5 2.3-3 .5-6 .7-9 .7-3 .1-6-.2-9-.7zM116.8 335.6c-.1-1.3-.4-2.6-.8-3.8-.4-1.2-.9-2.4-1.5-3.5-.6-1.1-1.3-2.2-2.1-3.2-.8-1-1.7-2-2.7-2.9-1-.9-2-1.7-3.1-2.4-1.1-.7-2.3-1.4-3.5-1.9-1.2-.5-2.5-1-3.8-1.3-1.3-.3-2.6-.5-4-.6-1.3-.1-2.7-.1-4 0-1.3.1-2.6.4-3.9.7-1.3.4-2.5.9-3.7 1.5-1.2.6-2.3 1.3-3.4 2.1-1.1.8-2 1.8-2.9 2.8-.9 1-1.6 2.1-2.3 3.3-.6 1.1-1.1 2.4-1.5 3.6-.4 1.3-.6 2.6-.7 3.9-.1 1.3-.1 2.6 0 4 .1 1.3.4 2.6.8 3.8.4 1.2.9 2.4 1.5 3.5.6 1.1 1.3 2.2 2.1 3.2.8 1 1.7 2 2.7 2.9 1 .9 2 1.7 3.1 2.4 1.1.7 2.3 1.4 3.5 1.9 1.2.5 2.5 1 3.8 1.3 1.3.3 2.6.5 4 .6 1.3.1 2.7.1 4 0 1.3-.1 2.6-.4 3.9-.7 1.3-.4 2.5-.9 3.7-1.5 1.2-.6 2.3-1.3 3.4-2.1 1.1-.8 2-1.8 2.9-2.8.9-1 1.6-2.1 2.3-3.3.6-1.1 1.1-2.4 1.5-3.6.4-1.3.6-2.6.7-3.9.1-1.3.1-2.7 0-4.1zm179.9 2.6c-1.1-.9-2.3-1.6-3.6-2.2-1.3-.6-2.6-1-4-1.4-1.4-.3-2.8-.5-4.2-.6-1.4-.1-2.8 0-4.2.2-1.4.2-2.8.6-4.1 1-1.3.5-2.6 1.1-3.8 1.8-1.2.7-2.3 1.5-3.3 2.4-1 1-1.9 2-2.7 3.2-.8 1.1-1.4 2.4-1.9 3.7-.5 1.3-.8 2.6-1 4-.2 1.4-.2 2.8 0 4.1.2 1.4.5 2.7 1 4 .5 1.3 1.1 2.5 1.9 3.6.8 1.1 1.7 2.2 2.7 3.1 1 1 2.1 1.8 3.3 2.5 1.2.7 2.5 1.3 3.8 1.8 1.3.5 2.7.9 4.1 1.1 1.4.2 2.8.3 4.2.2 1.4-.1 2.8-.3 4.2-.6 1.4-.4 2.7-.9 4-1.4 1.3-.6 2.5-1.3 3.6-2.2 1.1-.9 2.1-1.9 3-3 1-1.1 1.8-2.3 2.5-3.6.7-1.3 1.2-2.6 1.6-4 .4-1.4.6-2.8.7-4.2.1-1.4 0-2.8-.2-4.2-.2-1.4-.6-2.8-1.1-4.1-.5-1.3-1.1-2.6-1.9-3.8-.8-1.2-1.7-2.2-2.7-3.2-1.1-1-2.1-1.9-3.3-2.8z"/>
-</svg>
-                            Linux (.deb)
-                        </a>
-                    </div>
-                    
-
-                    <div class="product-meta">Bundle ID: com.gravitysend.app</div>
-                </div>
-
-                <!-- Device Mockup Stack -->
-                <div class="product-mockup reveal">
-                    <div class="mockup-floating-wrapper">
-                        <svg viewBox="0 0 500 400" width="500" height="400" fill="none" class="mockup-svg" role="img" aria-label="GravitySend cross-platform file transfer demonstration">
-                            <defs>
-                                <linearGradient id="screen-grad-laptop" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="var(--c-surface-2)" />
-                                    <stop offset="100%" stop-color="var(--c-surface)" />
-                                </linearGradient>
-                                <linearGradient id="screen-grad-phone" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="var(--c-surface)" />
-                                    <stop offset="100%" stop-color="var(--c-surface-2)" />
-                                </linearGradient>
-                                <linearGradient id="beam-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="var(--c-blue)" />
-                                    <stop offset="100%" stop-color="var(--c-green)" />
-                                </linearGradient>
-                            </defs>
-
-                            <!-- Laptop Mockup -->
-                            <!-- Screen frame -->
-                            <rect x="60" y="80" width="280" height="170" rx="10" class="mockup-laptop" stroke="var(--c-border)" stroke-width="3" fill="url(#screen-grad-laptop)" />
-                            <!-- Inner screen edge -->
-                            <rect x="70" y="90" width="260" height="150" rx="4" fill="var(--c-bg)" opacity="0.8" />
-                            <!-- Keyboard base plate -->
-                            <path d="M40 250 L360 250 L380 265 L20 265 Z" fill="var(--c-surface-2)" stroke="var(--c-border)" stroke-width="3" />
-                            <!-- Trackpad -->
-                            <rect x="175" y="255" width="50" height="8" rx="2" fill="var(--c-border)" />
-
-                            <!-- File list simulation on laptop screen -->
-                            <rect x="85" y="105" width="230" height="16" rx="3" fill="var(--c-surface)" opacity="0.9" />
-                            <rect x="85" y="128" width="230" height="16" rx="3" fill="var(--c-surface)" opacity="0.9" />
-                            <rect x="85" y="151" width="160" height="16" rx="3" fill="var(--c-surface)" opacity="0.9" />
-                            <circle cx="100" cy="113" r="4" fill="var(--c-blue)" />
-                            <circle cx="100" cy="136" r="4" fill="var(--c-green)" />
-                            <circle cx="100" cy="159" r="4" fill="var(--c-text-3)" />
-                            <rect x="112" y="110" width="80" height="6" rx="2" fill="var(--c-text-2)" />
-                            <rect x="112" y="133" width="95" height="6" rx="2" fill="var(--c-text-2)" />
-                            <rect x="112" y="156" width="60" height="6" rx="2" fill="var(--c-text-2)" />
-
-                            <!-- Connection Beam (flows behind phone) -->
-                            <path d="M200 170 C220 170, 280 200, 370 200" stroke="url(#beam-grad)" stroke-width="4" stroke-linecap="round" class="mockup-beam" />
-                            
-                            <!-- Pulsating Midpoint Dot -->
-                            <g class="mockup-pulse-dot">
-                                <circle cx="280" cy="185" r="10" fill="var(--c-blue)" opacity="0.25" />
-                                <circle cx="280" cy="185" r="5" fill="var(--c-blue)" />
-                            </g>
-
-                            <!-- Phone Mockup -->
-                            <g transform="rotate(-5, 400, 240)">
-                                <!-- Phone body -->
-                                <rect x="330" y="130" width="110" height="210" rx="16" class="mockup-phone" stroke="var(--c-border)" stroke-width="3" fill="url(#screen-grad-phone)" />
-                                <!-- Phone screen -->
-                                <rect x="337" y="142" width="96" height="186" rx="11" fill="var(--c-bg)" opacity="0.8" />
-                                <!-- Phone notch/speaker -->
-                                <rect x="367" y="134" width="36" height="6" rx="3" fill="var(--c-border)" />
-                                <!-- Phone home bar -->
-                                <rect x="367" y="320" width="36" height="4" rx="2" fill="var(--c-border)" />
-
-                                <!-- File list simulation on phone screen -->
-                                <rect x="347" y="157" width="76" height="18" rx="4" fill="var(--c-surface)" opacity="0.9" />
-                                <rect x="347" y="180" width="76" height="18" rx="4" fill="var(--c-surface)" opacity="0.9" />
-                                <circle cx="358" cy="166" r="4" fill="var(--c-blue)" />
-                                <circle cx="358" cy="189" r="4" fill="var(--c-green)" />
-                                <rect x="368" y="163" width="40" height="6" rx="2" fill="var(--c-text-2)" />
-                                <rect x="368" y="186" width="32" height="6" rx="2" fill="var(--c-text-2)" />
-
-                                <!-- Transferring status box -->
-                                <rect x="347" y="210" width="76" height="60" rx="6" fill="var(--c-surface-2)" stroke="var(--c-border)" stroke-width="1" />
-                                <circle cx="385" cy="235" r="12" fill="var(--c-glow-blue)" />
-                                <!-- Arrow -->
-                                <path d="M385 228 L385 242 M380 237 L385 242 L390 237" stroke="var(--c-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <rect x="357" y="255" width="56" height="4" rx="2" fill="var(--c-border)" />
-                                <rect x="357" y="255" width="38" height="4" rx="2" fill="var(--c-blue)" />
-                            </g>
-                        </svg>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Gravitorrent Section -->
-        <section id="gravitorrent" class="product" style="background-color: var(--c-surface-2);">
-            <div class="container product-wrapper">
-                <!-- Content Column -->
-                <div class="product-content reveal">
-                    <span class="product-eyebrow">The Ultimate Torrent Client</span>
-                    <h2>Free. Open Source. Beautiful.</h2>
-                    <p class="product-description">
-                        Gravitorrent is a premium BitTorrent client without the premium price tag. Free forever, no feature paywalls. Gravitorrent shows occasional ads on mobile to stay free; an optional Premium removes them. Desktop has never had ads. Stream torrents instantly, control bandwidth dynamically, and enjoy an award-winning UI across all your devices.
-                    </p>
-
-                    <!-- Feature List -->
-                    <div class="feature-list reveal-stagger">
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                </svg>
-                            </div>
-                            <div class="feature-info">
-                                <h4>Stream Instantly</h4>
-                                <p>Watch video torrents while they download.</p>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                            </div>
-                            <div class="feature-info">
-                                <h4>No Trackers</h4>
-                                <p>No third-party trackers. Mobile ads can be removed with Premium; Desktop is completely free.</p>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>
-                                </svg>
-                            </div>
-                            <div class="feature-info">
-                                <h4>Cross Platform</h4>
-                                <p>Android, iOS, macOS, Windows, and Linux.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <!-- Platform Pills (Build Status Dashboard) -->
-                    <p class="section-micro-label">Build Status</p>
-                    <div class="platforms" id="gravitorrent-platforms">
-                      <span class="platform-pill" data-platform="android">
-                        <span class="pill-icon">
-                          <svg width="16" height="16" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M430.4 162.5c-4-4.8-10.7-5.9-15.9-2.6l-50.5 31.8c-38.3-23.7-83-36.9-130.6-36.9s-92.3 13.2-130.6 36.9l-50.5-31.8c-5.2-3.3-12-2.2-15.9 2.6-4 4.8-3.4 11.6 1.4 15.6l49.9 34.4C37.4 256.7 0 330.1 0 416h448c0-85.9-37.4-159.3-88.3-203.5l49.9-34.4c4.8-4 5.4-10.8 1.4-15.6zM128 352c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm192 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg>
-                        </span>
-                        <span class="pill-label">Android</span>
-                        <span class="pill-status" aria-label="Loading">
-                          <span class="status-dot status-loading"></span>
-                        </span>
-                      </span>
-
-                      <span class="platform-pill" data-platform="ios">
-                        <span class="pill-icon">
-                          <svg width="16" height="16" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                        </span>
-                        <span class="pill-label">iOS</span>
-                        <span class="pill-status" aria-label="Loading">
-                          <span class="status-dot status-loading"></span>
-                        </span>
-                      </span>
-
-                      <span class="platform-pill" data-platform="macos">
-                        <span class="pill-icon">
-                          <svg width="16" height="16" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                        </span>
-                        <span class="pill-label">macOS</span>
-                        <span class="pill-status" aria-label="Loading">
-                          <span class="status-dot status-loading"></span>
-                        </span>
-                      </span>
-
-                      <span class="platform-pill" data-platform="windows">
-                        <span class="pill-icon">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
-                        </span>
-                        <span class="pill-label">Windows</span>
-                        <span class="pill-status" aria-label="Loading">
-                          <span class="status-dot status-loading"></span>
-                        </span>
-                      </span>
-
-                      <span class="platform-pill" data-platform="linux">
-                        <span class="pill-icon">
-                          <svg width="16" height="16" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1.1-5.5-.1-1.4.9-1.9 2.6-2 4-.3 1.5.6 2.6 1.4 3.7 1.8 2.3 4.2 4.1 6.3 6.3 1.9 2 4.2 3.6 6 5.6 1.8 1.9 3 4.4 4.1 6.8 1.1 2.5 1.6 5.3 3 7.6 1.4 2.4 3.5 4.3 5.3 6.4 1.8 2.1 3.5 4.3 5.4 6.3 1.8 2.1 3.5 4.3 5.4 6.3 1.8 1.9 3.4 4.3 5.4 6 1.7 1.4 3.8 2.4 5.9 3.4 1.9.9 4 1.6 6 2.1 2.3.5 4.5 1 6.7 1.8 2.4.9 4.7 2.1 7.2 2.6 2.7.5 5.5.3 8.3.1 2.9-.2 5.8-.4 8.7-.3 3 .1 6 .5 8.9 1 2.8.5 5.5 1.4 8.2 2.1 2.6.7 5.1 1.7 7.6 2.8 2.4 1.1 4.7 2.4 7 3.8 2.3 1.3 4.4 3 6.4 4.7 1.9 1.6 3.5 3.5 5.1 5.5 1.6 1.9 3 4 4.1 6.3 1.2 2.3 2.1 4.8 2.7 7.4.7 2.6 1.1 5.4 1.1 8.2 0 2.8-.2 5.7-.8 8.4-.5 2.6-1.5 5.2-2.7 7.7-1.3 2.4-2.9 4.7-4.7 6.8-1.9 2-4 3.9-6.3 5.5-2.2 1.6-4.6 3.1-7.1 4.4-2.5 1.2-5.2 2.2-7.9 3.1-2.7.8-5.5 1.4-8.3 1.9-2.9.4-5.8.7-8.8.8-3 .1-6.1 0-9.2-.3-3.1-.3-6.2-.8-9.2-1.5-3.1-.7-6.1-1.6-9-2.7-3-1.1-5.9-2.4-8.7-3.9-2.8-1.5-5.5-3.2-8.1-5.1-2.6-1.9-5-4-7.2-6.3-2.1-2.3-4-4.8-5.7-7.4-1.7-2.6-3.1-5.4-4.2-8.3-1.1-2.9-1.9-6-2.3-9.1-.4-3.1-.6-6.4-.3-9.6.2-3.1.8-6.1 1.7-9.1.9-2.9 2.1-5.7 3.6-8.3 1.5-2.6 3.3-5 5.3-7.2 2-2.1 4.2-4 6.5-5.7 2.3-1.7 4.8-3.2 7.4-4.4 2.6-1.2 5.3-2.2 8.1-3.1 2.8-.8 5.7-1.4 8.6-1.8 2.9-.4 5.9-.6 8.9-.7 3-.1 6 .1 9 .3 3 .3 6 .7 9 1.3 2.9.6 5.8 1.4 8.6 2.3 2.8.9 5.5 2.1 8.1 3.4 2.6 1.4 5.1 2.9 7.4 4.7 2.3 1.8 4.4 3.8 6.3 6 1.9 2.1 3.5 4.4 4.9 6.8 1.3 2.4 2.3 5 3.1 7.6.7 2.6 1.1 5.3 1.3 8.1.1 2.8 0 5.6-.4 8.4-.5 2.7-1.3 5.4-2.4 8-1.1 2.5-2.5 4.9-4.1 7.1-1.6 2.2-3.5 4.2-5.5 6-2 1.8-4.2 3.4-6.6 4.8-2.3 1.4-4.8 2.6-7.4 3.6-2.6 1-5.2 1.8-7.9 2.4-2.7.6-5.5 1.1-8.3 1.4-2.8.3-5.7.4-8.6.3-2.9-.1-5.8-.4-8.7-.9-2.8-.5-5.7-1.3-8.4-2.3-2.8-1-5.5-2.2-8-3.6-2.6-1.4-5-3.1-7.3-5-2.2-1.9-4.2-4.1-5.9-6.4-1.7-2.3-3.2-4.8-4.4-7.4-1.2-2.6-2.1-5.4-2.7-8.2-.6-2.8-1-5.7-1.1-8.6-.1-2.9 0-5.8.4-8.7.5-2.8 1.2-5.6 2.2-8.3 1-2.7 2.3-5.3 3.8-7.8 1.5-2.4 3.3-4.7 5.2-6.7 2-2 4.1-3.8 6.4-5.4 2.3-1.6 4.8-3 7.4-4.2 2.6-1.1 5.4-2 8.2-2.7 2.9-.6 5.8-1.1 8.8-1.4 3-.3 6-.4 9.1-.4 3 .1 6.1.4 9.1.9 3 .5 6 1.1 8.9 1.9 2.9.8 5.7 1.8 8.4 2.9 2.7 1.1 5.3 2.5 7.7 4.1 2.4 1.5 4.6 3.3 6.6 5.2 2 1.9 3.7 4 5.2 6.3 1.5 2.3 2.7 4.7 3.6 7.3.9 2.5 1.5 5.2 1.8 7.9.2 2.7.2 5.5-.1 8.2-.3 2.7-.9 5.4-1.8 8-1 2.6-2.2 5.1-3.7 7.4-1.5 2.3-3.2 4.4-5.2 6.3-2 1.9-4.2 3.6-6.5 5.1-2.4 1.4-4.9 2.6-7.5 3.5-2.6.9-5.3 1.6-8.1 2.1-2.8.5-5.6.8-8.5.9-2.9.1-5.8.1-8.7-.2-2.9-.3-5.8-.8-8.6-1.5-2.8-.7-5.5-1.6-8.2-2.7-2.6-1.1-5.1-2.5-7.5-4.1-2.3-1.6-4.5-3.4-6.4-5.4-1.9-2-3.6-4.2-5.1-6.6-1.4-2.4-2.6-4.9-3.4-7.5-.8-2.6-1.3-5.4-1.5-8.2-.2-2.8-.1-5.7.3-8.5.4-2.8 1.1-5.5 2-8.2.9-2.7 2.1-5.2 3.5-7.6 1.4-2.4 3-4.6 4.9-6.6 1.8-2 3.9-3.8 6.1-5.3 2.2-1.5 4.6-2.8 7.1-3.9 2.5-1.1 5.1-2 7.8-2.7 2.7-.7 5.5-1.2 8.3-1.5 2.9-.3 5.8-.4 8.7-.3 3 .1 5.9.3 8.9.8 2.9.5 5.8 1.2 8.5 2 2.8.8 5.4 1.9 8 3.1 2.5 1.2 5 2.6 7.3 4.2 2.3 1.6 4.4 3.4 6.3 5.4 1.9 2 3.6 4.1 5.1 6.5 1.4 2.3 2.5 4.8 3.4 7.4.8 2.5 1.3 5.2 1.5 7.9.2 2.7.1 5.5-.2 8.2-.4 2.7-1.1 5.4-2 8-1 2.6-2.2 5.1-3.7 7.4-1.5 2.3-3.2 4.4-5.2 6.3-2 1.9-4.2 3.5-6.5 4.9-2.4 1.4-4.8 2.5-7.4 3.4-2.6.9-5.3 1.5-8.1 1.9-2.8.4-5.7.6-8.5.5-2.9-.1-5.8-.4-8.7-.9-2.9-.5-5.7-1.3-8.4-2.3-2.8-1-5.5-2.2-8.1-3.6-2.6-1.4-5-3-7.3-4.9-2.2-1.9-4.3-4-6.1-6.3-1.8-2.3-3.3-4.8-4.6-7.5-1.2-2.6-2.2-5.4-2.8-8.2-.6-2.8-1-5.7-1-8.6 0-2.9.3-5.8.8-8.7.6-2.8 1.4-5.6 2.5-8.3 1.1-2.7 2.5-5.2 4.1-7.6 1.6-2.4 3.4-4.6 5.4-6.6 2-2 4.2-3.8 6.6-5.4 2.4-1.5 4.9-2.8 7.6-3.9 2.7-1.1 5.5-2 8.3-2.6 2.9-.7 5.8-1.1 8.8-1.3 3-.2 6.1-.2 9.1.1 3.1.2 6.1.7 9.1 1.4 3 .7 6 1.5 8.8 2.6 2.9 1 5.6 2.3 8.3 3.8 2.6 1.5 5 3.2 7.3 5.1 2.2 1.9 4.3 4 6.2 6.3 1.8 2.3 3.4 4.8 4.7 7.4 1.3 2.6 2.3 5.4 3 8.2.7 2.8 1.1 5.7 1.2 8.6.1 2.9-.1 5.9-.6 8.8-.5 2.9-1.3 5.7-2.4 8.5-1.1 2.8-2.5 5.4-4.1 7.9-1.6 2.5-3.5 4.8-5.6 6.9-2.1 2.1-4.4 4-6.9 5.6-2.5 1.6-5.1 2.9-7.9 3.9-2.7 1.1-5.6 1.8-8.5 2.3-3 .5-6 .7-9 .7-3 .1-6-.2-9-.7zM116.8 335.6c-.1-1.3-.4-2.6-.8-3.8-.4-1.2-.9-2.4-1.5-3.5-.6-1.1-1.3-2.2-2.1-3.2-.8-1-1.7-2-2.7-2.9-1-.9-2-1.7-3.1-2.4-1.1-.7-2.3-1.4-3.5-1.9-1.2-.5-2.5-1-3.8-1.3-1.3-.3-2.6-.5-4-.6-1.3-.1-2.7-.1-4 0-1.3.1-2.6.4-3.9.7-1.3.4-2.5.9-3.7 1.5-1.2.6-2.3 1.3-3.4 2.1-1.1.8-2 1.8-2.9 2.8-.9 1-1.6 2.1-2.3 3.3-.6 1.1-1.1 2.4-1.5 3.6-.4 1.3-.6 2.6-.7 3.9-.1 1.3-.1 2.6 0 4 .1 1.3.4 2.6.8 3.8.4 1.2.9 2.4 1.5 3.5.6 1.1 1.3 2.2 2.1 3.2.8 1 1.7 2 2.7 2.9 1 .9 2 1.7 3.1 2.4 1.1.7 2.3 1.4 3.5 1.9 1.2.5 2.5 1 3.8 1.3 1.3.3 2.6.5 4 .6 1.3.1 2.7.1 4 0 1.3-.1 2.6-.4 3.9-.7 1.3-.4 2.5-.9 3.7-1.5 1.2-.6 2.3-1.3 3.4-2.1 1.1-.8 2-1.8 2.9-2.8.9-1 1.6-2.1 2.3-3.3.6-1.1 1.1-2.4 1.5-3.6.4-1.3.6-2.6.7-3.9.1-1.3.1-2.7 0-4.1zm179.9 2.6c-1.1-.9-2.3-1.6-3.6-2.2-1.3-.6-2.6-1-4-1.4-1.4-.3-2.8-.5-4.2-.6-1.4-.1-2.8 0-4.2.2-1.4.2-2.8.6-4.1 1-1.3.5-2.6 1.1-3.8 1.8-1.2.7-2.3 1.5-3.3 2.4-1 1-1.9 2-2.7 3.2-.8 1.1-1.4 2.4-1.9 3.7-.5 1.3-.8 2.6-1 4-.2 1.4-.2 2.8 0 4.1.2 1.4.5 2.7 1 4 .5 1.3 1.1 2.5 1.9 3.6.8 1.1 1.7 2.2 2.7 3.1 1 1 2.1 1.8 3.3 2.5 1.2.7 2.5 1.3 3.8 1.8 1.3.5 2.7.9 4.1 1.1 1.4.2 2.8.3 4.2.2 1.4-.1 2.8-.3 4.2-.6 1.4-.4 2.7-.9 4-1.4 1.3-.6 2.5-1.3 3.6-2.2 1.1-.9 2.1-1.9 3-3 1-1.1 1.8-2.3 2.5-3.6.7-1.3 1.2-2.6 1.6-4 .4-1.4.6-2.8.7-4.2.1-1.4 0-2.8-.2-4.2-.2-1.4-.6-2.8-1.1-4.1-.5-1.3-1.1-2.6-1.9-3.8-.8-1.2-1.7-2.2-2.7-3.2-1.1-1-2.1-1.9-3.3-2.8z"/></svg>
-                        </span>
-                        <span class="pill-label">Linux</span>
-                        <span class="pill-status" aria-label="Loading">
-                          <span class="status-dot status-loading"></span>
-                        </span>
-                      </span>
-
-                      <span class="platform-pill" data-platform="linux-arm64">
-                        <span class="pill-icon">
-                          <svg width="16" height="16" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1.1-5.5-.1-1.4.9-1.9 2.6-2 4-.3 1.5.6 2.6 1.4 3.7 1.8 2.3 4.2 4.1 6.3 6.3 1.9 2 4.2 3.6 6 5.6 1.8 1.9 3 4.4 4.1 6.8 1.1 2.5 1.6 5.3 3 7.6 1.4 2.4 3.5 4.3 5.3 6.4 1.8 2.1 3.5 4.3 5.4 6.3 1.8 2.1 3.5 4.3 5.4 6.3 1.8 1.9 3.4 4.3 5.4 6 1.7 1.4 3.8 2.4 5.9 3.4 1.9.9 4 1.6 6 2.1 2.3.5 4.5 1 6.7 1.8 2.4.9 4.7 2.1 7.2 2.6 2.7.5 5.5.3 8.3.1 2.9-.2 5.8-.4 8.7-.3 3 .1 6 .5 8.9 1 2.8.5 5.5 1.4 8.2 2.1 2.6.7 5.1 1.7 7.6 2.8 2.4 1.1 4.7 2.4 7 3.8 2.3 1.3 4.4 3 6.4 4.7 1.9 1.6 3.5 3.5 5.1 5.5 1.6 1.9 3 4 4.1 6.3 1.2 2.3 2.1 4.8 2.7 7.4.7 2.6 1.1 5.4 1.1 8.2 0 2.8-.2 5.7-.8 8.4-.5 2.6-1.5 5.2-2.7 7.7-1.3 2.4-2.9 4.7-4.7 6.8-1.9 2-4 3.9-6.3 5.5-2.2 1.6-4.6 3.1-7.1 4.4-2.5 1.2-5.2 2.2-7.9 3.1-2.7.8-5.5 1.4-8.3 1.9-2.9.4-5.8.7-8.8.8-3 .1-6.1 0-9.2-.3-3.1-.3-6.2-.8-9.2-1.5-3.1-.7-6.1-1.6-9-2.7-3-1.1-5.9-2.4-8.7-3.9-2.8-1.5-5.5-3.2-8.1-5.1-2.6-1.9-5-4-7.2-6.3-2.1-2.3-4-4.8-5.7-7.4-1.7-2.6-3.1-5.4-4.2-8.3-1.1-2.9-1.9-6-2.3-9.1-.4-3.1-.6-6.4-.3-9.6.2-3.1.8-6.1 1.7-9.1.9-2.9 2.1-5.7 3.6-8.3 1.5-2.6 3.3-5 5.3-7.2 2-2.1 4.2-4 6.5-5.7 2.3-1.7 4.8-3.2 7.4-4.4 2.6-1.2 5.3-2.2 8.1-3.1 2.8-.8 5.7-1.4 8.6-1.8 2.9-.4 5.9-.6 8.9-.7 3-.1 6 .1 9 .3 3 .3 6 .7 9 1.3 2.9.6 5.8 1.4 8.6 2.3 2.8.9 5.5 2.1 8.1 3.4 2.6 1.4 5.1 2.9 7.4 4.7 2.3 1.8 4.4 3.8 6.3 6 1.9 2.1 3.5 4.4 4.9 6.8 1.3 2.4 2.3 5 3.1 7.6.7 2.6 1.1 5.3 1.3 8.1.1 2.8 0 5.6-.4 8.4-.5 2.7-1.3 5.4-2.4 8-1.1 2.5-2.5 4.9-4.1 7.1-1.6 2.2-3.5 4.2-5.5 6-2 1.8-4.2 3.4-6.6 4.8-2.3 1.4-4.8 2.6-7.4 3.6-2.6 1-5.2 1.8-7.9 2.4-2.7.6-5.5 1.1-8.3 1.4-2.8.3-5.7.4-8.6.3-2.9-.1-5.8-.4-8.7-.9-2.8-.5-5.7-1.3-8.4-2.3-2.8-1-5.5-2.2-8-3.6-2.6-1.4-5-3.1-7.3-5-2.2-1.9-4.2-4.1-5.9-6.4-1.7-2.3-3.2-4.8-4.4-7.4-1.2-2.6-2.1-5.4-2.7-8.2-.6-2.8-1-5.7-1.1-8.6-.1-2.9 0-5.8.4-8.7.5-2.8 1.2-5.6 2.2-8.3 1-2.7 2.3-5.3 3.8-7.8 1.5-2.4 3.3-4.7 5.2-6.7 2-2 4.1-3.8 6.4-5.4 2.3-1.6 4.8-3 7.4-4.2 2.6-1.1 5.4-2 8.2-2.7 2.9-.6 5.8-1.1 8.8-1.4 3-.3 6-.4 9.1-.4 3 .1 6.1.4 9.1.9 3 .5 6 1.1 8.9 1.9 2.9.8 5.7 1.8 8.4 2.9 2.7 1.1 5.3 2.5 7.7 4.1 2.4 1.5 4.6 3.3 6.6 5.2 2 1.9 3.7 4 5.2 6.3 1.5 2.3 2.7 4.7 3.6 7.3.9 2.5 1.5 5.2 1.8 7.9.2 2.7.2 5.5-.1 8.2-.3 2.7-.9 5.4-1.8 8-1 2.6-2.2 5.1-3.7 7.4-1.5 2.3-3.2 4.4-5.2 6.3-2 1.9-4.2 3.6-6.5 5.1-2.4 1.4-4.9 2.6-7.5 3.5-2.6.9-5.3 1.6-8.1 2.1-2.8.5-5.6.8-8.5.9-2.9.1-5.8.1-8.7-.2-2.9-.3-5.8-.8-8.6-1.5-2.8-.7-5.5-1.6-8.2-2.7-2.6-1.1-5.1-2.5-7.5-4.1-2.3-1.6-4.5-3.4-6.4-5.4-1.9-2-3.6-4.2-5.1-6.6-1.4-2.4-2.6-4.9-3.4-7.5-.8-2.6-1.3-5.4-1.5-8.2-.2-2.8-.1-5.7.3-8.5.4-2.8 1.1-5.5 2-8.2.9-2.7 2.1-5.2 3.5-7.6 1.4-2.4 3-4.6 4.9-6.6 1.8-2 3.9-3.8 6.1-5.3 2.2-1.5 4.6-2.8 7.1-3.9 2.5-1.1 5.1-2 7.8-2.7 2.7-.7 5.5-1.2 8.3-1.5 2.9-.3 5.8-.4 8.7-.3 3 .1 5.9.3 8.9.8 2.9.5 5.8 1.2 8.5 2 2.8.8 5.4 1.9 8 3.1 2.5 1.2 5 2.6 7.3 4.2 2.3 1.6 4.4 3.4 6.3 5.4 1.9 2 3.6 4.1 5.1 6.5 1.4 2.3 2.5 4.8 3.4 7.4.8 2.5 1.3 5.2 1.5 7.9.2 2.7.1 5.5-.2 8.2-.4 2.7-1.1 5.4-2 8-1 2.6-2.2 5.1-3.7 7.4-1.5 2.3-3.2 4.4-5.2 6.3-2 1.9-4.2 3.5-6.5 4.9-2.4 1.4-4.8 2.5-7.4 3.4-2.6.9-5.3 1.5-8.1 1.9-2.8.4-5.7.6-8.5.5-2.9-.1-5.8-.4-8.7-.9-2.9-.5-5.7-1.3-8.4-2.3-2.8-1-5.5-2.2-8.1-3.6-2.6-1.4-5-3-7.3-4.9-2.2-1.9-4.3-4-6.1-6.3-1.8-2.3-3.3-4.8-4.6-7.5-1.2-2.6-2.2-5.4-2.8-8.2-.6-2.8-1-5.7-1-8.6 0-2.9.3-5.8.8-8.7.6-2.8 1.4-5.6 2.5-8.3 1.1-2.7 2.5-5.2 4.1-7.6 1.6-2.4 3.4-4.6 5.4-6.6 2-2 4.2-3.8 6.6-5.4 2.4-1.5 4.9-2.8 7.6-3.9 2.7-1.1 5.5-2 8.3-2.6 2.9-.7 5.8-1.1 8.8-1.3 3-.2 6.1-.2 9.1.1 3.1.2 6.1.7 9.1 1.4 3 .7 6 1.5 8.8 2.6 2.9 1 5.6 2.3 8.3 3.8 2.6 1.5 5 3.2 7.3 5.1 2.2 1.9 4.3 4 6.2 6.3 1.8 2.3 3.4 4.8 4.7 7.4 1.3 2.6 2.3 5.4 3 8.2.7 2.8 1.1 5.7 1.2 8.6.1 2.9-.1 5.9-.6 8.8-.5 2.9-1.3 5.7-2.4 8.5-1.1 2.8-2.5 5.4-4.1 7.9-1.6 2.5-3.5 4.8-5.6 6.9-2.1 2.1-4.4 4-6.9 5.6-2.5 1.6-5.1 2.9-7.9 3.9-2.7 1.1-5.6 1.8-8.5 2.3-3 .5-6 .7-9 .7-3 .1-6-.2-9-.7zM116.8 335.6c-.1-1.3-.4-2.6-.8-3.8-.4-1.2-.9-2.4-1.5-3.5-.6-1.1-1.3-2.2-2.1-3.2-.8-1-1.7-2-2.7-2.9-1-.9-2-1.7-3.1-2.4-1.1-.7-2.3-1.4-3.5-1.9-1.2-.5-2.5-1-3.8-1.3-1.3-.3-2.6-.5-4-.6-1.3-.1-2.7-.1-4 0-1.3.1-2.6.4-3.9.7-1.3.4-2.5.9-3.7 1.5-1.2.6-2.3 1.3-3.4 2.1-1.1.8-2 1.8-2.9 2.8-.9 1-1.6 2.1-2.3 3.3-.6 1.1-1.1 2.4-1.5 3.6-.4 1.3-.6 2.6-.7 3.9-.1 1.3-.1 2.6 0 4 .1 1.3.4 2.6.8 3.8.4 1.2.9 2.4 1.5 3.5.6 1.1 1.3 2.2 2.1 3.2.8 1 1.7 2 2.7 2.9 1 .9 2 1.7 3.1 2.4 1.1.7 2.3 1.4 3.5 1.9 1.2.5 2.5 1 3.8 1.3 1.3.3 2.6.5 4 .6 1.3.1 2.7.1 4 0 1.3-.1 2.6-.4 3.9-.7 1.3-.4 2.5-.9 3.7-1.5 1.2-.6 2.3-1.3 3.4-2.1 1.1-.8 2-1.8 2.9-2.8.9-1 1.6-2.1 2.3-3.3.6-1.1 1.1-2.4 1.5-3.6.4-1.3.6-2.6.7-3.9.1-1.3.1-2.7 0-4.1zm179.9 2.6c-1.1-.9-2.3-1.6-3.6-2.2-1.3-.6-2.6-1-4-1.4-1.4-.3-2.8-.5-4.2-.6-1.4-.1-2.8 0-4.2.2-1.4.2-2.8.6-4.1 1-1.3.5-2.6 1.1-3.8 1.8-1.2.7-2.3 1.5-3.3 2.4-1 1-1.9 2-2.7 3.2-.8 1.1-1.4 2.4-1.9 3.7-.5 1.3-.8 2.6-1 4-.2 1.4-.2 2.8 0 4.1.2 1.4.5 2.7 1 4 .5 1.3 1.1 2.5 1.9 3.6.8 1.1 1.7 2.2 2.7 3.1 1 1 2.1 1.8 3.3 2.5 1.2.7 2.5 1.3 3.8 1.8 1.3.5 2.7.9 4.1 1.1 1.4.2 2.8.3 4.2.2 1.4-.1 2.8-.3 4.2-.6 1.4-.4 2.7-.9 4-1.4 1.3-.6 2.5-1.3 3.6-2.2 1.1-.9 2.1-1.9 3-3 1-1.1 1.8-2.3 2.5-3.6.7-1.3 1.2-2.6 1.6-4 .4-1.4.6-2.8.7-4.2.1-1.4 0-2.8-.2-4.2-.2-1.4-.6-2.8-1.1-4.1-.5-1.3-1.1-2.6-1.9-3.8-.8-1.2-1.7-2.2-2.7-3.2-1.1-1-2.1-1.9-3.3-2.8z"/></svg>
-                        </span>
-                        <span class="pill-label">Linux ARM64</span>
-                        <span class="pill-status" aria-label="Loading">
-                          <span class="status-dot status-loading"></span>
-                        </span>
-                      </span>
-                    
-                    <p class="build-updated" id="build-updated-time" aria-live="polite"></p>
-                    </div>
-
-                    <!-- Dynamic Download Buttons -->
-                    <div class="download-buttons reveal">
-                        <a href="/api/latest-download?platform=windows" id="btn-windows" class="btn btn-primary" target="_blank" rel="noopener" aria-label="Download Gravity Torrent for Windows (latest successful build)">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
-                            Windows
-                        </a>
-                        <a href="/api/latest-download?platform=macos" id="btn-macos" class="btn btn-primary" target="_blank" rel="noopener" aria-label="Download Gravity Torrent for macOS (latest successful build)">
-                            <svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                            macOS
-                        </a>
-                        <a href="/api/latest-download?platform=ios" id="btn-ios" class="btn btn-primary" target="_blank" rel="noopener" aria-label="Download Gravity Torrent for iOS, experimental unsigned build">
-                            <svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                            iOS (beta)
-                        </a>
-                        <a href="/api/latest-download?platform=android" id="btn-android" class="btn btn-primary" target="_blank" rel="noopener" aria-label="Download Gravity Torrent for Android (latest successful build APK)">
-                            <svg width="18" height="18" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M430.4 162.5c-4-4.8-10.7-5.9-15.9-2.6l-50.5 31.8c-38.3-23.7-83-36.9-130.6-36.9s-92.3 13.2-130.6 36.9l-50.5-31.8c-5.2-3.3-12-2.2-15.9 2.6-4 4.8-3.4 11.6 1.4 15.6l49.9 34.4C37.4 256.7 0 330.1 0 416h448c0-85.9-37.4-159.3-88.3-203.5l49.9-34.4c4.8-4 5.4-10.8 1.4-15.6zM128 352c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm192 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg>
-                            Android
-                        </a>
-                        <a href="/api/latest-download?platform=linux" id="btn-linux" class="btn btn-primary" target="_blank" rel="noopener" aria-label="Download Gravity Torrent for Linux x64 (latest successful build)">
-                            <svg width="18" height="18" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1.1-5.5-.1-1.4.9-1.9 2.6-2 4-.3 1.5.6 2.6 1.4 3.7 1.8 2.3 4.2 4.1 6.3 6.3 1.9 2 4.2 3.6 6 5.6 1.8 1.9 3 4.4 4.1 6.8 1.1 2.5 1.6 5.3 3 7.6 1.4 2.4 3.5 4.3 5.3 6.4 1.8 2.1 3.5 4.3 5.4 6.3 1.8 2.1 3.5 4.3 5.4 6.3 1.8 1.9 3.4 4.3 5.4 6 1.7 1.4 3.8 2.4 5.9 3.4 1.9.9 4 1.6 6 2.1 2.3.5 4.5 1 6.7 1.8 2.4.9 4.7 2.1 7.2 2.6 2.7.5 5.5.3 8.3.1 2.9-.2 5.8-.4 8.7-.3 3 .1 6 .5 8.9 1 2.8.5 5.5 1.4 8.2 2.1 2.6.7 5.1 1.7 7.6 2.8 2.4 1.1 4.7 2.4 7 3.8 2.3 1.3 4.4 3 6.4 4.7 1.9 1.6 3.5 3.5 5.1 5.5 1.6 1.9 3 4 4.1 6.3 1.2 2.3 2.1 4.8 2.7 7.4.7 2.6 1.1 5.4 1.1 8.2 0 2.8-.2 5.7-.8 8.4-.5 2.6-1.5 5.2-2.7 7.7-1.3 2.4-2.9 4.7-4.7 6.8-1.9 2-4 3.9-6.3 5.5-2.2 1.6-4.6 3.1-7.1 4.4-2.5 1.2-5.2 2.2-7.9 3.1-2.7.8-5.5 1.4-8.3 1.9-2.9.4-5.8.7-8.8.8-3 .1-6.1 0-9.2-.3-3.1-.3-6.2-.8-9.2-1.5-3.1-.7-6.1-1.6-9-2.7-3-1.1-5.9-2.4-8.7-3.9-2.8-1.5-5.5-3.2-8.1-5.1-2.6-1.9-5-4-7.2-6.3-2.1-2.3-4-4.8-5.7-7.4-1.7-2.6-3.1-5.4-4.2-8.3-1.1-2.9-1.9-6-2.3-9.1-.4-3.1-.6-6.4-.3-9.6.2-3.1.8-6.1 1.7-9.1.9-2.9 2.1-5.7 3.6-8.3 1.5-2.6 3.3-5 5.3-7.2 2-2.1 4.2-4 6.5-5.7 2.3-1.7 4.8-3.2 7.4-4.4 2.6-1.2 5.3-2.2 8.1-3.1 2.8-.8 5.7-1.4 8.6-1.8 2.9-.4 5.9-.6 8.9-.7 3-.1 6 .1 9 .3 3 .3 6 .7 9 1.3 2.9.6 5.8 1.4 8.6 2.3 2.8.9 5.5 2.1 8.1 3.4 2.6 1.4 5.1 2.9 7.4 4.7 2.3 1.8 4.4 3.8 6.3 6 1.9 2.1 3.5 4.4 4.9 6.8 1.3 2.4 2.3 5 3.1 7.6.7 2.6 1.1 5.3 1.3 8.1.1 2.8 0 5.6-.4 8.4-.5 2.7-1.3 5.4-2.4 8-1.1 2.5-2.5 4.9-4.1 7.1-1.6 2.2-3.5 4.2-5.5 6-2 1.8-4.2 3.4-6.6 4.8-2.3 1.4-4.8 2.6-7.4 3.6-2.6 1-5.2 1.8-7.9 2.4-2.7.6-5.5 1.1-8.3 1.4-2.8.3-5.7.4-8.6.3-2.9-.1-5.8-.4-8.7-.9-2.8-.5-5.7-1.3-8.4-2.3-2.8-1-5.5-2.2-8-3.6-2.6-1.4-5-3.1-7.3-5-2.2-1.9-4.2-4.1-5.9-6.4-1.7-2.3-3.2-4.8-4.4-7.4-1.2-2.6-2.1-5.4-2.7-8.2-.6-2.8-1-5.7-1.1-8.6-.1-2.9 0-5.8.4-8.7.5-2.8 1.2-5.6 2.2-8.3 1-2.7 2.3-5.3 3.8-7.8 1.5-2.4 3.3-4.7 5.2-6.7 2-2 4.1-3.8 6.4-5.4 2.3-1.6 4.8-3 7.4-4.2 2.6-1.1 5.4-2 8.2-2.7 2.9-.6 5.8-1.1 8.8-1.4 3-.3 6-.4 9.1-.4 3 .1 6.1.4 9.1.9 3 .5 6 1.1 8.9 1.9 2.9.8 5.7 1.8 8.4 2.9 2.7 1.1 5.3 2.5 7.7 4.1 2.4 1.5 4.6 3.3 6.6 5.2 2 1.9 3.7 4 5.2 6.3 1.5 2.3 2.7 4.7 3.6 7.3.9 2.5 1.5 5.2 1.8 7.9.2 2.7.2 5.5-.1 8.2-.3 2.7-.9 5.4-1.8 8-1 2.6-2.2 5.1-3.7 7.4-1.5 2.3-3.2 4.4-5.2 6.3-2 1.9-4.2 3.6-6.5 5.1-2.4 1.4-4.9 2.6-7.5 3.5-2.6.9-5.3 1.6-8.1 2.1-2.8.5-5.6.8-8.5.9-2.9.1-5.8.1-8.7-.2-2.9-.3-5.8-.8-8.6-1.5-2.8-.7-5.5-1.6-8.2-2.7-2.6-1.1-5.1-2.5-7.5-4.1-2.3-1.6-4.5-3.4-6.4-5.4-1.9-2-3.6-4.2-5.1-6.6-1.4-2.4-2.6-4.9-3.4-7.5-.8-2.6-1.3-5.4-1.5-8.2-.2-2.8-.1-5.7.3-8.5.4-2.8 1.1-5.5 2-8.2.9-2.7 2.1-5.2 3.5-7.6 1.4-2.4 3-4.6 4.9-6.6 1.8-2 3.9-3.8 6.1-5.3 2.2-1.5 4.6-2.8 7.1-3.9 2.5-1.1 5.1-2 7.8-2.7 2.7-.7 5.5-1.2 8.3-1.5 2.9-.3 5.8-.4 8.7-.3 3 .1 5.9.3 8.9.8 2.9.5 5.8 1.2 8.5 2 2.8.8 5.4 1.9 8 3.1 2.5 1.2 5 2.6 7.3 4.2 2.3 1.6 4.4 3.4 6.3 5.4 1.9 2 3.6 4.1 5.1 6.5 1.4 2.3 2.5 4.8 3.4 7.4.8 2.5 1.3 5.2 1.5 7.9.2 2.7.1 5.5-.2 8.2-.4 2.7-1.1 5.4-2 8-1 2.6-2.2 5.1-3.7 7.4-1.5 2.3-3.2 4.4-5.2 6.3-2 1.9-4.2 3.5-6.5 4.9-2.4 1.4-4.8 2.5-7.4 3.4-2.6.9-5.3 1.5-8.1 1.9-2.8.4-5.7.6-8.5.5-2.9-.1-5.8-.4-8.7-.9-2.9-.5-5.7-1.3-8.4-2.3-2.8-1-5.5-2.2-8.1-3.6-2.6-1.4-5-3-7.3-4.9-2.2-1.9-4.3-4-6.1-6.3-1.8-2.3-3.3-4.8-4.6-7.5-1.2-2.6-2.2-5.4-2.8-8.2-.6-2.8-1-5.7-1-8.6 0-2.9.3-5.8.8-8.7.6-2.8 1.4-5.6 2.5-8.3 1.1-2.7 2.5-5.2 4.1-7.6 1.6-2.4 3.4-4.6 5.4-6.6 2-2 4.2-3.8 6.6-5.4 2.4-1.5 4.9-2.8 7.6-3.9 2.7-1.1 5.5-2 8.3-2.6 2.9-.7 5.8-1.1 8.8-1.3 3-.2 6.1-.2 9.1.1 3.1.2 6.1.7 9.1 1.4 3 .7 6 1.5 8.8 2.6 2.9 1 5.6 2.3 8.3 3.8 2.6 1.5 5 3.2 7.3 5.1 2.2 1.9 4.3 4 6.2 6.3 1.8 2.3 3.4 4.8 4.7 7.4 1.3 2.6 2.3 5.4 3 8.2.7 2.8 1.1 5.7 1.2 8.6.1 2.9-.1 5.9-.6 8.8-.5 2.9-1.3 5.7-2.4 8.5-1.1 2.8-2.5 5.4-4.1 7.9-1.6 2.5-3.5 4.8-5.6 6.9-2.1 2.1-4.4 4-6.9 5.6-2.5 1.6-5.1 2.9-7.9 3.9-2.7 1.1-5.6 1.8-8.5 2.3-3 .5-6 .7-9 .7-3 .1-6-.2-9-.7zM116.8 335.6c-.1-1.3-.4-2.6-.8-3.8-.4-1.2-.9-2.4-1.5-3.5-.6-1.1-1.3-2.2-2.1-3.2-.8-1-1.7-2-2.7-2.9-1-.9-2-1.7-3.1-2.4-1.1-.7-2.3-1.4-3.5-1.9-1.2-.5-2.5-1-3.8-1.3-1.3-.3-2.6-.5-4-.6-1.3-.1-2.7-.1-4 0-1.3.1-2.6.4-3.9.7-1.3.4-2.5.9-3.7 1.5-1.2.6-2.3 1.3-3.4 2.1-1.1.8-2 1.8-2.9 2.8-.9 1-1.6 2.1-2.3 3.3-.6 1.1-1.1 2.4-1.5 3.6-.4 1.3-.6 2.6-.7 3.9-.1 1.3-.1 2.6 0 4 .1 1.3.4 2.6.8 3.8.4 1.2.9 2.4 1.5 3.5.6 1.1 1.3 2.2 2.1 3.2.8 1 1.7 2 2.7 2.9 1 .9 2 1.7 3.1 2.4 1.1.7 2.3 1.4 3.5 1.9 1.2.5 2.5 1 3.8 1.3 1.3.3 2.6.5 4 .6 1.3.1 2.7.1 4 0 1.3-.1 2.6-.4 3.9-.7 1.3-.4 2.5-.9 3.7-1.5 1.2-.6 2.3-1.3 3.4-2.1 1.1-.8 2-1.8 2.9-2.8.9-1 1.6-2.1 2.3-3.3.6-1.1 1.1-2.4 1.5-3.6.4-1.3.6-2.6.7-3.9.1-1.3.1-2.7 0-4.1zm179.9 2.6c-1.1-.9-2.3-1.6-3.6-2.2-1.3-.6-2.6-1-4-1.4-1.4-.3-2.8-.5-4.2-.6-1.4-.1-2.8 0-4.2.2-1.4.2-2.8.6-4.1 1-1.3.5-2.6 1.1-3.8 1.8-1.2.7-2.3 1.5-3.3 2.4-1 1-1.9 2-2.7 3.2-.8 1.1-1.4 2.4-1.9 3.7-.5 1.3-.8 2.6-1 4-.2 1.4-.2 2.8 0 4.1.2 1.4.5 2.7 1 4 .5 1.3 1.1 2.5 1.9 3.6.8 1.1 1.7 2.2 2.7 3.1 1 1 2.1 1.8 3.3 2.5 1.2.7 2.5 1.3 3.8 1.8 1.3.5 2.7.9 4.1 1.1 1.4.2 2.8.3 4.2.2 1.4-.1 2.8-.3 4.2-.6 1.4-.4 2.7-.9 4-1.4 1.3-.6 2.5-1.3 3.6-2.2 1.1-.9 2.1-1.9 3-3 1-1.1 1.8-2.3 2.5-3.6.7-1.3 1.2-2.6 1.6-4 .4-1.4.6-2.8.7-4.2.1-1.4 0-2.8-.2-4.2-.2-1.4-.6-2.8-1.1-4.1-.5-1.3-1.1-2.6-1.9-3.8-.8-1.2-1.7-2.2-2.7-3.2-1.1-1-2.1-1.9-3.3-2.8z"/></svg>
-                            Linux
-                        </a>
-                        <a href="/api/latest-download?platform=linux-arm64" id="btn-linux-arm64" class="btn btn-outline btn-secondary-dl" target="_blank" rel="noopener" aria-label="Download Gravity Torrent for Linux ARM64 (latest successful build)">
-                            Linux ARM64
-                        </a>
-                        <a href="/support" class="btn btn-outline" style="color: #FF8B6C; border-color: #FF8B6C;">
-                            Support the Project
-                        </a>
-                    </div>
-                    <p class="download-fallback" id="download-status" aria-live="polite" style="font-size: 0.85em; opacity: 0.7; margin-top: 10px;">Downloads always serve the latest successful build. <a href="https://github.com/teamantigravity/gravity-torrent/releases">All releases</a></p>
-                </div>
-
-                <!-- Device Mockup -->
-                <div class="product-mockup reveal">
-                    <div class="mockup-floating-wrapper" style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                        <div style="width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(#7C5CFC, #FF8B6C, #22D3EE, #7C5CFC); padding: 10px; animation: spin 4s linear infinite;">
-                            <div style="width: 100%; height: 100%; border-radius: 50%; background: var(--c-surface-2); display: flex; align-items: center; justify-content: center;">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trust / Privacy Section -->
-        <section class="privacy-promise">
-            <div class="privacy-promise-bg"></div>
-            <div class="container">
-                <div class="privacy-promise-grid reveal-stagger">
-                    
-                    <!-- Card 1 -->
-                    <div class="privacy-card">
-                        <div class="privacy-card-icon" role="img" aria-label="Lock security icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                        </div>
-                        <h3>Private by design</h3>
-                        <p>Your files never touch any server. Ever. Transfers stay completely local.</p>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="privacy-card">
-                        <div class="privacy-card-icon" role="img" aria-label="Lightning connection icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                            </svg>
-                        </div>
-                        <h3>Works offline</h3>
-                        <p>Files transfer over local Wi-Fi at full network speeds. No internet required.</p>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="privacy-card">
-                        <div class="privacy-card-icon" role="img" aria-label="Slash profile circle icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                            </svg>
-                        </div>
-                        <h3>No accounts</h3>
-                        <p>No sign-up, no login, no profile, no email. Just open the app and send.</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-row-1">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 100 100" width="20" height="20" fill="none" stroke="url(#brand-grad-footer)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Team Antigravity Logo">
-                        <defs>
-                            <linearGradient id="brand-grad-footer" x1="0%" y1="100%" x2="100%" y2="0%">
-                                <stop offset="0%" stop-color="var(--c-blue)" />
-                                <stop offset="100%" stop-color="var(--c-green)" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M50 15 L20 85 M50 15 L80 85 M35 60 L65 60" />
-                        <circle cx="50" cy="15" r="4" fill="var(--c-text-1)" />
-                    </svg>
-                    <span>Team Antigravity</span>
-                </div>
-                <div class="footer-links">
-                    <a href="privacy/gravitysend.html">GravitySend Privacy</a>
-                    <a href="privacy/gravitorrent.html">Gravitorrent Privacy</a>
-                    <a href="app-ads.txt">app-ads.txt</a>
-                    <a href="#gravitysend">Portfolio</a>
-                </div>
-                <span class="footer-tagline">Making software simple for everyone.</span>
-            </div>
-            <div class="footer-row-2">
-                &copy; 2026 Team Antigravity &middot; Built with care, zero telemetry.
-            </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Products</h4>
+            <a href="#gravitysend">GravitySend</a>
+            <a href="#gravitorrent">Gravity Torrent</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy/gravitysend.html">GravitySend Privacy</a>
+            <a href="privacy/gravitorrent.html">Gravity Torrent Privacy</a>
+            <a href="app-ads.txt">app-ads.txt</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="https://github.com/teamantigravity" target="_blank" rel="noopener">GitHub</a>
+            <a href="support/">Support</a>
+          </div>
         </div>
-    </footer>
-
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Team Antigravity. Built with care.</span>
+        <span>No cloud · No accounts · No tracking</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
