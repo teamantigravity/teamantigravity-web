@@ -28,25 +28,52 @@
     const btn = document.getElementById('theme-toggle');
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
 
+    // Apply specific theme ('light', 'dark', or 'system')
     const apply = (theme) => {
-      document.documentElement.setAttribute('data-theme', theme);
-      try { localStorage.setItem('theme', theme); } catch (_) {}
-      if (btn) btn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+      if (theme === 'system') {
+        document.documentElement.removeAttribute('data-theme');
+        try { localStorage.removeItem('theme'); } catch (_) {}
+      } else {
+        document.documentElement.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (_) {}
+      }
+
+      if (btn) {
+        // Update aria-label based on current *effective* state
+        const isDark = theme === 'dark' || (theme === 'system' && mq.matches);
+        btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
     };
 
     let saved = null;
     try { saved = localStorage.getItem('theme'); } catch (_) {}
-    apply(saved || (mq.matches ? 'dark' : 'light'));
+    
+    // Initial load: apply saved theme, or fallback to system
+    apply(saved || 'system');
 
     if (btn) {
       btn.addEventListener('click', () => {
-        const cur = document.documentElement.getAttribute('data-theme') || 'dark';
-        apply(cur === 'light' ? 'dark' : 'light');
+        let currentTheme = null;
+        try { currentTheme = localStorage.getItem('theme'); } catch (_) {}
+
+        if (!currentTheme) {
+          // System -> explicit
+          apply(mq.matches ? 'light' : 'dark');
+        } else if (currentTheme === 'light') {
+          // Light -> dark
+          apply('dark');
+        } else {
+          // Dark -> system
+          apply('system');
+        }
       });
     }
+
     mq.addEventListener('change', (e) => {
-      let s = null; try { s = localStorage.getItem('theme'); } catch (_) {}
-      if (!s) apply(e.matches ? 'dark' : 'light');
+      let currentTheme = null;
+      try { currentTheme = localStorage.getItem('theme'); } catch (_) {}
+      // If we are in system mode, ensure aria-label updates
+      if (!currentTheme) apply('system');
     });
   }
 
