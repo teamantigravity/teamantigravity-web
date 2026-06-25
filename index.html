@@ -33,11 +33,44 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Team Antigravity",
-    "url": "https://teamantigravity.vercel.app",
-    "logo": "https://teamantigravity.vercel.app/og-image.png",
-    "sameAs": ["https://github.com/teamantigravity"]
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://teamantigravity.vercel.app/#organization",
+        "name": "Team Antigravity",
+        "url": "https://teamantigravity.vercel.app",
+        "logo": "https://teamantigravity.vercel.app/og-image.png",
+        "sameAs": ["https://github.com/teamantigravity"]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Gravity Send",
+        "operatingSystem": "Android, iOS, Windows, macOS, Linux",
+        "applicationCategory": "UtilitiesApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Send photos, videos and files between all your devices at full local Wi-Fi speed — no cloud, no limits, no sign-ups.",
+        "url": "https://teamantigravity.vercel.app/#gravity-send",
+        "publisher": { "@id": "https://teamantigravity.vercel.app/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Gravity Torrent",
+        "operatingSystem": "Android, iOS, Windows, macOS, Linux",
+        "applicationCategory": "UtilitiesApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "A radically simple BitTorrent client. Stream video directly from torrents, magnet links, or hashes.",
+        "url": "https://teamantigravity.vercel.app/#gravitorrent",
+        "publisher": { "@id": "https://teamantigravity.vercel.app/#organization" }
+      }
+    ]
   }
   </script>
 </head>
