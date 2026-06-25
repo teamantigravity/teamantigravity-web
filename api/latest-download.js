@@ -22,7 +22,7 @@ const PRODUCTS = {
       'linux-arm64': { contains: ['linux', 'arm64'], ext: ['.zip', '.deb', '.appimage'] },
     },
   },
-  gravitysend: {
+  'gravity-send': {
     owner: 'teamantigravity',
     repo: 'gravitysend',
     platforms: {

@@ -15,7 +15,7 @@ const PRODUCTS = {
     workflow: 'build-apps.yml',
     platforms: ['android', 'ios', 'macos', 'windows', 'linux', 'linux-arm64'],
   },
-  gravitysend: {
+  'gravity-send': {
     repo: 'gravitysend',
     mode: 'workflows',
     workflows: {
