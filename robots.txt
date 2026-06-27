@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /*.bak$
+Disallow: /api/
 
 Sitemap: https://teamantigravity.vercel.app/sitemap.xml
