@@ -34,6 +34,13 @@ const PRODUCTS = {
       linux: { contains: ['linux'], ext: ['.deb', '.tar.gz', '.appimage', '.zip'] },
     },
   },
+  'gravity-installer': {
+    owner: 'teamantigravity',
+    repo: 'gravityinstaller',
+    platforms: {
+      android: { contains: ['installer'], ext: ['.apk'] },
+    },
+  },
 };
 
 function pickAsset(assets, spec) {
