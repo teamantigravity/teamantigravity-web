@@ -26,6 +26,13 @@ const PRODUCTS = {
       linux: 'build_linux.yml',
     },
   },
+  'gravity-installer': {
+    repo: 'gravityinstaller',
+    mode: 'workflows',
+    workflows: {
+      android: 'build.yml',
+    },
+  },
 };
 
 async function ghJson(url, headers) {
