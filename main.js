@@ -6,11 +6,13 @@
   const RELEASES = {
     'gravity-torrent': 'https://github.com/teamantigravity/gravity-torrent/releases',
     'gravity-send': 'https://github.com/teamantigravity/gravitysend/releases',
+    'gravity-installer': 'https://github.com/teamantigravity/gravityinstaller/releases',
   };
   // Platforms that have a resolvable direct download per product.
   const DOWNLOADABLE = {
     'gravity-torrent': ['windows', 'macos', 'linux', 'linux-arm64', 'android', 'ios'],
     'gravity-send': ['windows', 'macos', 'linux', 'android', 'ios'],
+    'gravity-installer': ['android'],
   };
 
   function init() {
