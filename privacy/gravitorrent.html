@@ -13,6 +13,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='10' fill='%234285f4'/><path d='M50 14a36 36 0 0 1 31 18' stroke='%23ea4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M81 68A36 36 0 0 1 19 68' stroke='%2334a853' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M19 32A36 36 0 0 1 50 14' stroke='%23fbbc05' stroke-width='9' fill='none' stroke-linecap='round'/></svg>" />
 
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var theme = saved || (mq.matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="../styles.css" />
   <script src="../main.js" defer></script>
 </head>

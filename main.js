@@ -30,52 +30,41 @@
     const btn = document.getElementById('theme-toggle');
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
 
-    // Apply specific theme ('light', 'dark', or 'system')
-    const apply = (theme) => {
-      if (theme === 'system') {
-        document.documentElement.removeAttribute('data-theme');
-        try { localStorage.removeItem('theme'); } catch (_) {}
-      } else {
-        document.documentElement.setAttribute('data-theme', theme);
+    // Helper to apply theme and update button state
+    const apply = (theme, save = true) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (save) {
         try { localStorage.setItem('theme', theme); } catch (_) {}
       }
-
       if (btn) {
-        // Update aria-label based on current *effective* state
-        const isDark = theme === 'dark' || (theme === 'system' && mq.matches);
+        const isDark = theme === 'dark';
         btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
       }
     };
 
+    // Initial state setup
     let saved = null;
     try { saved = localStorage.getItem('theme'); } catch (_) {}
+    let currentTheme = saved || (mq.matches ? 'dark' : 'light');
     
-    // Initial load: apply saved theme, or fallback to system
-    apply(saved || 'system');
+    // The actual FOUC prevention should be an inline script in HTML,
+    // but we re-apply here to ensure button state is correct.
+    apply(currentTheme, !!saved);
 
     if (btn) {
       btn.addEventListener('click', () => {
-        let currentTheme = null;
-        try { currentTheme = localStorage.getItem('theme'); } catch (_) {}
-
-        if (!currentTheme) {
-          // System -> explicit
-          apply(mq.matches ? 'light' : 'dark');
-        } else if (currentTheme === 'light') {
-          // Light -> dark
-          apply('dark');
-        } else {
-          // Dark -> system
-          apply('system');
-        }
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        apply(currentTheme, true);
       });
     }
 
     mq.addEventListener('change', (e) => {
-      let currentTheme = null;
-      try { currentTheme = localStorage.getItem('theme'); } catch (_) {}
-      // If we are in system mode, ensure aria-label updates
-      if (!currentTheme) apply('system');
+      let hasPreference = false;
+      try { hasPreference = !!localStorage.getItem('theme'); } catch (_) {}
+      if (!hasPreference) {
+        currentTheme = e.matches ? 'dark' : 'light';
+        apply(currentTheme, false); // Don't save to localStorage if it's just system changing
+      }
     });
   }
 
