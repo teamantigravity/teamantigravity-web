@@ -271,12 +271,12 @@ nav.scrolled {
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(66, 133, 244, 0.45); }
 .btn-send { background: var(--grad-send); color: #fff; box-shadow: 0 10px 26px rgba(66, 133, 244, 0.3); }
 .btn-send:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(66, 133, 244, 0.45); }
-.btn-torrent { background: var(--grad-torrent); box-shadow: 0 10px 26px rgba(124, 77, 255, 0.35); }
-.btn-torrent:hover { box-shadow: 0 16px 34px rgba(124, 77, 255, 0.5); }
+.btn-torrent { background: var(--grad-torrent); color: #fff; box-shadow: 0 10px 26px rgba(124, 77, 255, 0.35); }
+.btn-torrent:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(124, 77, 255, 0.5); }
 .btn-installer { background: var(--grad-installer); color: #fff; box-shadow: 0 10px 26px rgba(251, 188, 5, 0.3); }
 .btn-installer:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(251, 188, 5, 0.45); }
-.btn-fintracker { background: var(--grad-fintracker); box-shadow: 0 10px 26px rgba(52, 168, 83, 0.3); }
-.btn-fintracker:hover { box-shadow: 0 16px 34px rgba(52, 168, 83, 0.4); }
+.btn-fintracker { background: var(--grad-fintracker); color: #fff; box-shadow: 0 10px 26px rgba(52, 168, 83, 0.3); }
+.btn-fintracker:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(52, 168, 83, 0.4); }
 .btn-ghost { background: var(--c-surface-2); color: var(--c-text-1); border-color: var(--c-border); }
 .btn-ghost:hover { border-color: var(--c-border-strong); transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
@@ -304,7 +304,8 @@ nav.scrolled {
 }
 .hero-eyebrow svg { color: var(--g-yellow); width: 14px; height: 14px; }
 .hero h1 { font-size: var(--t-hero); max-width: 16ch; }
-.hero-text-grad { background: var(--grad-google); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 8s linear infinite; }
+.hero-text-grad { background: var(--grad-google); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: shimmer 8s linear infinite; }
+.hero-cta { background-size: 200% auto; animation: shimmer 8s linear infinite; }
 @keyframes shimmer { to { background-position: 200% center; } }
 .hero-subheading { font-size: var(--t-lg); color: var(--c-text-2); max-width: 60ch; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; margin-top: var(--space-2); }
