@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gravity Fintracker — Quantum-Encrypted Expense Tracking</title>
+  <meta name="description" content="Gravity Fintracker is a quantum-encrypted, privacy-first expense tracker. Your money stays on your device — no ads, no analytics, no cloud required." />
+  <meta name="author" content="Team Antigravity" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#0a0c1b" />
+  <link rel="canonical" href="https://teamantigravity.vercel.app/fintracker.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Gravity Fintracker — Quantum-Encrypted Expense Tracking" />
+  <meta property="og:description" content="Your money stays on your device. No ads, no analytics, no cloud required. Optional sync is end-to-end encrypted with post-quantum key derivation." />
+  <meta property="og:image" content="https://teamantigravity.vercel.app/og-image.png" />
+  <meta property="og:url" content="https://teamantigravity.vercel.app/fintracker.html" />
+  <meta property="og:site_name" content="Team Antigravity" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gravity Fintracker — Quantum-Encrypted Expense Tracking" />
+  <meta name="twitter:description" content="Your money stays on your device. No ads, no analytics, no cloud required." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='10' fill='%234285f4'/><path d='M50 14a36 36 0 0 1 31 18' stroke='%23ea4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M81 68A36 36 0 0 1 19 68' stroke='%2334a853' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M19 32A36 36 0 0 1 50 14' stroke='%23fbbc05' stroke-width='9' fill='none' stroke-linecap='round'/></svg>" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="fintracker.css" />
+
+  <script>
+    (function () {
+      try { document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Gravity Fintracker",
+    "operatingSystem": "Android, iOS, Windows, macOS, Linux, Web",
+    "applicationCategory": "FinanceApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "A quantum-encrypted, privacy-first expense tracker. Transactions stay on-device by default; optional multi-device sync is end-to-end encrypted.",
+    "url": "https://teamantigravity.vercel.app/fintracker.html",
+    "publisher": { "@type": "Organization", "name": "Team Antigravity", "url": "https://teamantigravity.vercel.app" }
+  }
+  </script>
+</head>
+<body class="ft-body">
+  <a href="#ft-main" class="skip-link">Skip to content</a>
+
+  <!-- ===================== PRELOADER ===================== -->
+  <div class="ft-preloader" id="ft-preloader" role="status" aria-label="Loading">
+    <div class="ft-preloader-dots" aria-hidden="true">
+      <span class="ft-dot ft-dot-blue"></span>
+      <span class="ft-dot ft-dot-red"></span>
+      <span class="ft-dot ft-dot-yellow"></span>
+      <span class="ft-dot ft-dot-green"></span>
+    </div>
+    <div class="ft-preloader-bar" aria-hidden="true"><i id="ft-preloader-fill"></i></div>
+  </div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav role="navigation" aria-label="Main navigation" class="ft-nav">
+    <div class="container nav-wrapper">
+      <a href="./" class="brand" aria-label="Team Antigravity home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+            <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="brand-wordmark">Team Antigravity</span>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#ft-story">Product</a>
+          <a href="#ft-specs">Specs</a>
+          <a href="#ft-principles">Principles</a>
+          <a href="privacy/gravityfintracker.html">Privacy</a>
+        </div>
+        <a href="#ft-cta" class="nav-cta">Get Gravity Fintracker
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="ft-main">
+    <!-- ===================== HERO ===================== -->
+    <header class="ft-hero">
+      <canvas id="ft-hero-canvas" aria-hidden="true"></canvas>
+      <div class="ft-hero-glow" aria-hidden="true"></div>
+      <div class="container ft-hero-wrapper">
+        <span class="ft-eyebrow" data-ft-anim="fade">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" /></svg>
+          Quantum-resistant · Zero ads · 100% local by default
+        </span>
+        <h1 class="ft-hero-title" data-ft-anim="chars">Your money.<br />Your device.<br /><span class="ft-grad-text">Nobody else's.</span></h1>
+        <p class="ft-hero-sub" data-ft-anim="lines">Gravity Fintracker tracks every dollar without ever needing to see it. No accounts, no ads, no analytics — and when you do want to sync across devices, even we can't read your data.</p>
+        <div class="ft-hero-ctas" data-ft-anim="fade">
+          <a href="#ft-cta" class="btn btn-fintracker ft-magnetic">Get Gravity Fintracker
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="#ft-story" class="btn btn-ghost">See how it works</a>
+        </div>
+        <div class="ft-hero-bars" aria-hidden="true">
+          <span class="ft-bar ft-bar-1"></span>
+          <span class="ft-bar ft-bar-2"></span>
+          <span class="ft-bar ft-bar-3"></span>
+          <span class="ft-bar ft-bar-4"></span>
+        </div>
+      </div>
+      <div class="ft-scroll-indicator" aria-hidden="true"><span></span></div>
+    </header>
+
+    <!-- ===================== PRODUCT STORY (scroll-bound) ===================== -->
+    <section id="ft-story" class="ft-story" aria-label="How Gravity Fintracker works">
+      <div class="container ft-story-grid">
+        <div class="ft-story-sticky">
+          <div class="ft-story-visual" id="ft-story-visual">
+            <div class="ft-story-bars">
+              <span class="ft-sbar" style="--h:28%"></span>
+              <span class="ft-sbar" style="--h:46%"></span>
+              <span class="ft-sbar" style="--h:68%"></span>
+              <span class="ft-sbar" style="--h:92%"></span>
+            </div>
+            <div class="ft-story-ring"></div>
+          </div>
+          <div class="ft-story-dots" role="group" aria-label="Feature progress">
+            <span class="ft-story-dot active" data-color="blue"></span>
+            <span class="ft-story-dot" data-color="red"></span>
+            <span class="ft-story-dot" data-color="yellow"></span>
+            <span class="ft-story-dot" data-color="green"></span>
+          </div>
+        </div>
+        <div class="ft-story-cards">
+          <article class="ft-feature-card" data-color="blue">
+            <span class="ft-feature-eyebrow">01 · Local-first</span>
+            <h3 data-ft-anim="lines">Every transaction lives on your device</h3>
+            <p>Accounts, categories, and history are written straight to an on-device database. No sign-up screen stands between you and using the app — because there's nothing to sign up for.</p>
+          </article>
+          <article class="ft-feature-card" data-color="red">
+            <span class="ft-feature-eyebrow">02 · Zero ads</span>
+            <h3 data-ft-anim="lines">No ads, ever — not even one</h3>
+            <p>A money app shouldn't be selling your attention. Gravity Fintracker has no advertising SDK, no attribution tracking, and no monetization based on your data, full stop.</p>
+          </article>
+          <article class="ft-feature-card" data-color="yellow">
+            <span class="ft-feature-eyebrow">03 · Smart, local insights</span>
+            <h3 data-ft-anim="lines">Spending analysis that never leaves your phone</h3>
+            <p>Savings rate, top categories, unusual transactions — all computed on-device. No data is sent anywhere to generate these insights.</p>
+          </article>
+          <article class="ft-feature-card" data-color="green">
+            <span class="ft-feature-eyebrow">04 · Quantum-resistant sync</span>
+            <h3 data-ft-anim="lines">Optional sync even we can't read</h3>
+            <p>Turn on multi-device sync and your data is encrypted with AES-256-GCM using HKDF-SHA512 derived keys before it ever leaves your device. The server only ever stores ciphertext.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPECS BENTO ===================== -->
+    <section id="ft-specs" class="section ft-specs">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">By the numbers</span>
+          <h2>Built to a higher standard.</h2>
+          <p>Every claim below is something you can verify in the app itself — nothing here is marketing fluff.</p>
+        </div>
+        <div class="ft-bento reveal-stagger">
+          <div class="ft-bento-item ft-bento-hero" data-color="blue">
+            <span class="ft-bento-icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <span class="ft-counter" data-target="256" data-suffix="-bit">0</span>
+            <p>AES-256-GCM encryption with HKDF-SHA512 key derivation for optional sync — the same class of cryptography used to protect classified data.</p>
+          </div>
+          <div class="ft-bento-item" data-color="red">
+            <span class="ft-counter" data-target="0" data-prefix="">0</span>
+            <p>Ads shown, ever.</p>
+          </div>
+          <div class="ft-bento-item" data-color="yellow">
+            <span class="ft-counter" data-target="6">0</span>
+            <p>Platforms: Android, iOS, Windows, macOS, Linux, Web.</p>
+          </div>
+          <div class="ft-bento-item" data-color="green">
+            <span class="ft-counter" data-target="100" data-suffix="%">0</span>
+            <p>Of your data stored locally unless you opt into sync yourself.</p>
+          </div>
+          <div class="ft-bento-item ft-bento-wide" data-color="blue">
+            <span class="ft-bento-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <h4>Zero-knowledge sync architecture</h4>
+            <p>The sync server (Supabase) stores only ciphertext. Your passphrase and derived keys never leave your device — not even we can decrypt your synced data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRINCIPLES ===================== -->
+    <section id="ft-principles" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Why we built it this way</span>
+          <h2>Three rules we don't break.</h2>
+        </div>
+        <div class="privacy-grid reveal-stagger">
+          <div class="privacy-card">
+            <span class="pc-icon bg-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <h3>Your data is yours</h3>
+            <p>Local by default, exportable in open formats (JSON/CSV) any time, and deletable by simply uninstalling the app. No lock-in, ever.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-red"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+            <h3>Attention isn't for sale</h3>
+            <p>No ads, no engagement-maximizing dark patterns, no push notifications designed to bring you back. Just a tool that gets out of your way.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <h3>Encryption is the default, not the upsell</h3>
+            <p>Quantum-resistant encryption for sync isn't a paywalled feature — it's how the feature works, period.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section id="ft-cta" class="ft-cta-section">
+      <div class="ft-cta-bg" aria-hidden="true"></div>
+      <div class="container ft-cta-content">
+        <h2 data-ft-anim="chars">Track your money<br />without being tracked.</h2>
+        <div class="ft-hero-ctas" style="justify-content:center">
+          <a href="https://github.com/teamantigravity/gravity-fintracker/releases" target="_blank" rel="noopener" class="btn ft-cta-btn ft-magnetic">Download free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="./#gravity-fintracker" class="btn ft-cta-ghost">Compare platforms</a>
+        </div>
+        <p class="ft-cta-note">Free forever for local use · No account required · AGPL-3.0 open source</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div style="max-width:30ch">
+          <div class="footer-logo">
+            <span class="brand-icon" aria-hidden="true" style="width:32px;height:32px">
+              <svg width="20" height="20" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+                <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="brand-wordmark">Team Antigravity</span>
+          </div>
+          <p style="color:var(--c-text-3);font-size:var(--t-sm);margin-top:var(--space-3)">Making software simple for everyone — with zero telemetry.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Products</h4>
+            <a href="./#gravity-send">Gravity Send</a>
+            <a href="./#gravitorrent">Gravity Torrent</a>
+            <a href="./#gravity-installer">Gravity Installer</a>
+            <a href="./#gravity-fintracker">Gravity Fintracker</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy/gravityfintracker.html">Fintracker Privacy</a>
+            <a href="https://github.com/teamantigravity/gravity-fintracker/blob/main/LICENSE" target="_blank" rel="noopener">AGPL-3.0 License</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="https://github.com/teamantigravity/gravity-fintracker" target="_blank" rel="noopener">GitHub</a>
+            <a href="../support/">Support</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Team Antigravity. Built with care.</span>
+        <span>No cloud · No accounts · No tracking</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="fintracker.js" defer></script>
+</body>
+</html>
