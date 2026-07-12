@@ -41,6 +41,16 @@ const PRODUCTS = {
       android: { contains: ['installer'], ext: ['.apk'] },
     },
   },
+  'gravity-fintracker': {
+    owner: 'teamantigravity',
+    repo: 'gravity-fintracker',
+    platforms: {
+      android: { contains: ['android'], ext: ['.apk'], prefer: ['arm64'] },
+      windows: { contains: ['windows'], ext: ['.zip'] },
+      macos: { contains: ['macos'], ext: ['.zip', '.dmg'] },
+      linux: { contains: ['linux'], ext: ['.zip', '.tar.gz'] },
+    },
+  },
 };
 
 function pickAsset(assets, spec) {

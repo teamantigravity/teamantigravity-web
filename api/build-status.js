@@ -33,6 +33,12 @@ const PRODUCTS = {
       android: 'build.yml',
     },
   },
+  'gravity-fintracker': {
+    repo: 'gravity-fintracker',
+    mode: 'jobs',
+    workflow: 'build.yml',
+    platforms: ['android', 'ios', 'macos', 'windows', 'linux', 'web'],
+  },
 };
 
 async function ghJson(url, headers) {
@@ -73,8 +79,12 @@ export default async function handler(req, res) {
       const jobsData = await ghJson(run.jobs_url, headers);
       for (const job of jobsData.jobs || []) {
         const name = job.name.toLowerCase();
-        if (product.platforms.includes(name)) {
-          statuses[name] = {
+        // Exact match first (existing products use bare platform-key job names),
+        // falling back to substring containment for descriptive job names like
+        // "Build Android (APK + AAB)".
+        const platform = product.platforms.find((p) => name === p) || product.platforms.find((p) => name.includes(p));
+        if (platform) {
+          statuses[platform] = {
             status: job.status,
             conclusion: job.conclusion,
             url: job.html_url,
