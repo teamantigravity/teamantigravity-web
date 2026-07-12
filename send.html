@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gravity Send — Peer-to-Peer File Transfer</title>
+  <meta name="description" content="Send photos, videos and files between all your devices at full local Wi-Fi speed — no cloud, no limits, no sign-ups." />
+  <meta name="author" content="Team Antigravity" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#0a0c1b" />
+  <link rel="canonical" href="https://teamantigravity.vercel.app/send.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Gravity Send — Peer-to-Peer File Transfer" />
+  <meta property="og:description" content="Send photos, videos and files between all your devices at full local Wi-Fi speed — no cloud, no limits, no sign-ups." />
+  <meta property="og:image" content="https://teamantigravity.vercel.app/og-image.png" />
+  <meta property="og:url" content="https://teamantigravity.vercel.app/send.html" />
+  <meta property="og:site_name" content="Team Antigravity" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gravity Send — Peer-to-Peer File Transfer" />
+  <meta name="twitter:description" content="Send photos, videos and files between all your devices at full local Wi-Fi speed." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='10' fill='%234285f4'/><path d='M50 14a36 36 0 0 1 31 18' stroke='%23ea4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M81 68A36 36 0 0 1 19 68' stroke='%2334a853' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M19 32A36 36 0 0 1 50 14' stroke='%23fbbc05' stroke-width='9' fill='none' stroke-linecap='round'/></svg>" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="product-page.css" />
+
+  <style>:root { --pd-grad: var(--grad-send); }</style>
+
+  <script>
+    (function () {
+      try { document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Gravity Send",
+    "operatingSystem": "Android, iOS, Windows, macOS, Linux",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Send photos, videos and files between all your devices at full local Wi-Fi speed — no cloud, no limits, no sign-ups.",
+    "url": "https://teamantigravity.vercel.app/send.html",
+    "publisher": { "@type": "Organization", "name": "Team Antigravity", "url": "https://teamantigravity.vercel.app" }
+  }
+  </script>
+</head>
+<body class="pd-body">
+  <a href="#pd-main" class="skip-link">Skip to content</a>
+
+  <!-- ===================== PRELOADER ===================== -->
+  <div class="pd-preloader" id="pd-preloader" role="status" aria-label="Loading">
+    <div class="pd-preloader-dots" aria-hidden="true">
+      <span class="pd-dot pd-dot-blue"></span>
+      <span class="pd-dot pd-dot-red"></span>
+      <span class="pd-dot pd-dot-yellow"></span>
+      <span class="pd-dot pd-dot-green"></span>
+    </div>
+    <div class="pd-preloader-bar" aria-hidden="true"><i id="pd-preloader-fill"></i></div>
+  </div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav role="navigation" aria-label="Main navigation" class="pd-nav">
+    <div class="container nav-wrapper">
+      <a href="./" class="brand" aria-label="Team Antigravity home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+            <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="brand-wordmark">Team Antigravity</span>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#pd-story">Product</a>
+          <a href="#pd-specs">Specs</a>
+          <a href="#pd-principles">Principles</a>
+          <a href="privacy/gravitysend.html">Privacy</a>
+        </div>
+        <a href="#pd-cta" class="nav-cta">Get Gravity Send
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="pd-main">
+    <!-- ===================== HERO ===================== -->
+    <header class="pd-hero">
+      <canvas id="pd-hero-canvas" aria-hidden="true"></canvas>
+      <div class="pd-hero-glow" aria-hidden="true"></div>
+      <div class="container pd-hero-wrapper">
+        <span class="pd-eyebrow" data-pd-anim="fade">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" /></svg>
+          Peer-to-peer · No size limits · Cross-platform
+        </span>
+        <h1 class="pd-hero-title" data-pd-anim="chars">Your files.<br />Your network.<br /><span class="pd-grad-text">No cloud needed.</span></h1>
+        <p class="pd-hero-sub" data-pd-anim="lines">Gravity Send streams files directly between your devices over your local network. No accounts, no file size limits, no servers in between — just your Wi-Fi at full speed.</p>
+        <div class="pd-hero-ctas" data-pd-anim="fade">
+          <a href="#pd-cta" class="btn btn-send pd-magnetic">Get Gravity Send
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="#pd-story" class="btn btn-ghost">See how it works</a>
+        </div>
+        <div class="pd-hero-icon" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--g-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7">
+            <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="pd-scroll-indicator" aria-hidden="true"><span></span></div>
+    </header>
+
+    <!-- ===================== PRODUCT STORY (scroll-bound) ===================== -->
+    <section id="pd-story" class="pd-story" aria-label="How Gravity Send works">
+      <div class="container pd-story-grid">
+        <div class="pd-story-sticky">
+          <div class="pd-story-visual" id="pd-story-visual">
+            <div class="pd-story-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--g-blue)">
+                <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+              </svg>
+            </div>
+            <div class="pd-story-ring"></div>
+          </div>
+          <div class="pd-story-dots" role="group" aria-label="Feature progress">
+            <span class="pd-story-dot active" data-color="blue"></span>
+            <span class="pd-story-dot" data-color="green"></span>
+            <span class="pd-story-dot" data-color="yellow"></span>
+          </div>
+        </div>
+        <div class="pd-story-cards">
+          <article class="pd-feature-card" data-color="blue">
+            <span class="pd-feature-eyebrow">01 · Peer-to-peer</span>
+            <h3 data-pd-anim="lines">Files stream directly between your devices</h3>
+            <p>No cloud relay, no third-party server in the middle. Gravity Send discovers nearby devices on your local network and sends files over a direct peer-to-peer connection — as fast as your Wi-Fi allows.</p>
+          </article>
+          <article class="pd-feature-card" data-color="green">
+            <span class="pd-feature-eyebrow">02 · No size limits</span>
+            <h3 data-pd-anim="lines">Move gigabytes without breaking a sweat</h3>
+            <p>There's no 2 GB upload cap or "premium tier" to unlock larger transfers. Send a 50 GB video project or a single screenshot — the same direct connection handles both.</p>
+          </article>
+          <article class="pd-feature-card" data-color="yellow">
+            <span class="pd-feature-eyebrow">03 · Cross-platform</span>
+            <h3 data-pd-anim="lines">Windows, macOS, Linux, Android and iOS — all talking</h3>
+            <p>One codebase, every major platform. Transfer from your Android phone to your Linux desktop or your iPhone to your Windows laptop — they all discover each other automatically.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPECS BENTO ===================== -->
+    <section id="pd-specs" class="section pd-specs">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">By the numbers</span>
+          <h2>Built for speed and simplicity.</h2>
+          <p>Every claim below is something you can verify by using the app — nothing here is marketing fluff.</p>
+        </div>
+        <div class="pd-bento reveal-stagger">
+          <div class="pd-bento-item pd-bento-hero" data-color="blue">
+            <span class="pd-bento-icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </span>
+            <span class="pd-counter" data-target="0" data-prefix="">0</span>
+            <p>Cloud servers involved — files never leave your local network.</p>
+          </div>
+          <div class="pd-bento-item" data-color="green">
+            <span class="pd-counter" data-target="5">0</span>
+            <p>Platforms: Android, iOS, Windows, macOS, Linux.</p>
+          </div>
+          <div class="pd-bento-item" data-color="yellow">
+            <span class="pd-counter" data-target="0" data-prefix="">0</span>
+            <p>File size limits — transfer gigabytes without restrictions.</p>
+          </div>
+          <div class="pd-bento-item" data-color="blue">
+            <span class="pd-counter" data-target="0" data-prefix="">0</span>
+            <p>Sign-ups required — open the app and start sending.</p>
+          </div>
+          <div class="pd-bento-item pd-bento-wide" data-color="green">
+            <span class="pd-bento-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+            </span>
+            <h4>Direct Wi-Fi transfer</h4>
+            <p>Files move at your local network's full speed — often 10-40× faster than uploading to a cloud service and downloading on the other end.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRINCIPLES ===================== -->
+    <section id="pd-principles" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Why we built it this way</span>
+          <h2>Three rules we don't break.</h2>
+        </div>
+        <div class="privacy-grid reveal-stagger">
+          <div class="privacy-card">
+            <span class="pc-icon bg-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>
+            <h3>Direct is faster</h3>
+            <p>Why upload to a server and download again when your devices are on the same network? Peer-to-peer means full-speed transfers with zero detours.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <h3>Your files stay yours</h3>
+            <p>No cloud copy is ever created. Once the transfer completes, nothing lingers on any server — because no server was involved in the first place.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-yellow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3>No accounts, no friction</h3>
+            <p>Open the app, pick a file, pick a device. That's it. No email, no password, no "sign in with Google" — just a tool that gets out of your way.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section id="pd-cta" class="pd-cta-section">
+      <div class="pd-cta-bg" aria-hidden="true"></div>
+      <div class="container pd-cta-content">
+        <h2 data-pd-anim="chars">Send files.<br />Not to the cloud.</h2>
+        <div class="pd-hero-ctas" style="justify-content:center">
+          <a href="https://github.com/teamantigravity/gravitysend/releases" target="_blank" rel="noopener" class="btn pd-cta-btn pd-magnetic">Download free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="./#gravity-send" class="btn pd-cta-ghost">Compare platforms</a>
+        </div>
+        <p class="pd-cta-note">Free and open source · No account required · Works offline</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div style="max-width:30ch">
+          <div class="footer-logo">
+            <span class="brand-icon" aria-hidden="true" style="width:32px;height:32px">
+              <svg width="20" height="20" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+                <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="brand-wordmark">Team Antigravity</span>
+          </div>
+          <p style="color:var(--c-text-3);font-size:var(--t-sm);margin-top:var(--space-3)">Making software simple for everyone — with zero telemetry.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Products</h4>
+            <a href="./#gravity-send">Gravity Send</a>
+            <a href="./#gravitorrent">Gravity Torrent</a>
+            <a href="./#gravity-installer">Gravity Installer</a>
+            <a href="./#gravity-fintracker">Gravity Fintracker</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy/gravitysend.html">Send Privacy</a>
+            <a href="https://github.com/teamantigravity/gravitysend/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="https://github.com/teamantigravity/gravitysend" target="_blank" rel="noopener">GitHub</a>
+            <a href="../support/">Support</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Team Antigravity. Built with care.</span>
+        <span>No cloud · No accounts · No tracking</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="product-page.js" defer></script>
+</body>
+</html>

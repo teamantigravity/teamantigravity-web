@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gravity Torrent — Stream &amp; Download Torrents Everywhere</title>
+  <meta name="description" content="A next-generation, beautiful and lightweight torrent client. Stream or download on Windows, macOS, Linux, Android and iOS." />
+  <meta name="author" content="Team Antigravity" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#0a0c1b" />
+  <link rel="canonical" href="https://teamantigravity.vercel.app/torrent.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Gravity Torrent — Stream &amp; Download Torrents Everywhere" />
+  <meta property="og:description" content="A next-generation, beautiful and lightweight torrent client. Stream media while it downloads — on every platform." />
+  <meta property="og:image" content="https://teamantigravity.vercel.app/og-image.png" />
+  <meta property="og:url" content="https://teamantigravity.vercel.app/torrent.html" />
+  <meta property="og:site_name" content="Team Antigravity" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gravity Torrent — Stream &amp; Download Torrents Everywhere" />
+  <meta name="twitter:description" content="A beautiful, lightweight torrent client for every platform. Stream while downloading." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='10' fill='%234285f4'/><path d='M50 14a36 36 0 0 1 31 18' stroke='%23ea4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M81 68A36 36 0 0 1 19 68' stroke='%2334a853' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M19 32A36 36 0 0 1 50 14' stroke='%23fbbc05' stroke-width='9' fill='none' stroke-linecap='round'/></svg>" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="product-page.css" />
+
+  <style>:root { --pd-grad: var(--grad-torrent); }</style>
+
+  <script>
+    (function () {
+      try { document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Gravity Torrent",
+    "operatingSystem": "Android, iOS, Windows, macOS, Linux",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "A next-generation, beautiful and lightweight torrent client. Pick a torrent, then stream or download it on all your devices.",
+    "url": "https://teamantigravity.vercel.app/torrent.html",
+    "publisher": { "@type": "Organization", "name": "Team Antigravity", "url": "https://teamantigravity.vercel.app" }
+  }
+  </script>
+</head>
+<body class="pd-body">
+  <a href="#pd-main" class="skip-link">Skip to content</a>
+
+  <!-- ===================== PRELOADER ===================== -->
+  <div class="pd-preloader" id="pd-preloader" role="status" aria-label="Loading">
+    <div class="pd-preloader-dots" aria-hidden="true">
+      <span class="pd-dot pd-dot-blue"></span>
+      <span class="pd-dot pd-dot-red"></span>
+      <span class="pd-dot pd-dot-yellow"></span>
+      <span class="pd-dot pd-dot-green"></span>
+    </div>
+    <div class="pd-preloader-bar" aria-hidden="true"><i id="pd-preloader-fill"></i></div>
+  </div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav role="navigation" aria-label="Main navigation" class="pd-nav">
+    <div class="container nav-wrapper">
+      <a href="./" class="brand" aria-label="Team Antigravity home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+            <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="brand-wordmark">Team Antigravity</span>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#pd-story">Product</a>
+          <a href="#pd-specs">Specs</a>
+          <a href="#pd-principles">Principles</a>
+          <a href="privacy/gravitorrent.html">Privacy</a>
+        </div>
+        <a href="#pd-cta" class="nav-cta">Get Gravity Torrent
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="pd-main">
+    <!-- ===================== HERO ===================== -->
+    <header class="pd-hero">
+      <canvas id="pd-hero-canvas" aria-hidden="true"></canvas>
+      <div class="pd-hero-glow" aria-hidden="true"></div>
+      <div class="container pd-hero-wrapper">
+        <span class="pd-eyebrow" data-pd-anim="fade">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" /></svg>
+          Instant streaming · Cross-platform · Per-torrent controls
+        </span>
+        <h1 class="pd-hero-title" data-pd-anim="chars">Torrents.<br />Everywhere.<br /><span class="pd-grad-text">Beautifully.</span></h1>
+        <p class="pd-hero-sub" data-pd-anim="lines">Gravity Torrent is a next-generation torrent client that lets you stream media while it downloads — on Windows, macOS, Linux, Android and iOS, all from one codebase.</p>
+        <div class="pd-hero-ctas" data-pd-anim="fade">
+          <a href="#pd-cta" class="btn btn-torrent pd-magnetic">Get Gravity Torrent
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="#pd-story" class="btn btn-ghost">See how it works</a>
+        </div>
+        <div class="pd-hero-icon" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#7c4dff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="pd-scroll-indicator" aria-hidden="true"><span></span></div>
+    </header>
+
+    <!-- ===================== PRODUCT STORY (scroll-bound) ===================== -->
+    <section id="pd-story" class="pd-story" aria-label="How Gravity Torrent works">
+      <div class="container pd-story-grid">
+        <div class="pd-story-sticky">
+          <div class="pd-story-visual" id="pd-story-visual">
+            <div class="pd-story-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color:#7c4dff">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <div class="pd-story-ring"></div>
+          </div>
+          <div class="pd-story-dots" role="group" aria-label="Feature progress">
+            <span class="pd-story-dot active" data-color="blue"></span>
+            <span class="pd-story-dot" data-color="green"></span>
+            <span class="pd-story-dot" data-color="yellow"></span>
+          </div>
+        </div>
+        <div class="pd-story-cards">
+          <article class="pd-feature-card" data-color="blue">
+            <span class="pd-feature-eyebrow">01 · Instant streaming</span>
+            <h3 data-pd-anim="lines">Play media while it downloads</h3>
+            <p>Don't wait for the full download. Gravity Torrent prioritizes sequential pieces so you can start watching or listening within seconds of adding a torrent — like WebTorrent, but on mobile too.</p>
+          </article>
+          <article class="pd-feature-card" data-color="green">
+            <span class="pd-feature-eyebrow">02 · Truly cross-platform</span>
+            <h3 data-pd-anim="lines">Windows, macOS, Linux, Android and iOS from one codebase</h3>
+            <p>One app, every platform. The same beautiful interface and feature set whether you're on your phone, your laptop, or your desktop. No "lite" mobile version — the full experience everywhere.</p>
+          </article>
+          <article class="pd-feature-card" data-color="yellow">
+            <span class="pd-feature-eyebrow">03 · Per-torrent controls</span>
+            <h3 data-pd-anim="lines">Sequential mode, speed limits, tags and deep links</h3>
+            <p>Every torrent gets its own speed limits, sequential mode toggle, notification preferences, and tag. Use deep links to open specific torrents from other apps or the browser.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPECS BENTO ===================== -->
+    <section id="pd-specs" class="section pd-specs">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">By the numbers</span>
+          <h2>Lightweight but fully loaded.</h2>
+          <p>Every claim below is verifiable in the app itself.</p>
+        </div>
+        <div class="pd-bento reveal-stagger">
+          <div class="pd-bento-item pd-bento-hero" data-color="blue">
+            <span class="pd-bento-icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </span>
+            <span class="pd-counter" data-target="5">0</span>
+            <p>Platforms supported: Windows, macOS, Linux, Android, iOS — from one codebase.</p>
+          </div>
+          <div class="pd-bento-item" data-color="green">
+            <span class="pd-counter" data-target="0" data-suffix="s">0</span>
+            <p>Wait time before streaming starts — play media while it downloads.</p>
+          </div>
+          <div class="pd-bento-item" data-color="yellow">
+            <span class="pd-counter" data-target="100" data-suffix="%">0</span>
+            <p>Per-torrent control — individual speed limits, sequential mode, tags.</p>
+          </div>
+          <div class="pd-bento-item" data-color="blue">
+            <span class="pd-counter" data-target="6">0</span>
+            <p>Build targets: Windows, macOS, Linux x64, Linux ARM, Android, iOS.</p>
+          </div>
+          <div class="pd-bento-item pd-bento-wide" data-color="green">
+            <span class="pd-bento-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </span>
+            <h4>Sequential streaming engine</h4>
+            <p>Pieces are prioritized in order so video and audio files become playable within seconds. No need to wait for the entire download — just hit play.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRINCIPLES ===================== -->
+    <section id="pd-principles" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Why we built it this way</span>
+          <h2>Three rules we don't break.</h2>
+        </div>
+        <div class="privacy-grid reveal-stagger">
+          <div class="privacy-card">
+            <span class="pc-icon bg-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+            <h3>Beautiful on every screen</h3>
+            <p>A torrent client doesn't have to look like it was built in 2005. Gravity Torrent has a modern, material interface that feels native on every platform.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <h3>Privacy by default</h3>
+            <p>No telemetry, no usage tracking, no analytics SDKs. Your download history stays on your device and nowhere else.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-yellow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+            <h3>Power without complexity</h3>
+            <p>Per-torrent speed limits, sequential mode, deep links, and notifications — all accessible from a clean, intuitive interface. No settings rabbit holes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section id="pd-cta" class="pd-cta-section">
+      <div class="pd-cta-bg" aria-hidden="true"></div>
+      <div class="container pd-cta-content">
+        <h2 data-pd-anim="chars">Download torrents.<br />Stream instantly.</h2>
+        <div class="pd-hero-ctas" style="justify-content:center">
+          <a href="https://github.com/teamantigravity/gravity-torrent/releases" target="_blank" rel="noopener" class="btn pd-cta-btn pd-magnetic">Download free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="./#gravitorrent" class="btn pd-cta-ghost">Compare platforms</a>
+        </div>
+        <p class="pd-cta-note">Free and open source · No account required · All platforms</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div style="max-width:30ch">
+          <div class="footer-logo">
+            <span class="brand-icon" aria-hidden="true" style="width:32px;height:32px">
+              <svg width="20" height="20" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+                <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="brand-wordmark">Team Antigravity</span>
+          </div>
+          <p style="color:var(--c-text-3);font-size:var(--t-sm);margin-top:var(--space-3)">Making software simple for everyone — with zero telemetry.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Products</h4>
+            <a href="./#gravity-send">Gravity Send</a>
+            <a href="./#gravitorrent">Gravity Torrent</a>
+            <a href="./#gravity-installer">Gravity Installer</a>
+            <a href="./#gravity-fintracker">Gravity Fintracker</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy/gravitorrent.html">Torrent Privacy</a>
+            <a href="https://github.com/teamantigravity/gravity-torrent/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="https://github.com/teamantigravity/gravity-torrent" target="_blank" rel="noopener">GitHub</a>
+            <a href="../support/">Support</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Team Antigravity. Built with care.</span>
+        <span>No cloud · No accounts · No tracking</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="product-page.js" defer></script>
+</body>
+</html>
