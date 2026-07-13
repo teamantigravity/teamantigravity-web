@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>SOTA — State-of-the-Art Privacy Design</title>
-  <meta name="description" content="SOTA is the state-of-the-art design system for privacy-first products. No accounts, no tracking, no servers — just design tokens, component slots, and behavior layers that adapt everywhere." />
+  <title>Gravity Finance — Quantum-Encrypted Personal Finance</title>
+  <meta name="description" content="Gravity Finance is a quantum-encrypted, privacy-first personal finance app. Search, filter, and manage transactions with pull-to-refresh, charts/list toggle, and one-tap speed dial — no ads, no analytics, no cloud required." />
   <meta name="author" content="Team Antigravity" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="theme-color" content="#0a0c1b" />
-  <link rel="canonical" href="https://teamantigravity.vercel.app/sota.html" />
+  <link rel="canonical" href="https://teamantigravity.vercel.app/finance.html" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="SOTA — State-of-the-Art Privacy Design" />
-  <meta property="og:description" content="The award-winning design system for privacy-first products. No accounts, no tracking, no servers." />
+  <meta property="og:title" content="Gravity Finance — Quantum-Encrypted Personal Finance" />
+  <meta property="og:description" content="Your money stays on your device. No ads, no analytics, no cloud required. Search transactions, toggle charts, pull-to-refresh, and add income/expense with one tap. Optional sync is end-to-end encrypted." />
   <meta property="og:image" content="https://teamantigravity.vercel.app/og-image.png" />
-  <meta property="og:url" content="https://teamantigravity.vercel.app/sota.html" />
+  <meta property="og:url" content="https://teamantigravity.vercel.app/finance.html" />
   <meta property="og:site_name" content="Team Antigravity" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SOTA — State-of-the-Art Privacy Design" />
-  <meta name="twitter:description" content="The award-winning design system for privacy-first products. No accounts, no tracking, no servers." />
+  <meta name="twitter:title" content="Gravity Finance — Quantum-Encrypted Personal Finance" />
+  <meta name="twitter:description" content="Your money stays on your device. No ads, no analytics, no cloud required." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="product-page.css" />
 
-  <style>:root { --pd-grad: var(--grad-google); }</style>
+  <style>:root { --pd-grad: var(--grad-fintracker); }</style>
 
   <script>
     (function () {
@@ -40,12 +40,12 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "SOTA",
-    "operatingSystem": "Web",
-    "applicationCategory": "DesignApplication",
+    "name": "Gravity Finance",
+    "operatingSystem": "Android, iOS, Windows, macOS, Linux, Web",
+    "applicationCategory": "FinanceApplication",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "description": "A state-of-the-art, privacy-first design system for building award-winning product websites.",
-    "url": "https://teamantigravity.vercel.app/sota.html",
+    "description": "A quantum-encrypted, privacy-first personal finance app. Transactions stay on-device by default; optional multi-device sync is end-to-end encrypted.",
+    "url": "https://teamantigravity.vercel.app/finance.html",
     "publisher": { "@type": "Organization", "name": "Team Antigravity", "url": "https://teamantigravity.vercel.app" }
   }
   </script>
@@ -53,6 +53,7 @@
 <body class="pd-body">
   <a href="#pd-main" class="skip-link">Skip to content</a>
 
+  <!-- ===================== PRELOADER ===================== -->
   <div class="pd-preloader" id="pd-preloader" role="status" aria-label="Loading">
     <div class="pd-preloader-dots" aria-hidden="true">
       <span class="pd-dot pd-dot-blue"></span>
@@ -63,6 +64,7 @@
     <div class="pd-preloader-bar" aria-hidden="true"><i id="pd-preloader-fill"></i></div>
   </div>
 
+  <!-- ===================== NAV ===================== -->
   <nav role="navigation" aria-label="Main navigation" class="pd-nav">
     <div class="container nav-wrapper">
       <a href="./" class="brand" aria-label="Team Antigravity home">
@@ -81,9 +83,9 @@
           <a href="#pd-story">Product</a>
           <a href="#pd-specs">Specs</a>
           <a href="#pd-principles">Principles</a>
-          <a href="privacy/sota.html">Privacy</a>
+          <a href="privacy/gravityfinance.html">Privacy</a>
         </div>
-        <a href="#pd-cta" class="nav-cta">Get SOTA
+        <a href="#pd-cta" class="nav-cta">Get Gravity Finance
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
         </a>
       </div>
@@ -91,18 +93,19 @@
   </nav>
 
   <main id="pd-main">
+    <!-- ===================== HERO ===================== -->
     <header class="pd-hero">
       <canvas id="pd-hero-canvas" aria-hidden="true"></canvas>
       <div class="pd-hero-glow" aria-hidden="true"></div>
       <div class="container pd-hero-wrapper">
         <span class="pd-eyebrow" data-pd-anim="fade">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" /></svg>
-          Design once, adapt everywhere — no tracking, no accounts
+          Quantum-resistant · Zero ads · 100% local by default
         </span>
-        <h1 class="pd-hero-title" data-pd-anim="chars">Design at the edge of<br />what's possible.<br /><span class="pd-grad-text">Privately.</span></h1>
-        <p class="pd-hero-sub" data-pd-anim="lines">SOTA is a token-driven, component-slot, behavior-layer design system for building award-winning product websites. It ships with no cloud, no sign-ups, and no telemetry — the same privacy-first philosophy that powers every Team Antigravity app.</p>
+        <h1 class="pd-hero-title" data-pd-anim="chars">Your money.<br />Your device.<br /><span class="pd-grad-text">Nobody else's.</span></h1>
+        <p class="pd-hero-sub" data-pd-anim="lines">Gravity Finance tracks every dollar without ever needing to see it. No accounts, no ads, no analytics — and when you do want to sync across devices, even we can't read your data.</p>
         <div class="pd-hero-ctas" data-pd-anim="fade">
-          <a href="#pd-cta" class="btn btn-primary pd-magnetic">Get SOTA
+          <a href="#pd-cta" class="btn btn-fintracker pd-magnetic">Get Gravity Finance
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
           <a href="#pd-story" class="btn btn-ghost">See how it works</a>
@@ -117,7 +120,8 @@
       <div class="pd-scroll-indicator" aria-hidden="true"><span></span></div>
     </header>
 
-    <section id="pd-story" class="pd-story" aria-label="How SOTA works">
+    <!-- ===================== PRODUCT STORY (scroll-bound) ===================== -->
+    <section id="pd-story" class="pd-story" aria-label="How Gravity Finance works">
       <div class="container pd-story-grid">
         <div class="pd-story-sticky">
           <div class="pd-story-visual" id="pd-story-visual">
@@ -138,67 +142,69 @@
         </div>
         <div class="pd-story-cards">
           <article class="pd-feature-card" data-color="blue">
-            <span class="pd-feature-eyebrow">01 · Design tokens</span>
-            <h3 data-pd-anim="lines">A single source of truth for every value</h3>
-            <p>Colors, typography, spacing, motion, elevation, and radius are defined as tokens once and reused everywhere. Swap a product accent or a whole theme by overriding a JSON file — no component rewrite required.</p>
+            <span class="pd-feature-eyebrow">01 · Local-first</span>
+            <h3 data-pd-anim="lines">Every transaction lives on your device and is searchable</h3>
+            <p>Accounts, categories, and history are written straight to an on-device database. Instantly search by title, category, account, or note. No sign-up screen stands between you and using the app — because there's nothing to sign up for.</p>
           </article>
           <article class="pd-feature-card" data-color="red">
-            <span class="pd-feature-eyebrow">02 · Component slots</span>
-            <h3 data-pd-anim="lines">Content-agnostic shells that adapt to any product</h3>
-            <p>Hero, feature, data, and CTA sections are built as shells with named media, content, and decoration slots. Drop in new copy, images, or 3D models from a CMS and the layout stays consistent.</p>
+            <span class="pd-feature-eyebrow">02 · Zero ads</span>
+            <h3 data-pd-anim="lines">No ads, no upsell, no analytics</h3>
+            <p>A money app shouldn't be selling your attention. Gravity Finance has no advertising SDK, no attribution tracking, and no monetization based on your data, full stop.</p>
           </article>
           <article class="pd-feature-card" data-color="yellow">
-            <span class="pd-feature-eyebrow">03 · Behavior layers</span>
-            <h3 data-pd-anim="lines">Motion and interaction decoupled from UI</h3>
-            <p>Animations are registered as named presets and applied via data attributes. Designers can toggle presets, adjust stagger timing, and respect reduced motion without touching the markup.</p>
+            <span class="pd-feature-eyebrow">03 · Smart, local insights</span>
+            <h3 data-pd-anim="lines">Smart insights and flexible views</h3>
+            <p>Savings rate, top categories, unusual transactions — all computed on-device. Toggle between charts and list views, and pull to refresh on any screen.</p>
           </article>
           <article class="pd-feature-card" data-color="green">
-            <span class="pd-feature-eyebrow">04 · Device tiers</span>
-            <h3 data-pd-anim="lines">From flagship desktop to low-end mobile, gracefully</h3>
-            <p>Hardware capability scoring maps every device to Full, Balanced, or Lite tiers. 3D models, particles, and parallax scale back automatically so the experience stays smooth at 60fps.</p>
+            <span class="pd-feature-eyebrow">04 · Quantum-resistant sync</span>
+            <h3 data-pd-anim="lines">Optional sync even we can't read</h3>
+            <p>Turn on multi-device sync and your data is encrypted with AES-256-GCM using HKDF-SHA512 derived keys before it ever leaves your device. The server only ever stores ciphertext.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- ===================== SPECS BENTO ===================== -->
     <section id="pd-specs" class="section pd-specs">
       <div class="container">
         <div class="section-head reveal">
           <span class="section-eyebrow">By the numbers</span>
           <h2>Built to a higher standard.</h2>
-          <p>Every spec is a commitment: design beauty, performance, and privacy in equal measure.</p>
+          <p>Every claim below is something you can verify in the app itself — nothing here is marketing fluff.</p>
         </div>
         <div class="pd-bento reveal-stagger">
           <div class="pd-bento-item pd-bento-hero" data-color="blue">
             <span class="pd-bento-icon" aria-hidden="true">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </span>
-            <span class="pd-counter" data-target="60" data-suffix="fps">0</span>
-            <p>Target animation frame rate across all tiers. Beauty at 18fps is ugliness, so performance is part of the design spec.</p>
+            <span class="pd-counter" data-target="256" data-suffix="-bit">0</span>
+            <p>AES-256-GCM encryption with HKDF-SHA512 key derivation for optional sync — the same class of cryptography used to protect classified data.</p>
           </div>
           <div class="pd-bento-item" data-color="red">
             <span class="pd-counter" data-target="0" data-prefix="">0</span>
-            <p>Tracking scripts or analytics beacons. The system is telemetry-free by default.</p>
+            <p>Ads shown, ever.</p>
           </div>
           <div class="pd-bento-item" data-color="yellow">
-            <span class="pd-counter" data-target="3">0</span>
-            <p>Device tiers: Full, Balanced, and Lite, automatically selected by capability detection.</p>
+            <span class="pd-counter" data-target="6">0</span>
+            <p>Platforms: Android, iOS, Windows, macOS, Linux, Web.</p>
           </div>
           <div class="pd-bento-item" data-color="green">
             <span class="pd-counter" data-target="100" data-suffix="%">0</span>
-            <p>Of visual styling controlled by tokens — enabling multi-product and white-label reuse.</p>
+            <p>Of your data stored locally unless you opt into sync yourself.</p>
           </div>
           <div class="pd-bento-item pd-bento-wide" data-color="blue">
             <span class="pd-bento-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </span>
-            <h4>WCAG 2.2 AA minimum, AAA where possible</h4>
-            <p>Keyboard navigation, screen-reader semantics, reduced-motion overrides, and high-contrast support are built into the system, not bolted on later.</p>
+            <h4>Zero-knowledge sync architecture</h4>
+            <p>The sync server (Supabase) stores only ciphertext. Your passphrase and derived keys never leave your device — not even we can decrypt your synced data.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ===================== PRINCIPLES ===================== -->
     <section id="pd-principles" class="section">
       <div class="container">
         <div class="section-head reveal">
@@ -207,39 +213,41 @@
         </div>
         <div class="privacy-grid reveal-stagger">
           <div class="privacy-card">
-            <span class="pc-icon bg-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-            <h3>60fps or nothing</h3>
-            <p>Every animation, 3D scene, and scroll effect is budgeted and benchmarked. If it can't hold 60fps on real devices, it doesn't ship.</p>
+            <span class="pc-icon bg-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <h3>Your data is yours</h3>
+            <p>Local by default, exportable in open formats (JSON/CSV) any time, and deletable by simply uninstalling the app. No lock-in, ever.</p>
           </div>
           <div class="privacy-card">
-            <span class="pc-icon bg-red"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-            <h3>Privacy is the default</h3>
-            <p>No accounts, no tracking pixels, no analytics capture, no server-side data collection. The design system itself doesn't phone home.</p>
+            <span class="pc-icon bg-red"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+            <h3>Attention isn't for sale</h3>
+            <p>No ads, no engagement-maximizing dark patterns, no push notifications designed to bring you back. Just a tool that gets out of your way.</p>
           </div>
           <div class="privacy-card">
             <span class="pc-icon bg-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
-            <h3>Adapt, don't rebuild</h3>
-            <p>Tokens, slots, and behavior layers make the next product, campaign, or locale a configuration change rather than a redesign.</p>
+            <h3>Encryption is the default, not the upsell</h3>
+            <p>Quantum-resistant encryption for sync isn't a paywalled feature — it's how the feature works, period.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ===================== CTA ===================== -->
     <section id="pd-cta" class="pd-cta-section">
       <div class="pd-cta-bg" aria-hidden="true"></div>
       <div class="container pd-cta-content">
-        <h2 data-pd-anim="chars">Design award-winning<br />products, privately.</h2>
+        <h2 data-pd-anim="chars">Manage your money<br />without being managed.</h2>
         <div class="pd-hero-ctas" style="justify-content:center">
-          <a href="https://github.com/teamantigravity/sota" target="_blank" rel="noopener" class="btn pd-cta-btn pd-magnetic">Get SOTA
+          <a href="https://github.com/teamantigravity/gravity-fintracker/releases" target="_blank" rel="noopener" class="btn pd-cta-btn pd-magnetic">Download free
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
-          <a href="./" class="btn pd-cta-ghost">Back to home</a>
+          <a href="./#gravity-finance" class="btn pd-cta-ghost">Compare platforms</a>
         </div>
-        <p class="pd-cta-note">Free and open · No account required · MIT License</p>
+        <p class="pd-cta-note">Free forever for local use · No account required · Open source</p>
       </div>
     </section>
   </main>
 
+  <!-- ===================== FOOTER ===================== -->
   <footer>
     <div class="container">
       <div class="footer-top">
@@ -263,18 +271,17 @@
             <a href="./#gravity-send">Gravity Send</a>
             <a href="./#gravitorrent">Gravity Torrent</a>
             <a href="./#gravity-installer">Gravity Installer</a>
-            <a href="./#gravity-fintracker">Gravity Fintracker</a>
-            <a href="sota.html">SOTA</a>
+            <a href="./#gravity-finance">Gravity Finance</a>
           </div>
           <div class="footer-col">
             <h4>Legal</h4>
-            <a href="privacy/sota.html">SOTA Privacy</a>
-            <a href="https://github.com/teamantigravity/sota/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+            <a href="privacy/gravityfinance.html">Gravity Finance Privacy</a>
+            <a href="https://github.com/teamantigravity/gravity-fintracker/blob/main/LICENSE" target="_blank" rel="noopener">AGPL-3.0 License</a>
           </div>
           <div class="footer-col">
             <h4>Connect</h4>
-            <a href="https://github.com/teamantigravity/sota" target="_blank" rel="noopener">GitHub</a>
-            <a href="support/">Support</a>
+            <a href="https://github.com/teamantigravity/gravity-fintracker" target="_blank" rel="noopener">GitHub</a>
+            <a href="../support/">Support</a>
           </div>
         </div>
       </div>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gravity Finance Privacy Policy — Team Antigravity</title>
+  <meta name="description" content="Gravity Finance privacy policy. Your financial data stays on your device by default. No ads, no analytics, no third parties. Optional sync is end-to-end encrypted." />
+  <meta name="theme-color" content="#07090e" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='10' fill='%234285f4'/><path d='M50 14a36 36 0 0 1 31 18' stroke='%23ea4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M81 68A36 36 0 0 1 19 68' stroke='%2334a853' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M19 32A36 36 0 0 1 50 14' stroke='%23fbbc05' stroke-width='9' fill='none' stroke-linecap='round'/></svg>" />
+
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var theme = saved || (mq.matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <script src="../main.js" defer></script>
+</head>
+<body>
+  <a href="#privacy-content" class="skip-link">Skip to content</a>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <div class="container nav-wrapper">
+      <a href="../" class="brand" aria-label="Team Antigravity home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+            <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="brand-wordmark">Team Antigravity</span>
+      </a>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Switch color theme" title="Toggle theme">
+          <svg class="sun-and-moon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24">
+            <mask class="moon" id="moon-mask"><rect x="0" y="0" width="100%" height="100%" fill="white" /><circle cx="24" cy="10" r="6" fill="black" /></mask>
+            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+            <g class="sun-beams" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </g>
+          </svg>
+        </button>
+        <a href="../#gravity-finance" class="nav-cta">Get Gravity Finance
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="privacy-content" class="container doc-page">
+    <header class="doc-header reveal">
+      <span class="eyebrow">Gravity Finance</span>
+      <h1>Privacy Policy</h1>
+      <p>Your money is your business. By default, nothing about it ever leaves your device.</p>
+    </header>
+
+    <article class="reveal-stagger">
+      <div class="callout">
+        <p><strong>The short version:</strong> Gravity Finance stores every account, transaction and category locally on your device. There is no account to create, no server we operate that sees your data, and no ads or analytics of any kind. Multi-device sync is opt-in, off by default, and end-to-end encrypted so that even we — or anyone who ever gained access to a sync server — could not read your financial data.</p>
+      </div>
+
+      <section class="doc-section">
+        <h2><span class="num">1</span> Data we collect</h2>
+        <p>None, by default. Gravity Finance does not require sign-up, does not contain analytics or crash-reporting SDKs, and does not phone home. Every account balance, transaction, category and recurring rule you create is written to a local database on your device and stays there.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">2</span> Optional sync — end-to-end encrypted</h2>
+        <p>Sync across your own devices is an opt-in feature and is <strong>off by default</strong>. If you turn it on:</p>
+        <ul class="doc-list">
+          <li><strong>Your data is encrypted before it ever leaves your device.</strong> Gravity Finance derives a per-session key using HKDF-SHA512 and encrypts your snapshot with AES-256-GCM. The encryption key is generated from a passphrase only you know and is never transmitted.</li>
+          <li><strong>The sync server only ever stores ciphertext.</strong> The backend (Supabase, a third-party database provider) cannot decrypt your data — it has no access to your passphrase or derived keys. This is a zero-knowledge design: even we cannot read your synced data.</li>
+          <li><strong>You can turn sync off at any time</strong> from Settings, which stops any further transmission.</li>
+        </ul>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">3</span> No ads, no analytics, no third parties</h2>
+        <p>Unlike some of our other apps, Gravity Finance does not use Google AdMob or any advertising SDK. It contains no analytics, no attribution tracking, and no crash-reporting service that phones out. The only third party involved anywhere in the app is Supabase, and only if you explicitly enable sync — and even then it only ever receives encrypted ciphertext, as described above.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">4</span> App Lock &amp; biometrics</h2>
+        <p>If you enable App Lock, Gravity Finance asks your device's operating system to verify your fingerprint, face, or device PIN/pattern before the app opens. This authentication happens entirely within your device's secure hardware — your biometric data is never accessible to the app itself, is never stored by us, and is never transmitted anywhere.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">5</span> Device permissions</h2>
+        <p>Gravity Finance requests only what it needs to function:</p>
+        <ul class="doc-list">
+          <li><strong>Storage:</strong> to let you export a backup (JSON or CSV) to a file of your choosing, and to import one back in.</li>
+          <li><strong>Biometric / Fingerprint:</strong> only used if you enable App Lock, to unlock the app using your device's own authentication.</li>
+          <li><strong>Internet:</strong> only used if you enable optional sync. If sync is off, this permission is requested by the OS but nothing is ever sent.</li>
+        </ul>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">6</span> Your data, your control</h2>
+        <ul class="doc-list">
+          <li><strong>Export anytime.</strong> Full JSON or CSV backups are one tap away in Settings.</li>
+          <li><strong>Delete anytime.</strong> Uninstalling the app removes its local database. If you ever enabled sync, disabling it and deleting your account from within the app removes your encrypted snapshot from the sync server.</li>
+          <li><strong>No lock-in.</strong> Your exported data is plain JSON/CSV — readable and portable, not a proprietary format.</li>
+        </ul>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">7</span> Children</h2>
+        <p>Gravity Finance is a general-audience finance utility and is not directed at children under 13. We do not knowingly collect personal information from anyone, children included — consistent with section 1, we don't collect personal information from anyone at all.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">8</span> Changes &amp; contact</h2>
+        <p>If this policy changes — for example, when optional sync moves from opt-in beta to general availability — we will update this page and revise the date below. Questions or concerns? Email <a href="mailto:hello@teamantigravity.com">hello@teamantigravity.com</a>.</p>
+      </section>
+
+      <section class="doc-section" style="border-top:1px solid var(--c-border);padding-top:var(--space-6);margin-top:var(--space-12)">
+        <p style="font-size:var(--t-sm);color:var(--c-text-3)">Last updated: July 2026</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="border:0;margin:0;padding:0">
+        <span>&copy; 2026 Team Antigravity · Built with care, zero telemetry.</span>
+        <span><a href="../" style="color:var(--c-text-2)">Home</a> · <a href="gravitysend.html" style="color:var(--c-text-2)">Gravity Send privacy</a> · <a href="gravitorrent.html" style="color:var(--c-text-2)">Gravity Torrent privacy</a></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
