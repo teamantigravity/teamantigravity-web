@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>SOTA — State-of-the-Art Privacy Design</title>
+  <meta name="description" content="SOTA is the state-of-the-art design system for privacy-first products. No accounts, no tracking, no servers — just design tokens, component slots, and behavior layers that adapt everywhere." />
+  <meta name="author" content="Team Antigravity" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#0a0c1b" />
+  <link rel="canonical" href="https://teamantigravity.vercel.app/sota.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SOTA — State-of-the-Art Privacy Design" />
+  <meta property="og:description" content="The award-winning design system for privacy-first products. No accounts, no tracking, no servers." />
+  <meta property="og:image" content="https://teamantigravity.vercel.app/og-image.png" />
+  <meta property="og:url" content="https://teamantigravity.vercel.app/sota.html" />
+  <meta property="og:site_name" content="Team Antigravity" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SOTA — State-of-the-Art Privacy Design" />
+  <meta name="twitter:description" content="The award-winning design system for privacy-first products. No accounts, no tracking, no servers." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='10' fill='%234285f4'/><path d='M50 14a36 36 0 0 1 31 18' stroke='%23ea4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M81 68A36 36 0 0 1 19 68' stroke='%2334a853' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M19 32A36 36 0 0 1 50 14' stroke='%23fbbc05' stroke-width='9' fill='none' stroke-linecap='round'/></svg>" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="product-page.css" />
+
+  <style>:root { --pd-grad: var(--grad-google); }</style>
+
+  <script>
+    (function () {
+      try { document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SOTA",
+    "operatingSystem": "Web",
+    "applicationCategory": "DesignApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "A state-of-the-art, privacy-first design system for building award-winning product websites.",
+    "url": "https://teamantigravity.vercel.app/sota.html",
+    "publisher": { "@type": "Organization", "name": "Team Antigravity", "url": "https://teamantigravity.vercel.app" }
+  }
+  </script>
+</head>
+<body class="pd-body">
+  <a href="#pd-main" class="skip-link">Skip to content</a>
+
+  <div class="pd-preloader" id="pd-preloader" role="status" aria-label="Loading">
+    <div class="pd-preloader-dots" aria-hidden="true">
+      <span class="pd-dot pd-dot-blue"></span>
+      <span class="pd-dot pd-dot-red"></span>
+      <span class="pd-dot pd-dot-yellow"></span>
+      <span class="pd-dot pd-dot-green"></span>
+    </div>
+    <div class="pd-preloader-bar" aria-hidden="true"><i id="pd-preloader-fill"></i></div>
+  </div>
+
+  <nav role="navigation" aria-label="Main navigation" class="pd-nav">
+    <div class="container nav-wrapper">
+      <a href="./" class="brand" aria-label="Team Antigravity home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+            <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="brand-wordmark">Team Antigravity</span>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#pd-story">Product</a>
+          <a href="#pd-specs">Specs</a>
+          <a href="#pd-principles">Principles</a>
+          <a href="privacy/sota.html">Privacy</a>
+        </div>
+        <a href="#pd-cta" class="nav-cta">Get SOTA
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="pd-main">
+    <header class="pd-hero">
+      <canvas id="pd-hero-canvas" aria-hidden="true"></canvas>
+      <div class="pd-hero-glow" aria-hidden="true"></div>
+      <div class="container pd-hero-wrapper">
+        <span class="pd-eyebrow" data-pd-anim="fade">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" /></svg>
+          Design once, adapt everywhere — no tracking, no accounts
+        </span>
+        <h1 class="pd-hero-title" data-pd-anim="chars">Design at the edge of<br />what's possible.<br /><span class="pd-grad-text">Privately.</span></h1>
+        <p class="pd-hero-sub" data-pd-anim="lines">SOTA is a token-driven, component-slot, behavior-layer design system for building award-winning product websites. It ships with no cloud, no sign-ups, and no telemetry — the same privacy-first philosophy that powers every Team Antigravity app.</p>
+        <div class="pd-hero-ctas" data-pd-anim="fade">
+          <a href="#pd-cta" class="btn btn-primary pd-magnetic">Get SOTA
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="#pd-story" class="btn btn-ghost">See how it works</a>
+        </div>
+        <div class="pd-hero-bars" aria-hidden="true">
+          <span class="pd-bar pd-bar-1"></span>
+          <span class="pd-bar pd-bar-2"></span>
+          <span class="pd-bar pd-bar-3"></span>
+          <span class="pd-bar pd-bar-4"></span>
+        </div>
+      </div>
+      <div class="pd-scroll-indicator" aria-hidden="true"><span></span></div>
+    </header>
+
+    <section id="pd-story" class="pd-story" aria-label="How SOTA works">
+      <div class="container pd-story-grid">
+        <div class="pd-story-sticky">
+          <div class="pd-story-visual" id="pd-story-visual">
+            <div class="pd-story-bars">
+              <span class="pd-sbar" style="--h:28%"></span>
+              <span class="pd-sbar" style="--h:46%"></span>
+              <span class="pd-sbar" style="--h:68%"></span>
+              <span class="pd-sbar" style="--h:92%"></span>
+            </div>
+            <div class="pd-story-ring"></div>
+          </div>
+          <div class="pd-story-dots" role="group" aria-label="Feature progress">
+            <span class="pd-story-dot active" data-color="blue"></span>
+            <span class="pd-story-dot" data-color="red"></span>
+            <span class="pd-story-dot" data-color="yellow"></span>
+            <span class="pd-story-dot" data-color="green"></span>
+          </div>
+        </div>
+        <div class="pd-story-cards">
+          <article class="pd-feature-card" data-color="blue">
+            <span class="pd-feature-eyebrow">01 · Design tokens</span>
+            <h3 data-pd-anim="lines">A single source of truth for every value</h3>
+            <p>Colors, typography, spacing, motion, elevation, and radius are defined as tokens once and reused everywhere. Swap a product accent or a whole theme by overriding a JSON file — no component rewrite required.</p>
+          </article>
+          <article class="pd-feature-card" data-color="red">
+            <span class="pd-feature-eyebrow">02 · Component slots</span>
+            <h3 data-pd-anim="lines">Content-agnostic shells that adapt to any product</h3>
+            <p>Hero, feature, data, and CTA sections are built as shells with named media, content, and decoration slots. Drop in new copy, images, or 3D models from a CMS and the layout stays consistent.</p>
+          </article>
+          <article class="pd-feature-card" data-color="yellow">
+            <span class="pd-feature-eyebrow">03 · Behavior layers</span>
+            <h3 data-pd-anim="lines">Motion and interaction decoupled from UI</h3>
+            <p>Animations are registered as named presets and applied via data attributes. Designers can toggle presets, adjust stagger timing, and respect reduced motion without touching the markup.</p>
+          </article>
+          <article class="pd-feature-card" data-color="green">
+            <span class="pd-feature-eyebrow">04 · Device tiers</span>
+            <h3 data-pd-anim="lines">From flagship desktop to low-end mobile, gracefully</h3>
+            <p>Hardware capability scoring maps every device to Full, Balanced, or Lite tiers. 3D models, particles, and parallax scale back automatically so the experience stays smooth at 60fps.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pd-specs" class="section pd-specs">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">By the numbers</span>
+          <h2>Built to a higher standard.</h2>
+          <p>Every spec is a commitment: design beauty, performance, and privacy in equal measure.</p>
+        </div>
+        <div class="pd-bento reveal-stagger">
+          <div class="pd-bento-item pd-bento-hero" data-color="blue">
+            <span class="pd-bento-icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </span>
+            <span class="pd-counter" data-target="60" data-suffix="fps">0</span>
+            <p>Target animation frame rate across all tiers. Beauty at 18fps is ugliness, so performance is part of the design spec.</p>
+          </div>
+          <div class="pd-bento-item" data-color="red">
+            <span class="pd-counter" data-target="0" data-prefix="">0</span>
+            <p>Tracking scripts or analytics beacons. The system is telemetry-free by default.</p>
+          </div>
+          <div class="pd-bento-item" data-color="yellow">
+            <span class="pd-counter" data-target="3">0</span>
+            <p>Device tiers: Full, Balanced, and Lite, automatically selected by capability detection.</p>
+          </div>
+          <div class="pd-bento-item" data-color="green">
+            <span class="pd-counter" data-target="100" data-suffix="%">0</span>
+            <p>Of visual styling controlled by tokens — enabling multi-product and white-label reuse.</p>
+          </div>
+          <div class="pd-bento-item pd-bento-wide" data-color="blue">
+            <span class="pd-bento-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </span>
+            <h4>WCAG 2.2 AA minimum, AAA where possible</h4>
+            <p>Keyboard navigation, screen-reader semantics, reduced-motion overrides, and high-contrast support are built into the system, not bolted on later.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pd-principles" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Why we built it this way</span>
+          <h2>Three rules we don't break.</h2>
+        </div>
+        <div class="privacy-grid reveal-stagger">
+          <div class="privacy-card">
+            <span class="pc-icon bg-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <h3>60fps or nothing</h3>
+            <p>Every animation, 3D scene, and scroll effect is budgeted and benchmarked. If it can't hold 60fps on real devices, it doesn't ship.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-red"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <h3>Privacy is the default</h3>
+            <p>No accounts, no tracking pixels, no analytics capture, no server-side data collection. The design system itself doesn't phone home.</p>
+          </div>
+          <div class="privacy-card">
+            <span class="pc-icon bg-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <h3>Adapt, don't rebuild</h3>
+            <p>Tokens, slots, and behavior layers make the next product, campaign, or locale a configuration change rather than a redesign.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pd-cta" class="pd-cta-section">
+      <div class="pd-cta-bg" aria-hidden="true"></div>
+      <div class="container pd-cta-content">
+        <h2 data-pd-anim="chars">Design award-winning<br />products, privately.</h2>
+        <div class="pd-hero-ctas" style="justify-content:center">
+          <a href="https://github.com/teamantigravity/sota" target="_blank" rel="noopener" class="btn pd-cta-btn pd-magnetic">Get SOTA
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="./" class="btn pd-cta-ghost">Back to home</a>
+        </div>
+        <p class="pd-cta-note">Free and open · No account required · MIT License</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div style="max-width:30ch">
+          <div class="footer-logo">
+            <span class="brand-icon" aria-hidden="true" style="width:32px;height:32px">
+              <svg width="20" height="20" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+                <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+                <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="brand-wordmark">Team Antigravity</span>
+          </div>
+          <p style="color:var(--c-text-3);font-size:var(--t-sm);margin-top:var(--space-3)">Making software simple for everyone — with zero telemetry.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Products</h4>
+            <a href="./#gravity-send">Gravity Send</a>
+            <a href="./#gravitorrent">Gravity Torrent</a>
+            <a href="./#gravity-installer">Gravity Installer</a>
+            <a href="./#gravity-fintracker">Gravity Fintracker</a>
+            <a href="sota.html">SOTA</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy/sota.html">SOTA Privacy</a>
+            <a href="https://github.com/teamantigravity/sota/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="https://github.com/teamantigravity/sota" target="_blank" rel="noopener">GitHub</a>
+            <a href="support/">Support</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Team Antigravity. Built with care.</span>
+        <span>No cloud · No accounts · No tracking</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="product-page.js" defer></script>
+</body>
+</html>

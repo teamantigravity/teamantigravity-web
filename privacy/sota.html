@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOTA Privacy Policy — Team Antigravity</title>
+  <meta name="description" content="SOTA privacy policy. The SOTA design system does not collect personal data, use analytics, or require an account." />
+  <meta name="theme-color" content="#07090e" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='10' fill='%234285f4'/><path d='M50 14a36 36 0 0 1 31 18' stroke='%23ea4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M81 68A36 36 0 0 1 19 68' stroke='%2334a853' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M19 32A36 36 0 0 1 50 14' stroke='%23fbbc05' stroke-width='9' fill='none' stroke-linecap='round'/></svg>" />
+
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var theme = saved || (mq.matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <script src="../main.js" defer></script>
+</head>
+<body>
+  <a href="#privacy-content" class="skip-link">Skip to content</a>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <div class="container nav-wrapper">
+      <a href="../" class="brand" aria-label="Team Antigravity home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="11" fill="var(--g-blue)" />
+            <path d="M50 14a36 36 0 0 1 31 18" stroke="var(--g-red)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M81 68A36 36 0 0 1 19 68" stroke="var(--g-green)" stroke-width="9" fill="none" stroke-linecap="round" />
+            <path d="M19 32A36 36 0 0 1 50 14" stroke="var(--g-yellow)" stroke-width="9" fill="none" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="brand-wordmark">Team Antigravity</span>
+      </a>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Switch color theme" title="Toggle theme">
+          <svg class="sun-and-moon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24">
+            <mask class="moon" id="moon-mask"><rect x="0" y="0" width="100%" height="100%" fill="white" /><circle cx="24" cy="10" r="6" fill="black" /></mask>
+            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+            <g class="sun-beams" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </g>
+          </svg>
+        </button>
+        <a href="../sota.html" class="nav-cta">Get SOTA
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="privacy-content" class="container doc-page">
+    <header class="doc-header reveal">
+      <span class="eyebrow">SOTA</span>
+      <h1>Privacy Policy</h1>
+      <p>The SOTA design system is built with the same privacy-first principles as every Team Antigravity app.</p>
+    </header>
+
+    <article class="reveal-stagger">
+      <div class="callout">
+        <p><strong>The short version:</strong> SOTA does not collect personal data, does not require an account, does not use analytics or tracking, and does not connect to a cloud service. The design system is delivered as a local code package and documentation.</p>
+      </div>
+
+      <section class="doc-section">
+        <h2><span class="num">1</span> Data we collect</h2>
+        <p>None. SOTA is a static design system — a collection of tokens, components, CSS, JavaScript, and documentation. There is no sign-up, no telemetry, no analytics, no advertising, and no back-end service operated by Team Antigravity.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">2</span> How you use SOTA</h2>
+        <p>SOTA is distributed as source code and documentation. You run it on your own infrastructure, your own CI/CD, and your own hosting. Any data you choose to collect through the websites or apps you build with SOTA is your own responsibility and governed by your own privacy policy.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">3</span> No accounts, no servers, no tracking</h2>
+        <p>Team Antigravity does not operate a SaaS for SOTA. There is no dashboard, no user account database, no tracking pixels, and no cookies used for analytics or advertising. If you visit the SOTA documentation website, no personal information is collected.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">4</span> Third-party services</h2>
+        <p>SOTA itself does not use third-party services. Websites you build with SOTA may choose their own hosting, analytics, or CMS providers. Those choices are yours and should be documented in your own privacy policy.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">5</span> Open source and transparency</h2>
+        <p>SOTA is released under an open-source license. You can inspect the full source code, tokens, and components at any time. Nothing is hidden, obfuscated, or locked behind a service.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">6</span> Children</h2>
+        <p>SOTA is a general-audience design system and is not directed at children under 13. We do not knowingly collect personal information from anyone because we do not collect personal information at all.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2><span class="num">7</span> Changes &amp; contact</h2>
+        <p>If this policy changes, we will update this page and revise the date below. Questions or concerns? Email <a href="mailto:hello@teamantigravity.com">hello@teamantigravity.com</a>.</p>
+      </section>
+
+      <section class="doc-section" style="border-top:1px solid var(--c-border);padding-top:var(--space-6);margin-top:var(--space-12)">
+        <p style="font-size:var(--t-sm);color:var(--c-text-3)">Last updated: July 2026</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="border:0;margin:0;padding:0">
+        <span>&copy; 2026 Team Antigravity · Built with care, zero telemetry.</span>
+        <span><a href="../" style="color:var(--c-text-2)">Home</a> · <a href="gravitysend.html" style="color:var(--c-text-2)">Gravity Send privacy</a> · <a href="gravitorrent.html" style="color:var(--c-text-2)">Gravity Torrent privacy</a> · <a href="gravityfintracker.html" style="color:var(--c-text-2)">Gravity Fintracker privacy</a> · <a href="gravityinstaller.html" style="color:var(--c-text-2)">Gravity Installer privacy</a></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
