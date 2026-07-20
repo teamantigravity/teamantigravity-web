@@ -3,13 +3,13 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/fintracker",
-      "destination": "/finance",
+      "source": "/finance",
+      "destination": "/fintracker",
       "statusCode": 301
     },
     {
-      "source": "/privacy/gravityfintracker",
-      "destination": "/privacy/gravityfinance",
+      "source": "/privacy/gravityfinance",
+      "destination": "/privacy/gravityfintracker",
       "statusCode": 301
     }
   ],
