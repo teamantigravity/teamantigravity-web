@@ -1,10 +1,17 @@
 {
-  "version": 2,
-  "routes": [
-    { "src": "/fintracker\\.html", "status": 301, "headers": { "Location": "/finance.html" } },
-    { "src": "/privacy/gravityfintracker\\.html", "status": 301, "headers": { "Location": "/privacy/gravityfinance.html" } },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/fintracker",
+      "destination": "/finance",
+      "statusCode": 301
+    },
+    {
+      "source": "/privacy/gravityfintracker",
+      "destination": "/privacy/gravityfinance",
+      "statusCode": 301
+    }
   ],
   "headers": [
     {
@@ -29,7 +36,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(css|js|png|svg|jpg|jpeg|webp|gif|ico|woff|woff2|ttf|otf))",
+      "source": "/(.*\\.(?:css|js|png|svg|jpg|jpeg|webp|gif|ico|woff|woff2|ttf|otf))",
       "headers": [
         {
           "key": "Cache-Control",
@@ -37,7 +44,5 @@
         }
       ]
     }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  ]
 }
