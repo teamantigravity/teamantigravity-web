@@ -3,6 +3,10 @@
    Google-colored, 3D, fully responsive, light/dark theming.
    ========================================================================== */
 
+@view-transition {
+  navigation: auto;
+}
+
 :root {
   /* Google brand palette */
   --g-blue: #4285f4;

@@ -100,7 +100,8 @@
   <main id="pd-main">
     <!-- ===================== HERO ===================== -->
     <header class="pd-hero">
-      <canvas id="pd-hero-canvas" aria-hidden="true"></canvas>
+      <canvas id="pd-hero-canvas" aria-hidden="true" data-particle-theme="fintracker"></canvas>
+      <div class="pd-hero-mesh" aria-hidden="true"></div>
       <div class="pd-hero-glow" aria-hidden="true"></div>
       <div class="container pd-hero-wrapper">
         <span class="pd-eyebrow" data-pd-anim="fade">
@@ -125,6 +126,24 @@
       <div class="pd-scroll-indicator" aria-hidden="true"><span></span></div>
     </header>
 
+    <!-- ===================== TRUST STRIP ===================== -->
+    <section class="pd-trust" data-product="gravity-fintracker" data-pd-anim="fade" aria-label="Live project stats">
+      <div class="container pd-trust-list">
+        <div class="pd-trust-item pd-spotlight pd-trust-stars">
+          <span class="pd-trust-value">—</span>
+          <span class="pd-trust-label">GitHub stars</span>
+        </div>
+        <div class="pd-trust-item pd-spotlight pd-trust-version">
+          <span class="pd-trust-value">—</span>
+          <span class="pd-trust-label">Latest release</span>
+        </div>
+        <div class="pd-trust-item pd-spotlight pd-trust-released">
+          <span class="pd-trust-value">—</span>
+          <span class="pd-trust-label">Released</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== PRODUCT STORY (scroll-bound) ===================== -->
     <section id="pd-story" class="pd-story" aria-label="How Gravity Fintracker works">
       <div class="container pd-story-grid">
@@ -146,26 +165,51 @@
           </div>
         </div>
         <div class="pd-story-cards">
-          <article class="pd-feature-card" data-color="blue">
+          <article class="pd-feature-card pd-spotlight" data-color="blue">
             <span class="pd-feature-eyebrow">01 · Local-first</span>
             <h3 data-pd-anim="lines">Every transaction lives on your device and is searchable</h3>
             <p>Accounts, categories, and history are written straight to an on-device database. Instantly search by title, category, account, or note. No sign-up screen stands between you and using the app — because there's nothing to sign up for.</p>
           </article>
-          <article class="pd-feature-card" data-color="red">
+          <article class="pd-feature-card pd-spotlight" data-color="red">
             <span class="pd-feature-eyebrow">02 · Zero ads</span>
             <h3 data-pd-anim="lines">No ads, no upsell, no analytics</h3>
             <p>A money app shouldn't be selling your attention. Gravity Fintracker has no advertising SDK, no attribution tracking, and no monetization based on your data, full stop.</p>
           </article>
-          <article class="pd-feature-card" data-color="yellow">
+          <article class="pd-feature-card pd-spotlight" data-color="yellow">
             <span class="pd-feature-eyebrow">03 · Smart, local insights</span>
             <h3 data-pd-anim="lines">Smart insights and flexible views</h3>
             <p>Savings rate, top categories, unusual transactions — all computed on-device. Toggle between charts and list views, and pull to refresh on any screen.</p>
           </article>
-          <article class="pd-feature-card" data-color="green">
+          <article class="pd-feature-card pd-spotlight" data-color="green">
             <span class="pd-feature-eyebrow">04 · Quantum-resistant sync</span>
             <h3 data-pd-anim="lines">Optional sync even we can't read</h3>
             <p>Turn on multi-device sync and your data is encrypted with AES-256-GCM using HKDF-SHA512 derived keys before it ever leaves your device. The server only ever stores ciphertext.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== QUICK START ===================== -->
+    <section id="pd-steps" class="section pd-steps">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Get started</span>
+          <h2 data-pd-anim="lines">Install in three steps.</h2>
+          <p>No account, no waiting list, no cloud setup.</p>
+        </div>
+        <div class="pd-steps-grid reveal-stagger">
+          <div class="pd-step pd-spotlight">
+            <h4>Download</h4>
+            <p>Grab the build for your platform from GitHub Releases. Android, iOS, Windows, macOS, Linux, and Web are all supported.</p>
+          </div>
+          <div class="pd-step pd-spotlight">
+            <h4>Run</h4>
+            <p>Install the app and open it. Your local database is created automatically — there is no sign-up screen.</p>
+          </div>
+          <div class="pd-step pd-spotlight">
+            <h4>Track</h4>
+            <p>Add accounts, record income and expenses, and see your spending trends. Your data never leaves your device unless you choose to sync.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -179,31 +223,63 @@
           <p>Every claim below is something you can verify in the app itself — nothing here is marketing fluff.</p>
         </div>
         <div class="pd-bento reveal-stagger">
-          <div class="pd-bento-item pd-bento-hero" data-color="blue">
+          <div class="pd-bento-item pd-spotlight pd-bento-hero" data-color="blue">
             <span class="pd-bento-icon" aria-hidden="true">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </span>
             <span class="pd-counter" data-target="256" data-suffix="-bit">0</span>
             <p>AES-256-GCM encryption with HKDF-SHA512 key derivation for optional sync — the same class of cryptography used to protect classified data.</p>
           </div>
-          <div class="pd-bento-item" data-color="red">
+          <div class="pd-bento-item pd-spotlight" data-color="red">
             <span class="pd-counter" data-target="0" data-prefix="">0</span>
             <p>Ads shown, ever.</p>
           </div>
-          <div class="pd-bento-item" data-color="yellow">
+          <div class="pd-bento-item pd-spotlight" data-color="yellow">
             <span class="pd-counter" data-target="6">0</span>
             <p>Platforms: Android, iOS, Windows, macOS, Linux, Web.</p>
           </div>
-          <div class="pd-bento-item" data-color="green">
+          <div class="pd-bento-item pd-spotlight" data-color="green">
             <span class="pd-counter" data-target="100" data-suffix="%">0</span>
             <p>Of your data stored locally unless you opt into sync yourself.</p>
           </div>
-          <div class="pd-bento-item pd-bento-wide" data-color="blue">
+          <div class="pd-bento-item pd-spotlight pd-bento-wide" data-color="blue">
             <span class="pd-bento-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </span>
             <h4>Zero-knowledge sync architecture</h4>
             <p>The sync server (Supabase) stores only ciphertext. Your passphrase and derived keys never leave your device — not even we can decrypt your synced data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECURITY SCORECARD ===================== -->
+    <section id="pd-scorecard" class="section pd-scorecard">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Security & privacy</span>
+          <h2 data-pd-anim="lines">Built to keep your data yours.</h2>
+        </div>
+        <div class="pd-score-grid reveal-stagger">
+          <div class="pd-score-item pd-spotlight">
+            <span class="pd-score-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <h4 class="pd-score-title">Local-first</h4>
+            <p class="pd-score-desc">All transactions and accounts live on your device by default.</p>
+          </div>
+          <div class="pd-score-item pd-spotlight">
+            <span class="pd-score-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <h4 class="pd-score-title">Zero-knowledge sync</h4>
+            <p class="pd-score-desc">AES-256-GCM ciphertext only. Your keys never leave your device.</p>
+          </div>
+          <div class="pd-score-item pd-spotlight">
+            <span class="pd-score-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+            <h4 class="pd-score-title">No tracking</h4>
+            <p class="pd-score-desc">No ads, no analytics SDKs, no attribution, no telemetry.</p>
+          </div>
+          <div class="pd-score-item pd-spotlight">
+            <span class="pd-score-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <h4 class="pd-score-title">Open source</h4>
+            <p class="pd-score-desc">AGPL-3.0 licensed. Inspect the code and verify the claims.</p>
           </div>
         </div>
       </div>
@@ -231,6 +307,46 @@
             <span class="pc-icon bg-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
             <h3>Encryption is the default, not the upsell</h3>
             <p>Quantum-resistant encryption for sync isn't a paywalled feature — it's how the feature works, period.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section id="pd-faq" class="section pd-faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">FAQ</span>
+          <h2 data-pd-anim="lines">Questions about Gravity Fintracker.</h2>
+        </div>
+        <div class="pd-faq-list reveal-stagger">
+          <div class="pd-faq-item pd-spotlight">
+            <button class="pd-faq-question" type="button" aria-expanded="false">
+              Is Gravity Fintracker really free?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="pd-faq-answer"><p>Yes. Local finance tracking is free and unlimited. Optional encrypted sync and premium features are handled transparently, with no ads or data selling.</p></div>
+          </div>
+          <div class="pd-faq-item pd-spotlight">
+            <button class="pd-faq-question" type="button" aria-expanded="false">
+              Do I need an account?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="pd-faq-answer"><p>No. The app works completely offline. If you enable sync, your passphrase is used to derive encryption keys on-device — we never see it.</p></div>
+          </div>
+          <div class="pd-faq-item pd-spotlight">
+            <button class="pd-faq-question" type="button" aria-expanded="false">
+              What platforms are supported?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="pd-faq-answer"><p>Android, iOS, Windows, macOS, Linux, and Web. Each build is published straight from CI to GitHub Releases.</p></div>
+          </div>
+          <div class="pd-faq-item pd-spotlight">
+            <button class="pd-faq-question" type="button" aria-expanded="false">
+              Can I export my data?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="pd-faq-answer"><p>Yes, any time. You can export accounts, categories, transactions, and recurring payments as JSON or CSV.</p></div>
           </div>
         </div>
       </div>

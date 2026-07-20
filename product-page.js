@@ -30,6 +30,9 @@
     initStoryScroll();
     initCounters();
     initMagnetic();
+    initSpotlight();
+    initFaq();
+    initTrustStrip();
     initHeroCanvas();
   }
 
@@ -351,6 +354,92 @@
     }
   }
 
+  /* ---------------------------- Cursor spotlight ---------------------------- */
+  function initSpotlight() {
+    if (REDUCED_MOTION || !window.matchMedia('(pointer: fine)').matches) return;
+    document.querySelectorAll('.pd-spotlight').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var x = ((e.clientX - r.left) / r.width) * 100;
+        var y = ((e.clientY - r.top) / r.height) * 100;
+        el.style.setProperty('--spot-x', x + '%');
+        el.style.setProperty('--spot-y', y + '%');
+      });
+      el.addEventListener('pointerleave', function () {
+        el.style.removeProperty('--spot-x');
+        el.style.removeProperty('--spot-y');
+      });
+    });
+  }
+
+  /* ---------------------------- FAQ accordion ---------------------------- */
+  function initFaq() {
+    var items = document.querySelectorAll('.pd-faq-item');
+    if (!items.length) return;
+    items.forEach(function (item) {
+      var q = item.querySelector('.pd-faq-question');
+      if (!q) return;
+      q.setAttribute('aria-expanded', 'false');
+      q.addEventListener('click', function () {
+        var open = item.classList.contains('open');
+        items.forEach(function (sib) {
+          sib.classList.remove('open');
+          var sq = sib.querySelector('.pd-faq-question');
+          if (sq) sq.setAttribute('aria-expanded', 'false');
+        });
+        if (!open) {
+          item.classList.add('open');
+          q.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
+  /* ---------------------------- Live trust strip ---------------------------- */
+  function timeAgo(iso) {
+    if (!iso) return '';
+    var diff = Date.now() - new Date(iso).getTime();
+    var m = Math.floor(diff / 60000), hr = Math.floor(diff / 3600000), d = Math.floor(diff / 86400000);
+    if (m < 2) return 'just now';
+    if (m < 60) return m + 'm ago';
+    if (hr < 24) return hr + 'h ago';
+    return d + 'd ago';
+  }
+
+  function initTrustStrip() {
+    var strips = document.querySelectorAll('.pd-trust[data-product]');
+    if (!strips.length) return;
+    var map = {
+      'gravity-fintracker': 'gravity-fintracker',
+      'gravity-send': 'gravitysend',
+      'gravity-installer': 'gravityinstaller',
+      'gravity-torrent': 'gravity-torrent'
+    };
+    var product = strips[0].getAttribute('data-product');
+    var repo = map[product] || product;
+    var owner = 'teamantigravity';
+
+    fetch('https://api.github.com/repos/' + owner + '/' + repo)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+        var el = strips[0].querySelector('.pd-trust-stars .pd-trust-value');
+        if (el) el.textContent = (data.stargazers_count || 0).toLocaleString();
+      })
+      .catch(function () {});
+
+    fetch('https://api.github.com/repos/' + owner + '/' + repo + '/releases/latest')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (!rel) return;
+        var tag = strips[0].querySelector('.pd-trust-version .pd-trust-value');
+        if (tag) tag.textContent = rel.tag_name || '—';
+        var date = strips[0].querySelector('.pd-trust-released .pd-trust-value');
+        if (date) date.textContent = rel.published_at ? timeAgo(rel.published_at) : '—';
+      })
+      .catch(function () {});
+  }
+
   /* ---------------------------- Hero particle field ---------------------------- */
   function initHeroCanvas() {
     if (REDUCED_MOTION) return;
@@ -360,8 +449,23 @@
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    var COLORS = ['66,133,244', '234,67,53', '251,188,5', '52,168,83'];
-    var w, h, dpr, particles, raf;
+    var theme = canvas.getAttribute('data-particle-theme') || 'default';
+    var THEMES = {
+      default: ['66,133,244', '234,67,53', '251,188,5', '52,168,83'],
+      fintracker: ['52,168,83', '66,133,244', '251,188,5', '234,67,53'],
+      send: ['66,133,244', '52,168,83', '251,188,5', '234,67,53'],
+      torrent: ['124,77,255', '66,133,244', '251,188,5', '234,67,53'],
+      installer: ['251,188,5', '234,67,53', '52,168,83', '66,133,244']
+    };
+    var COLORS = THEMES[theme] || THEMES.default;
+
+    var w, h, dpr, particles = [], raf;
+    var CONFIG = {
+      maxParticles: 90,
+      baseSpeed: 0.28,
+      connectionDistance: 120,
+      mouseRadius: 170
+    };
     var mouse = { x: -9999, y: -9999 };
 
     function size() {
@@ -370,13 +474,16 @@
       canvas.width = w * dpr; canvas.height = h * dpr;
       canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var count = Math.min(70, Math.floor((w * h) / 20000));
+      var count = Math.min(CONFIG.maxParticles, Math.max(30, Math.floor((w * h) / 16000)));
       particles = [];
       for (var i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * w, y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
-          r: 1 + Math.random() * 1.8, c: COLORS[(Math.random() * COLORS.length) | 0]
+          vx: (Math.random() - 0.5) * CONFIG.baseSpeed,
+          vy: (Math.random() - 0.5) * CONFIG.baseSpeed,
+          r: 1.3 + Math.random() * 1.7,
+          c: COLORS[(Math.random() * COLORS.length) | 0],
+          pulse: Math.random() * Math.PI * 2
         });
       }
     }
@@ -387,12 +494,36 @@
         var p = particles[i];
         var dx = p.x - mouse.x, dy = p.y - mouse.y;
         var d = Math.hypot(dx, dy);
-        if (d < 130) { var f = (130 - d) / 130; p.x += (dx / d) * f * 1.6; p.y += (dy / d) * f * 1.6; }
+        if (d < CONFIG.mouseRadius && d > 0.5) {
+          var f = (CONFIG.mouseRadius - d) / CONFIG.mouseRadius;
+          var angle = Math.atan2(dy, dx);
+          var push = f * 1.6;
+          p.vx += Math.cos(angle) * push * 0.025;
+          p.vy += Math.sin(angle) * push * 0.025;
+        }
+        p.vx *= 0.995; p.vy *= 0.995;
         p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + p.c + ',0.65)'; ctx.fill();
+        if (p.x < -12) p.x = w + 12; if (p.x > w + 12) p.x = -12;
+        if (p.y < -12) p.y = h + 12; if (p.y > h + 12) p.y = -12;
+        p.pulse += 0.04;
+        var r = Math.max(0.4, p.r + Math.sin(p.pulse) * 0.35);
+        ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + p.c + ',0.85)'; ctx.fill();
+      }
+
+      ctx.lineWidth = 0.7;
+      for (var i = 0; i < particles.length; i++) {
+        var p1 = particles[i];
+        for (var j = i + 1; j < particles.length; j++) {
+          var p2 = particles[j];
+          var ldx = p1.x - p2.x, ldy = p1.y - p2.y;
+          var dist = Math.hypot(ldx, ldy);
+          if (dist < CONFIG.connectionDistance) {
+            var alpha = 0.14 * (1 - dist / CONFIG.connectionDistance);
+            ctx.strokeStyle = 'rgba(' + p1.c + ',' + alpha + ')';
+            ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+          }
+        }
       }
       raf = requestAnimationFrame(frame);
     }
