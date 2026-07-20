@@ -19,6 +19,7 @@
 
   function init() {
     initManifest();
+    initTheme();
     initPreloader();
     initNavScroll();
     initMobileNav();
@@ -34,6 +35,44 @@
     initFaq();
     initTrustStrip();
     initHeroCanvas();
+  }
+
+  /* ---------------------------- Theme ---------------------------- */
+  function initTheme() {
+    var btn = document.getElementById('theme-toggle');
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+    var apply = function (theme, save) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (save !== false) {
+        try { localStorage.setItem('theme', theme); } catch (_) {}
+      }
+      if (btn) {
+        var isDark = theme === 'dark';
+        btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+    };
+
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (_) {}
+    var currentTheme = saved || (mq.matches ? 'dark' : 'light');
+    apply(currentTheme, false);
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        apply(currentTheme, true);
+      });
+    }
+
+    mq.addEventListener('change', function (e) {
+      var hasPreference = false;
+      try { hasPreference = !!localStorage.getItem('theme'); } catch (_) {}
+      if (!hasPreference) {
+        currentTheme = e.matches ? 'dark' : 'light';
+        apply(currentTheme, false);
+      }
+    });
   }
 
   /* ---------------------------- Preloader ---------------------------- */
