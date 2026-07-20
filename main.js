@@ -18,14 +18,31 @@
     'gravity-fintracker': ['windows', 'macos', 'linux', 'android'],
   };
 
+  function initManifest() {
+    if (document.querySelector('link[rel="manifest"]')) return;
+    const manifest = document.createElement('link');
+    manifest.rel = 'manifest';
+    manifest.href = '/manifest.json';
+    document.head.appendChild(manifest);
+
+    const apple = document.createElement('link');
+    apple.rel = 'apple-touch-icon';
+    apple.sizes = '180x180';
+    apple.href = '/apple-touch-icon.png';
+    document.head.appendChild(apple);
+  }
+
   function init() {
+    initManifest();
     initTheme();
     initNav();
+    initMobileNav();
     initSmoothScroll();
     initScrollReveal();
     initHeroCanvas();
     initTilt();
     initBuildStatus();
+    initPlatformDetection();
   }
 
   /* ---------------------------- Theme ---------------------------- */
@@ -78,6 +95,37 @@
     const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ---------------------------- Mobile nav ---------------------------- */
+  function initMobileNav() {
+    const nav = document.querySelector('nav');
+    const links = document.querySelector('.nav-links');
+    if (!nav || !links) return;
+    if (document.getElementById('mobile-menu-toggle')) return;
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.id = 'mobile-menu-toggle';
+    toggle.className = 'mobile-menu-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'primary-menu');
+    toggle.setAttribute('aria-label', 'Toggle navigation');
+    toggle.setAttribute('aria-haspopup', 'true');
+    toggle.innerHTML = '<span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>';
+    links.id = 'primary-menu';
+    links.parentNode.insertBefore(toggle, links);
+
+    const setOpen = (open) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('nav-open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    links.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 920) setOpen(false); });
   }
 
   /* ------------------------ Smooth scroll ------------------------ */
@@ -281,9 +329,49 @@
   function initBuildStatus() {
     const containers = document.querySelectorAll('.platforms[data-product]');
     if (!containers.length) return;
-    const run = () => containers.forEach(loadProduct);
+
+    const POLL_MS = 5 * 60 * 1000; // 5 minutes
+    let timer = null;
+
+    const run = () => {
+      if (document.hidden) return;
+      containers.forEach(loadProduct);
+    };
+
     run();
-    setInterval(run, 60000);
+    timer = setInterval(run, POLL_MS);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) return;
+      run();
+    });
+
+    window.addEventListener('beforeunload', () => clearInterval(timer));
+  }
+
+  /* ---------------------------- Platform detection ---------------------------- */
+  function getPlatform() {
+    const ua = navigator.userAgent;
+    if (/iPad|iPhone|iPod/.test(ua)) return 'ios';
+    if (/Android/.test(ua)) return 'android';
+    if (/Macintosh|Mac OS X/.test(ua)) return 'macos';
+    if (/Windows/.test(ua)) return 'windows';
+    if (/Linux/.test(ua)) return 'linux';
+    return null;
+  }
+
+  function initPlatformDetection() {
+    const platform = getPlatform();
+    if (!platform) return;
+
+    const buttons = document.querySelectorAll('.dl-btn');
+    buttons.forEach((btn) => {
+      const href = btn.getAttribute('href') || '';
+      if (href.includes(`platform=${platform}`)) {
+        btn.classList.add('dl-recommended');
+        btn.setAttribute('aria-label', `${btn.textContent.trim()} (recommended for your device)`);
+      }
+    });
   }
 
   document.addEventListener('DOMContentLoaded', init);

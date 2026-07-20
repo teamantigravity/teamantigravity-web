@@ -72,15 +72,33 @@ function pickAsset(assets, spec) {
   return candidates[0];
 }
 
+function setCors(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
 export default async function handler(req, res) {
+  setCors(res);
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
+
+  if (req.method === 'OPTIONS') {
+    res.status(204).end();
+    return;
+  }
 
   const productKey = String(req.query.product || 'gravity-torrent').toLowerCase();
   const product = PRODUCTS[productKey];
   const platform = String(req.query.platform || '').toLowerCase();
 
   if (!product) {
+    res.setHeader('Cache-Control', 's-maxage=30');
     res.status(400).json({ error: 'Unknown product', supported: Object.keys(PRODUCTS) });
+    return;
+  }
+
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    res.status(405).json({ error: 'Method not allowed' });
     return;
   }
 
@@ -88,6 +106,7 @@ export default async function handler(req, res) {
   const spec = product.platforms[platform];
 
   if (!spec) {
+    res.setHeader('Cache-Control', 's-maxage=30');
     res.status(400).json({
       error: 'Unknown or missing platform for this product',
       supported: Object.keys(product.platforms),

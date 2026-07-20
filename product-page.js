@@ -3,9 +3,25 @@
 (function () {
   var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  function initManifest() {
+    if (document.querySelector('link[rel="manifest"]')) return;
+    var manifest = document.createElement('link');
+    manifest.rel = 'manifest';
+    manifest.href = '/manifest.json';
+    document.head.appendChild(manifest);
+
+    var apple = document.createElement('link');
+    apple.rel = 'apple-touch-icon';
+    apple.sizes = '180x180';
+    apple.href = '/apple-touch-icon.png';
+    document.head.appendChild(apple);
+  }
+
   function init() {
+    initManifest();
     initPreloader();
     initNavScroll();
+    initMobileNav();
     initSmoothScroll();
     initRevealObserver();
     initCharCascade();
@@ -41,10 +57,10 @@
     };
 
     if (document.readyState === 'complete') {
-      setTimeout(finish, 500);
+      setTimeout(finish, 300);
     } else {
-      window.addEventListener('load', function () { setTimeout(finish, 300); });
-      setTimeout(finish, 2500);
+      window.addEventListener('load', function () { setTimeout(finish, 200); });
+      setTimeout(finish, 1500);
     }
   }
 
@@ -55,6 +71,37 @@
     var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 30); };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ---------------------------- Mobile nav ---------------------------- */
+  function initMobileNav() {
+    var nav = document.querySelector('.pd-nav') || document.querySelector('nav');
+    var links = document.querySelector('.nav-links');
+    if (!nav || !links) return;
+    if (document.getElementById('mobile-menu-toggle')) return;
+
+    var toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.id = 'mobile-menu-toggle';
+    toggle.className = 'mobile-menu-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'primary-menu');
+    toggle.setAttribute('aria-label', 'Toggle navigation');
+    toggle.setAttribute('aria-haspopup', 'true');
+    toggle.innerHTML = '<span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>';
+    links.id = 'primary-menu';
+    nav.querySelector('.nav-actions').insertBefore(toggle, links);
+
+    var setOpen = function (open) {
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('nav-open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    toggle.addEventListener('click', function () { setOpen(toggle.getAttribute('aria-expanded') !== 'true'); });
+    links.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 920) setOpen(false); });
   }
 
   /* ---------------------------- Smooth scroll ---------------------------- */
