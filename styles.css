@@ -678,3 +678,1407 @@ footer { border-top: 1px solid var(--c-border); padding-block: var(--space-12); 
   .section { padding-block: var(--space-16); }
   .footer-bottom { flex-direction: column; }
 }
+/* ==========================================================================
+   SOTA PRODUCT PAGE — Google-Colored Design System
+   Full Material Design 3 token architecture, micro-interactions,
+   scroll-driven animations, view transitions, and pixel-perfect polish.
+   ========================================================================== */
+
+/* ============================================================================
+   0. VIEW TRANSITIONS API
+   ========================================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   1. BASE PALETTE — Google Brand Colors
+   Every color derived from four seeds. Nothing hardcoded downstream.
+   ========================================================================== */
+:root {
+  /* ---- Google Brand Seeds ---- */
+  --g-blue:   #4285f4;
+  --g-red:    #ea4335;
+  --g-yellow: #fbbc05;
+  --g-green:  #34a853;
+
+  /* ---- Extended Palette (10-stop tonal scales per seed) ---- */
+  --g-blue-5:   color-mix(in srgb, var(--g-blue) 5%,  white);
+  --g-blue-10:  color-mix(in srgb, var(--g-blue) 10%, white);
+  --g-blue-20:  color-mix(in srgb, var(--g-blue) 20%, white);
+  --g-blue-30:  color-mix(in srgb, var(--g-blue) 30%, white);
+  --g-blue-40:  color-mix(in srgb, var(--g-blue) 40%, white);
+  --g-blue-50:  var(--g-blue);
+  --g-blue-60:  color-mix(in srgb, var(--g-blue) 80%, black);
+  --g-blue-70:  color-mix(in srgb, var(--g-blue) 60%, black);
+  --g-blue-80:  color-mix(in srgb, var(--g-blue) 40%, black);
+  --g-blue-90:  color-mix(in srgb, var(--g-blue) 20%, black);
+
+  --g-red-5:    color-mix(in srgb, var(--g-red) 5%,  white);
+  --g-red-10:   color-mix(in srgb, var(--g-red) 10%, white);
+  --g-red-20:   color-mix(in srgb, var(--g-red) 20%, white);
+  --g-red-30:   color-mix(in srgb, var(--g-red) 30%, white);
+  --g-red-40:   color-mix(in srgb, var(--g-red) 40%, white);
+  --g-red-50:   var(--g-red);
+  --g-red-60:   color-mix(in srgb, var(--g-red) 80%, black);
+  --g-red-70:   color-mix(in srgb, var(--g-red) 60%, black);
+  --g-red-80:   color-mix(in srgb, var(--g-red) 40%, black);
+  --g-red-90:   color-mix(in srgb, var(--g-red) 20%, black);
+
+  --g-yellow-5:  color-mix(in srgb, var(--g-yellow) 5%,  white);
+  --g-yellow-10: color-mix(in srgb, var(--g-yellow) 10%, white);
+  --g-yellow-20: color-mix(in srgb, var(--g-yellow) 20%, white);
+  --g-yellow-30: color-mix(in srgb, var(--g-yellow) 30%, white);
+  --g-yellow-40: color-mix(in srgb, var(--g-yellow) 40%, white);
+  --g-yellow-50: var(--g-yellow);
+  --g-yellow-60: color-mix(in srgb, var(--g-yellow) 80%, black);
+  --g-yellow-70: color-mix(in srgb, var(--g-yellow) 60%, black);
+  --g-yellow-80: color-mix(in srgb, var(--g-yellow) 40%, black);
+  --g-yellow-90: color-mix(in srgb, var(--g-yellow) 20%, black);
+
+  --g-green-5:  color-mix(in srgb, var(--g-green) 5%,  white);
+  --g-green-10: color-mix(in srgb, var(--g-green) 10%, white);
+  --g-green-20: color-mix(in srgb, var(--g-green) 20%, white);
+  --g-green-30: color-mix(in srgb, var(--g-green) 30%, white);
+  --g-green-40: color-mix(in srgb, var(--g-green) 40%, white);
+  --g-green-50: var(--g-green);
+  --g-green-60: color-mix(in srgb, var(--g-green) 80%, black);
+  --g-green-70: color-mix(in srgb, var(--g-green) 60%, black);
+  --g-green-80: color-mix(in srgb, var(--g-green) 40%, black);
+  --g-green-90: color-mix(in srgb, var(--g-green) 20%, black);
+
+  /* ---- Gradients (built from palette) ---- */
+  --grad-google:     linear-gradient(135deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+  --grad-bluegreen:  linear-gradient(135deg, var(--g-blue), var(--g-green));
+  --grad-bluered:    linear-gradient(135deg, var(--g-blue), var(--g-red));
+  --grad-warmth:     linear-gradient(135deg, var(--g-red), var(--g-yellow));
+  --grad-nature:     linear-gradient(135deg, var(--g-green), var(--g-yellow));
+  --grad-mesh-light: radial-gradient(ellipse at 20% 50%, var(--g-blue-5), transparent 50%),
+                     radial-gradient(ellipse at 80% 20%, var(--g-red-5), transparent 50%),
+                     radial-gradient(ellipse at 60% 80%, var(--g-green-5), transparent 50%);
+  --grad-mesh-dark:  radial-gradient(ellipse at 20% 50%, color-mix(in srgb, var(--g-blue) 8%, transparent), transparent 50%),
+                     radial-gradient(ellipse at 80% 20%, color-mix(in srgb, var(--g-red) 6%, transparent), transparent 50%),
+                     radial-gradient(ellipse at 60% 80%, color-mix(in srgb, var(--g-green) 6%, transparent), transparent 50%);
+
+  /* ---- Product Seed Overrides (set per-page via <style>:root) ---- */
+  --pd-primary:       var(--g-blue);
+  --pd-on-primary:    #ffffff;
+  --pd-secondary:     var(--g-green);
+  --pd-on-secondary:  #ffffff;
+  --pd-tertiary:      var(--g-yellow);
+  --pd-on-tertiary:   #1f1a00;
+  --pd-error:         var(--g-red);
+  --pd-on-error:      #ffffff;
+
+
+  /* ============================================================================
+     2. TYPOGRAPHY SCALE — Fluid, clamp()-based, no breakpoint jumps
+     ========================================================================== */
+  --font-display: 'Google Sans Display', 'Product Sans', system-ui, sans-serif;
+  --font-sans:    'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'Google Sans Mono', 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Type scale (minor third ratio ~1.2, fluid via clamp) */
+  --t-2xs:  clamp(0.65rem,  0.6rem  + 0.2vw,  0.7rem);
+  --t-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.8rem);
+  --t-sm:   clamp(0.85rem,  0.8rem  + 0.25vw, 0.925rem);
+  --t-base: clamp(0.95rem,  0.9rem  + 0.3vw,  1.05rem);
+  --t-lg:   clamp(1.1rem,   1rem    + 0.4vw,  1.25rem);
+  --t-xl:   clamp(1.3rem,   1.15rem + 0.6vw,  1.55rem);
+  --t-2xl:  clamp(1.6rem,   1.3rem  + 1vw,    2rem);
+  --t-3xl:  clamp(2rem,     1.5rem  + 1.8vw,  2.8rem);
+  --t-4xl:  clamp(2.4rem,   1.8rem  + 2.5vw,  3.75rem);
+  --t-5xl:  clamp(3rem,     2rem    + 3.5vw,  5rem);
+
+  /* Line heights */
+  --lh-tight:   1.15;
+  --lh-snug:    1.3;
+  --lh-normal:  1.55;
+  --lh-relaxed: 1.7;
+
+  /* Letter spacing */
+  --ls-tight:   -0.025em;
+  --ls-normal:  0;
+  --ls-wide:    0.05em;
+  --ls-widest:  0.12em;
+
+
+  /* ============================================================================
+     3. SPACING SCALE — 4px base, consistent rhythm
+     ========================================================================== */
+  --space-px: 1px;
+  --space-0:  0;
+  --space-1:  0.25rem;   /* 4px  */
+  --space-2:  0.5rem;    /* 8px  */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+
+  /* Section padding (fluid) */
+  --section-py: clamp(4rem, 8vw, 7rem);
+  --section-px: clamp(1.25rem, 5vw, 3rem);
+
+
+  /* ============================================================================
+     4. BORDERS, RADII, SHADOWS
+     ========================================================================== */
+  --r-xs:    6px;
+  --r-sm:    8px;
+  --r-md:    12px;
+  --r-lg:    16px;
+  --r-xl:    20px;
+  --r-2xl:   24px;
+  --r-3xl:   32px;
+  --r-full:  9999px;
+
+  /* Easing */
+  --ease:         cubic-bezier(0.4, 0, 0.2, 1);    /* Material standard */
+  --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring:  cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Duration scale */
+  --dur-instant:  80ms;
+  --dur-fast:     150ms;
+  --dur-normal:   250ms;
+  --dur-slow:     400ms;
+  --dur-slower:   600ms;
+
+  /* Z-index scale (prevents magic numbers) */
+  --z-behind:     -1;
+  --z-base:       0;
+  --z-raised:     10;
+  --z-sticky:     50;
+  --z-nav:        100;
+  --z-overlay:    200;
+  --z-modal:      300;
+  --z-toast:      400;
+  --z-max:        999;
+
+  /* Container widths */
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1200px;
+  --container-2xl: 1400px;
+
+  /* Nav height */
+  --nav-h: 64px;
+}
+
+
+/* ============================================================================
+   5. LIGHT MODE — Semantic Color Roles (Material Design 3 Architecture)
+   ========================================================================== */
+:root {
+  /* ---- Primary ---- */
+  --c-primary:                var(--pd-primary);
+  --c-on-primary:             var(--pd-on-primary, #ffffff);
+  --c-primary-container:      color-mix(in srgb, var(--pd-primary) 18%, white);
+  --c-on-primary-container:   color-mix(in srgb, var(--pd-primary) 45%, black);
+  --c-primary-hover:          color-mix(in srgb, var(--pd-primary) 85%, black);
+  --c-primary-active:         color-mix(in srgb, var(--pd-primary) 70%, black);
+  --c-primary-ghost:          color-mix(in srgb, var(--pd-primary) 8%, transparent);
+  --c-primary-ghost-hover:    color-mix(in srgb, var(--pd-primary) 14%, transparent);
+
+  /* ---- Secondary ---- */
+  --c-secondary:              var(--pd-secondary);
+  --c-on-secondary:           var(--pd-on-secondary, #ffffff);
+  --c-secondary-container:    color-mix(in srgb, var(--pd-secondary) 18%, white);
+  --c-on-secondary-container: color-mix(in srgb, var(--pd-secondary) 45%, black);
+
+  /* ---- Tertiary ---- */
+  --c-tertiary:               var(--pd-tertiary);
+  --c-on-tertiary:            var(--pd-on-tertiary, #1f1a00);
+  --c-tertiary-container:     color-mix(in srgb, var(--pd-tertiary) 25%, white);
+  --c-on-tertiary-container:  color-mix(in srgb, var(--pd-tertiary) 45%, black);
+
+  /* ---- Error ---- */
+  --c-error:                  var(--pd-error);
+  --c-on-error:               var(--pd-on-error, #ffffff);
+  --c-error-container:        color-mix(in srgb, var(--pd-error) 18%, white);
+  --c-on-error-container:     color-mix(in srgb, var(--pd-error) 45%, black);
+
+  /* ---- Surfaces ---- */
+  --c-surface:            #ffffff;
+  --c-surface-1:          #f6f8fc;
+  --c-surface-2:          #eef2f8;
+  --c-surface-3:          #e4eaf4;
+  --c-surface-variant:    #e1e5ec;
+  --c-on-surface:         #1a1c1e;
+  --c-on-surface-variant: #44474e;
+
+  /* ---- Inverse (for snackbars, tooltips) ---- */
+  --c-inverse-surface:    #2f3033;
+  --c-inverse-on-surface: #f1f0f4;
+  --c-inverse-primary:    color-mix(in srgb, var(--c-primary) 70%, white);
+
+  /* ---- Outlines ---- */
+  --c-outline:            #74777f;
+  --c-outline-variant:    #c4c7cf;
+  --c-outline-subtle:     color-mix(in srgb, var(--c-on-surface) 8%, transparent);
+
+  /* ---- Glass / Backdrop ---- */
+  --c-glass:              rgba(255, 255, 255, 0.72);
+  --c-glass-strong:       rgba(255, 255, 255, 0.88);
+  --c-glass-nav:          rgba(255, 255, 255, 0.82);
+  --c-scrim:              rgba(0, 0, 0, 0.32);
+
+  /* ---- Shadows (directional, 3-layer depth system) ---- */
+  --shadow-xs:  0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.06),
+                0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px 6px -1px rgba(0,0,0,0.07),
+                0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg:  0 10px 15px -3px rgba(0,0,0,0.08),
+                0 4px 6px -4px rgba(0,0,0,0.04);
+  --shadow-xl:  0 20px 25px -5px rgba(0,0,0,0.08),
+                0 8px 10px -6px rgba(0,0,0,0.03);
+  --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.18);
+
+  /* ---- Colored glow (derived from primary) ---- */
+  --glow:      0 0 60px color-mix(in srgb, var(--c-primary) 25%, transparent);
+  --glow-soft: 0 0 40px color-mix(in srgb, var(--c-primary) 15%, transparent);
+
+  color-scheme: light;
+}
+
+
+/* ============================================================================
+   6. DARK MODE — Full token reassignment
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    /* ---- Primary (lightened for dark bg readability) ---- */
+    --c-primary:                color-mix(in srgb, var(--pd-primary) 70%, white);
+    --c-on-primary:             color-mix(in srgb, var(--pd-primary) 90%, black);
+    --c-primary-container:      color-mix(in srgb, var(--pd-primary) 35%, black);
+    --c-on-primary-container:   color-mix(in srgb, var(--pd-primary) 85%, white);
+    --c-primary-hover:          color-mix(in srgb, var(--pd-primary) 60%, white);
+    --c-primary-active:         color-mix(in srgb, var(--pd-primary) 50%, white);
+    --c-primary-ghost:          color-mix(in srgb, var(--pd-primary) 12%, transparent);
+    --c-primary-ghost-hover:    color-mix(in srgb, var(--pd-primary) 20%, transparent);
+
+    /* ---- Secondary ---- */
+    --c-secondary:              color-mix(in srgb, var(--pd-secondary) 70%, white);
+    --c-on-secondary:           color-mix(in srgb, var(--pd-secondary) 90%, black);
+    --c-secondary-container:    color-mix(in srgb, var(--pd-secondary) 35%, black);
+    --c-on-secondary-container: color-mix(in srgb, var(--pd-secondary) 85%, white);
+
+    /* ---- Tertiary ---- */
+    --c-tertiary:               color-mix(in srgb, var(--pd-tertiary) 70%, white);
+    --c-on-tertiary:            color-mix(in srgb, var(--pd-tertiary) 90%, black);
+    --c-tertiary-container:     color-mix(in srgb, var(--pd-tertiary) 35%, black);
+    --c-on-tertiary-container:  color-mix(in srgb, var(--pd-tertiary) 85%, white);
+
+    /* ---- Error ---- */
+    --c-error:                  color-mix(in srgb, var(--pd-error) 70%, white);
+    --c-on-error:               color-mix(in srgb, var(--pd-error) 90%, black);
+    --c-error-container:        color-mix(in srgb, var(--pd-error) 35%, black);
+    --c-on-error-container:     color-mix(in srgb, var(--pd-error) 85%, white);
+
+    /* ---- Surfaces ---- */
+    --c-surface:            #1c1b1f;
+    --c-surface-1:          #212026;
+    --c-surface-2:          #28272d;
+    --c-surface-3:          #2e2d33;
+    --c-surface-variant:    #121826;
+    --c-on-surface:         #e6e1e5;
+    --c-on-surface-variant: #c9c5ca;
+
+    /* ---- Inverse ---- */
+    --c-inverse-surface:    #e7ebf1;
+    --c-inverse-on-surface: #111318;
+    --c-inverse-primary:    color-mix(in srgb, var(--c-primary) 30%, black);
+
+    /* ---- Outlines ---- */
+    --c-outline:            #8e9099;
+    --c-outline-variant:    #44474e;
+    --c-outline-subtle:     color-mix(in srgb, var(--c-on-surface) 10%, transparent);
+
+    /* ---- Glass ---- */
+    --c-glass:              rgba(28, 27, 31, 0.75);
+    --c-glass-strong:       rgba(28, 27, 31, 0.9);
+    --c-glass-nav:          rgba(18, 18, 22, 0.85);
+    --c-scrim:              rgba(0, 0, 0, 0.55);
+
+    /* ---- Shadows (more diffused in dark) ---- */
+    --shadow-xs:  0 1px 2px rgba(0,0,0,0.3);
+    --shadow-sm:  0 1px 3px rgba(0,0,0,0.35),
+                  0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md:  0 4px 8px rgba(0,0,0,0.35),
+                  0 2px 4px rgba(0,0,0,0.2);
+    --shadow-lg:  0 12px 20px rgba(0,0,0,0.4),
+                  0 4px 8px rgba(0,0,0,0.2);
+    --shadow-xl:  0 24px 36px rgba(0,0,0,0.45),
+                  0 8px 12px rgba(0,0,0,0.2);
+    --shadow-2xl: 0 32px 64px rgba(0,0,0,0.55);
+
+    /* ---- Glow ---- */
+    --glow:      0 0 60px color-mix(in srgb, var(--c-primary) 35%, transparent);
+    --glow-soft: 0 0 40px color-mix(in srgb, var(--c-primary) 20%, transparent);
+
+    color-scheme: dark;
+  }
+}
+
+/* Manual dark override */
+[data-theme='dark'] {
+  /* Same as above — duplicate for explicit toggle */
+  --c-primary:             color-mix(in srgb, var(--pd-primary) 70%, white);
+  --c-on-primary:          color-mix(in srgb, var(--pd-primary) 90%, black);
+  --c-primary-container:   color-mix(in srgb, var(--pd-primary) 35%, black);
+  --c-on-primary-container:color-mix(in srgb, var(--pd-primary) 85%, white);
+  --c-surface:             #1c1b1f;
+  --c-surface-1:           #212026;
+  --c-surface-2:           #28272d;
+  --c-on-surface:          #e6e1e5;
+  --glow: 0 0 60px color-mix(in srgb, var(--c-primary) 35%, transparent);
+  color-scheme: dark;
+}
+
+
+/* ============================================================================
+   7. RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + var(--space-4));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--t-base);
+  line-height: var(--lh-normal);
+  color: var(--c-on-surface);
+  background: var(--c-surface);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--c-primary) 30%, transparent);
+  color: var(--c-on-surface);
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+ul, ol { list-style: none; }
+
+/* ---- Skip Link (a11y) ---- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: var(--z-max);
+  padding: var(--space-3) var(--space-6);
+  background: var(--c-primary);
+  color: var(--c-on-primary);
+  border-radius: 0 0 var(--r-md) var(--r-md);
+  font-weight: 600;
+  font-size: var(--t-sm);
+  transition: top var(--dur-fast) var(--ease);
+}
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--c-primary);
+  outline-offset: 2px;
+}
+
+/* ---- Focus Visible (global) ---- */
+:focus-visible {
+  outline: 3px solid var(--c-primary);
+  outline-offset: 3px;
+  border-radius: var(--r-xs);
+}
+
+/* Remove focus ring for mouse users */
+:focus:not(:focus-visible) { outline: none; }
+
+
+/* ============================================================================
+   8. CONTAINER & LAYOUT UTILITIES
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--section-px);
+}
+
+.container--narrow { max-width: var(--container-md); }
+.container--wide   { max-width: var(--container-2xl); }
+
+.section {
+  padding-block: var(--section-py);
+  position: relative;
+}
+
+/* ============================================================================
+   9. NAVIGATION — Glass morphism, sticky, responsive
+   ========================================================================== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  padding-inline: var(--section-px);
+  background: var(--c-glass-nav);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid var(--c-outline-subtle);
+  transition: background var(--dur-normal) var(--ease),
+              box-shadow var(--dur-normal) var(--ease);
+}
+
+.nav.scrolled {
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-lg);
+  color: var(--c-on-surface);
+}
+
+.nav-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  background: var(--grad-google);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: var(--t-sm);
+  font-weight: 800;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav-link {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--r-full);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--c-on-surface-variant);
+  transition: color var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease);
+}
+
+.nav-link:hover {
+  color: var(--c-on-surface);
+  background: var(--c-primary-ghost);
+}
+
+.nav-link.active {
+  color: var(--c-primary);
+  background: var(--c-primary-ghost);
+}
+
+/* ---- Mobile Menu Toggle ---- */
+.mobile-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-md);
+  place-items: center;
+  color: var(--c-on-surface);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 900px) {
+  .mobile-menu-toggle { display: grid; }
+
+  .nav-links {
+    position: fixed;
+    inset: var(--nav-h) 0 0 0;
+    z-index: var(--z-overlay);
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-6);
+    gap: var(--space-2);
+    background: var(--c-surface-1);
+    backdrop-filter: blur(24px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--dur-normal) var(--ease),
+                transform var(--dur-normal) var(--ease),
+                visibility var(--dur-normal);
+    overflow-y: auto;
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-link {
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--r-lg);
+    font-size: var(--t-lg);
+  }
+}
+
+
+/* ============================================================================
+   10. HERO SECTION — Gradient mesh, floating particles, Google bar animation
+   ========================================================================== */
+.pd-hero {
+  position: relative;
+  min-height: calc(100dvh - var(--nav-h));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-block: var(--space-24);
+}
+
+/* ---- Animated mesh background ---- */
+.pd-hero-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-behind);
+  overflow: hidden;
+}
+
+.pd-hero-mesh::before,
+.pd-hero-mesh::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  will-change: transform;
+}
+
+.pd-hero-mesh::before {
+  width: 600px;
+  height: 600px;
+  background: var(--c-primary);
+  top: -15%;
+  left: -10%;
+  animation: meshFloat1 18s var(--ease) infinite alternate;
+}
+
+.pd-hero-mesh::after {
+  width: 500px;
+  height: 500px;
+  background: var(--c-secondary);
+  bottom: -20%;
+  right: -10%;
+  animation: meshFloat2 22s var(--ease) infinite alternate;
+}
+
+@keyframes meshFloat1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(80px, 60px) scale(1.15); }
+  100% { transform: translate(-40px, 100px) scale(0.95); }
+}
+
+@keyframes meshFloat2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-60px, -40px) scale(1.1); }
+  100% { transform: translate(50px, -80px) scale(0.9); }
+}
+
+/* ---- Hero content ---- */
+.pd-hero-content {
+  position: relative;
+  z-index: var(--z-base);
+  max-width: 720px;
+}
+
+.pd-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4) var(--space-1) var(--space-2);
+  border-radius: var(--r-full);
+  background: var(--c-primary-container);
+  color: var(--c-on-primary-container);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+}
+
+.pd-hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  animation: pulse 2s var(--ease) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.85); }
+}
+
+.pd-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--t-5xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-6);
+  color: var(--c-on-surface);
+}
+
+.pd-hero-title .gradient-text {
+  background: var(--grad-google);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pd-hero-sub {
+  font-size: var(--t-lg);
+  color: var(--c-on-surface-variant);
+  max-width: 56ch;
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-10);
+}
+
+/* ---- Hero Google-colored bars animation ---- */
+.pd-hero-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 70px;
+  margin-top: var(--space-8);
+}
+
+.pd-bar {
+  width: 16px;
+  border-radius: 5px 5px 2px 2px;
+  animation: barGrow 2.4s var(--ease) infinite alternate;
+}
+
+.pd-bar:nth-child(1) { height: 30%; background: var(--c-error);     animation-delay: 0s; }
+.pd-bar:nth-child(2) { height: 50%; background: var(--c-tertiary);  animation-delay: 0.15s; }
+.pd-bar:nth-child(3) { height: 72%; background: var(--c-secondary); animation-delay: 0.3s; }
+.pd-bar:nth-child(4) { height: 100%; background: var(--c-primary);  animation-delay: 0.45s; }
+
+@keyframes barGrow {
+  0%   { transform: scaleY(0.4); opacity: 0.6; }
+  50%  { transform: scaleY(1);   opacity: 1; }
+  100% { transform: scaleY(0.7); opacity: 0.8; }
+}
+
+/* ---- Hero CTA buttons ---- */
+.pd-hero-ctas {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================================
+   11. BUTTONS — Full system with Google accent colors
+   ========================================================================== */
+
+/* ---- Primary (filled) ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-8);
+  border-radius: var(--r-full);
+  background: var(--c-primary);
+  color: var(--c-on-primary);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease);
+}
+
+/* Ripple overlay */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--glow-soft);
+  background: var(--c-primary-hover);
+}
+
+.btn-primary:hover::after { opacity: 0.08; }
+
+.btn-primary:active {
+  transform: translateY(0);
+  background: var(--c-primary-active);
+}
+
+/* ---- Secondary (outlined) ---- */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-8);
+  border-radius: var(--r-full);
+  border: 2px solid var(--c-outline-variant);
+  background: transparent;
+  color: var(--c-primary);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  transition: border-color var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+
+.btn-secondary:hover {
+  border-color: var(--c-primary);
+  background: var(--c-primary-ghost);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active { transform: translateY(0); }
+
+/* ---- Ghost (text-only) ---- */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--r-full);
+  color: var(--c-primary);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.btn-ghost:hover { background: var(--c-primary-ghost-hover); }
+
+/* ---- CTA (extra emphasis) ---- */
+.pd-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--r-full);
+  background: var(--grad-google);
+  background-size: 200% 200%;
+  color: white;
+  font-size: var(--t-base);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  animation: gradientShift 6s var(--ease) infinite;
+  transition: transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+
+.pd-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl), var(--glow);
+}
+
+.pd-cta-btn:active { transform: translateY(-1px); }
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+
+/* ============================================================================
+   12. PRODUCT CARDS — Feature showcase with Google-colored badges
+   ========================================================================== */
+.product-grid {
+  display: grid;
+  gap: var(--space-16);
+}
+
+.product-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.product-card.reverse { direction: rtl; }
+.product-card.reverse > * { direction: ltr; }
+
+.product-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--r-full);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+/* Product-specific badge colors using semantic tokens */
+.product-badge.send       { color: var(--c-primary);   background: var(--c-primary-container); }
+.product-badge.fintracker { color: var(--c-secondary);  background: var(--c-secondary-container); }
+.product-badge.installer  { color: var(--c-tertiary);   background: var(--c-tertiary-container); }
+.product-badge.torrent    { color: var(--c-error);      background: var(--c-error-container); }
+
+.product-title {
+  font-family: var(--font-display);
+  font-size: var(--t-2xl);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.product-tagline {
+  color: var(--c-on-surface-variant);
+  font-size: var(--t-lg);
+  margin-top: var(--space-2);
+}
+
+.feature-list {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.feature-list li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  color: var(--c-on-surface-variant);
+  font-size: var(--t-sm);
+  line-height: var(--lh-normal);
+}
+
+.feature-list svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--c-secondary);
+  margin-top: 2px;
+}
+
+.product-visual {
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  background: var(--c-surface-1);
+  border: 1px solid var(--c-outline-subtle);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--dur-slow) var(--ease),
+              box-shadow var(--dur-slow) var(--ease);
+}
+
+.product-visual:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-2xl), var(--glow);
+}
+
+@media (max-width: 900px) {
+  .product-card {
+    grid-template-columns: 1fr;
+  }
+  .product-card.reverse { direction: ltr; }
+  .product-card.reverse .product-visual { order: 0; }
+}
+
+
+/* ============================================================================
+   13. TRUST STRIP — Live stats with Google-colored accents
+   ========================================================================== */
+.pd-trust-strip {
+  background: var(--c-surface-1);
+  border-block: 1px solid var(--c-outline-subtle);
+  padding-block: var(--space-10);
+}
+
+.pd-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  text-align: center;
+}
+
+.pd-trust-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pd-trust-value {
+  font-family: var(--font-display);
+  font-size: var(--t-3xl);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  background: var(--grad-google);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pd-trust-label {
+  font-size: var(--t-sm);
+  color: var(--c-on-surface-variant);
+  font-weight: 500;
+}
+
+@media (max-width: 560px) {
+  .pd-trust-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* ============================================================================
+   14. FAQ ACCORDION — Accessible, animated (no max-height hack)
+   ========================================================================== */
+.pd-faq-list {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--container-md);
+  margin-inline: auto;
+}
+
+.pd-faq-item {
+  border: 1px solid var(--c-outline-variant);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  overflow: hidden;
+  transition: border-color var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+
+.pd-faq-item:has([aria-expanded="true"]) {
+  border-color: var(--c-primary);
+  box-shadow: var(--glow-soft);
+}
+
+.pd-faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  font-size: var(--t-base);
+  font-weight: 600;
+  color: var(--c-on-surface);
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.pd-faq-trigger:hover { color: var(--c-primary); }
+
+.pd-faq-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--c-primary-ghost);
+  color: var(--c-primary);
+  display: grid;
+  place-items: center;
+  transition: transform var(--dur-normal) var(--ease),
+              background var(--dur-fast) var(--ease);
+}
+
+[aria-expanded="true"] .pd-faq-icon {
+  transform: rotate(45deg);
+  background: var(--c-primary-container);
+}
+
+/* CSS-only height animation via grid rows (no max-height!) */
+.pd-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-slow) var(--ease);
+}
+
+.pd-faq-item:has([aria-expanded="true"]) .pd-faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.pd-faq-answer-inner {
+  overflow: hidden;
+}
+
+.pd-faq-answer-inner p {
+  padding: 0 var(--space-6) var(--space-6);
+  color: var(--c-on-surface-variant);
+  line-height: var(--lh-relaxed);
+  font-size: var(--t-sm);
+}
+
+
+/* ============================================================================
+   15. PRIVACY CARDS — Google-colored icon backgrounds
+   ========================================================================== */
+.privacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.privacy-card {
+  padding: var(--space-8);
+  border-radius: var(--r-xl);
+  background: var(--c-surface);
+  border: 1px solid var(--c-outline-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-normal) var(--ease),
+              box-shadow var(--dur-normal) var(--ease);
+}
+
+.privacy-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.privacy-card .pc-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  display: grid;
+  place-items: center;
+  color: var(--c-on-primary);
+  font-size: var(--t-xl);
+}
+
+/* Google-colored icon backgrounds */
+.bg-blue   { background: var(--c-primary); }
+.bg-green  { background: var(--c-secondary); }
+.bg-yellow { background: var(--c-tertiary); color: var(--c-on-tertiary) !important; }
+.bg-red    { background: var(--c-error); }
+
+.privacy-card h3 { font-size: var(--t-xl); font-weight: 700; }
+.privacy-card p  { color: var(--c-on-surface-variant); font-size: var(--t-sm); line-height: var(--lh-relaxed); }
+
+
+/* ============================================================================
+   16. DOCUMENTATION STYLES — Callouts, numbered lists
+   ========================================================================== */
+.doc-section {
+  margin-bottom: var(--space-10);
+}
+
+.doc-section h2 {
+  font-size: var(--t-xl);
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.doc-section h2 .num {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-outline-variant);
+  color: var(--c-primary);
+  font-size: var(--t-sm);
+  font-weight: 700;
+}
+
+.doc-section p { color: var(--c-on-surface-variant); margin-bottom: var(--space-3); }
+.doc-section a { color: var(--c-primary); text-decoration: underline; text-underline-offset: 3px; }
+.doc-section a:hover { color: var(--c-primary-hover); }
+
+.doc-list { display: grid; gap: var(--space-3); padding-left: 0; }
+.doc-list li {
+  list-style: none;
+  padding-left: var(--space-6);
+  position: relative;
+  color: var(--c-on-surface-variant);
+}
+.doc-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+.doc-list strong { color: var(--c-on-surface); }
+
+.callout {
+  background: var(--c-surface);
+  border: 1px solid var(--c-outline-variant);
+  border-left: 4px solid var(--c-secondary);
+  border-radius: var(--r-md);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.callout.amber { border-left-color: var(--c-tertiary); }
+.callout.danger { border-left-color: var(--c-error); }
+.callout.info { border-left-color: var(--c-primary); }
+
+
+/* ============================================================================
+   17. FOOTER — Consistent token usage
+   ========================================================================== */
+footer {
+  border-top: 1px solid var(--c-outline-subtle);
+  padding-block: var(--space-12);
+  background: var(--c-surface-1);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-8);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer-col h4 {
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-widest);
+  color: var(--c-on-surface-variant);
+  font-weight: 700;
+}
+
+.footer-col a,
+.footer-col span {
+  color: var(--c-on-surface-variant);
+  font-size: var(--t-sm);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.footer-col a:hover { color: var(--c-primary); }
+
+.footer-bottom {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--c-outline-subtle);
+  color: var(--c-on-surface-variant);
+  font-size: var(--t-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+}
+
+
+/* ============================================================================
+   18. SCROLL-DRIVEN ANIMATIONS — Modern, performant entrance animations
+   ========================================================================== */
+
+/* Intersection Observer fallback class-based approach */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--dur-slower) var(--ease),
+              transform var(--dur-slower) var(--ease);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+
+/* Slide-in variants */
+.reveal-left  { transform: translateX(-24px); }
+.reveal-right { transform: translateX(24px); }
+.reveal-scale { transform: scale(0.95); }
+.reveal-left.in,
+.reveal-right.in,
+.reveal-scale.in { transform: translate(0) scale(1); }
+
+
+/* ============================================================================
+   19. REDUCED MOTION — Comprehensive accessibility override
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .pd-hero-mesh::before,
+  .pd-hero-mesh::after { animation: none !important; opacity: 0.2; }
+
+  .pd-bar { animation: none !important; }
+
+  .pd-cta-btn { animation: none !important; }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* ============================================================================
+   20. HIGH CONTRAST MODE
+   ========================================================================== */
+@media (forced-colors: active) {
+  .btn-primary,
+  .btn-secondary,
+  .pd-cta-btn {
+    border: 2px solid ButtonText;
+  }
+
+  .pd-faq-item {
+    border: 2px solid ButtonText;
+  }
+
+  .privacy-card .pc-icon {
+    forced-color-adjust: none;
+  }
+}
+
+
+/* ============================================================================
+   21. PRINT STYLES
+   ========================================================================== */
+@media print {
+  .nav,
+  .pd-hero-mesh,
+  .pd-hero-bars,
+  .mobile-menu-toggle,
+  footer { display: none !important; }
+
+  body {
+    color: black;
+    background: white;
+    font-size: 12pt;
+  }
+
+  .product-card { grid-template-columns: 1fr; }
+  .product-visual { box-shadow: none; border: 1px solid #ccc; }
+
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+}
+
+/* ============================================================================
+   LEGACY TOKEN ALIASES — map old site variables to the Material role tokens
+   so existing pages and product-page.css keep working during the migration.
+   ========================================================================== */
+:root {
+  --c-bg: var(--c-surface);
+  --c-bg-2: var(--c-surface-1);
+  --c-surface-solid: var(--c-surface);
+  --c-text-1: var(--c-on-surface);
+  --c-text-2: var(--c-on-surface-variant);
+  --c-text-3: var(--c-outline);
+  --c-border: var(--c-outline-subtle);
+  --c-border-strong: var(--c-outline);
+  --r-pill: var(--r-full);
+  --maxw: var(--container-xl);
+  --t-hero: var(--t-5xl);
+  --c-glass-nav: var(--c-glass-nav);
+  --shadow-sm-light: var(--shadow-sm);
+  --shadow-md-light: var(--shadow-md);
+  --shadow-lg-light: var(--shadow-lg);
+  --glow-light: var(--glow);
+  --c-glass-light: var(--c-glass);
+  --c-glass-nav-light: var(--c-glass-nav);
+  --c-surface-light: var(--c-surface);
+  --c-surface-solid-light: var(--c-surface);
+  --c-surface-2-light: var(--c-surface-2);
+  --c-border-light: var(--c-outline-subtle);
+  --c-border-strong-light: var(--c-outline);
+  --c-text-1-light: var(--c-on-surface);
+  --c-text-2-light: var(--c-on-surface-variant);
+  --c-text-3-light: var(--c-outline);
+  --c-glass-dark: var(--c-glass);
+  --c-glass-nav-dark: var(--c-glass-nav);
+  --c-surface-dark: var(--c-surface);
+  --c-surface-solid-dark: var(--c-surface);
+  --c-surface-2-dark: var(--c-surface-2);
+  --c-border-dark: var(--c-outline-subtle);
+  --c-border-strong-dark: var(--c-outline);
+  --c-text-1-dark: var(--c-on-surface);
+  --c-text-2-dark: var(--c-on-surface-variant);
+  --c-text-3-dark: var(--c-outline);
+  --shadow-sm-dark: var(--shadow-sm);
+  --shadow-md-dark: var(--shadow-md);
+  --shadow-lg-dark: var(--shadow-lg);
+  --glow-dark: var(--glow);
+}
